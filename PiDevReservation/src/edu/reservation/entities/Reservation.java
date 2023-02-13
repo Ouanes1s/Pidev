@@ -105,7 +105,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" + "nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", typeticket_res=" + typeticket_res + ", numfilm_res=" + numfilm_res + ", date_res=" + date_res + '}';
+        return "Reservation{" + "nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", typeticket_res=" + typeticket_res + ", numfilm_res=" + numfilm_res +  ", idproduit_res=" + idproduit_res + ", date_res=" + date_res + '}';
     }
 
     @Override

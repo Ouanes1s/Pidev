@@ -24,28 +24,34 @@ public class ServiceReservation implements IServiceReservation<Reservation> {
 
     Connection cnx = DataSource.getInstance().getCnx();
 
-    @Override
-    public void ajouterReservation(Reservation r) {
-        try {
-            String req = "INSERT INTO `reservation`( `nom_res`, `prenom_res`, `typeticket_res`, `numfilm_res`, `idproduit_res`, `date_res`) VALUES ('" + r.getNom_res() + "', '" + r.getPrenom_res() + "''" + r.getTypeTicket_res() + "', '" + r.getNumFilm_res() + "''" + r.getIdProduit_res() + "', '" + r.getDate_res() + "')";
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Reservation created !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-//    public void ajouter2(Personne p) {
+//    @Override
+//    public void ajouterReservation(Reservation r) {
 //        try {
-//            String req = "INSERT INTO `personne` (`nom`, `prenom`) VALUES (?,?)";
-//            PreparedStatement ps = cnx.prepareStatement(req);
-//            ps.setString(2, p.getPrenom());
-//            ps.setString(1, p.getNom());
-//            ps.executeUpdate();
+//            String req = "INSERT INTO `reservation`( `nom_res`, `prenom_res`, `typeticket_res`, `numfilm_res`, `idproduit_res`, `date_res`) VALUES ('" + r.getNom_res() + "', '" + r.getPrenom_res() + "''" + r.getTypeTicket_res() + "', '" + r.getNumFilm_res() + "''" + r.getIdProduit_res() + "', '" + r.getDate_res() + "')";
+//            PreparedStatement st = cnx.prepareStatement();
+//            st.executeUpdate(req);
+//            System.out.println("Reservation created !");
 //        } catch (SQLException ex) {
 //            System.out.println(ex.getMessage());
 //        }
+//    }
+
+    public void ajouterReservation(Reservation r) {
+        try {
+            String req = "INSERT INTO `reservation`( `nom_res`, `prenom_res`, `typeticket_res`, `numfilm_res`, `idproduit_res`, `date_res`) VALUES (?,?,?,?,?,? )";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(2, r.getPrenom_res());
+            ps.setString(1, r.getNom_res());
+             ps.setString(3, r.getTypeTicket_res());
+             ps.setInt(4, r.getNumFilm_res());
+             ps.setInt(5, r.getIdProduit_res());
+             ps.setString(6, r.getDate_res());
+                
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        }
 
     
 
@@ -92,20 +98,39 @@ public class ServiceReservation implements IServiceReservation<Reservation> {
     }
 
     @Override
-    public Reservation getOneById(int id_res) {
+//    public Reservation getOneById(int id_res) {
+//        Reservation r = null;
+//        try {
+//            String req = "Select * from reservation";
+//            Statement st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(req);
+//            while (rs.next()) {
+//                r = new Reservation(rs.getInt("id_res"), rs.getString("nom_res"), rs.getString("prenom_res"), rs.getString("typeticket_res"), rs.getInt("numfilm_res"), rs.getInt("idproduit_res"), rs.getString("date_res"));
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//
+//        return r;
+//    }
+    
+    public Reservation getOneById(int id) {
         Reservation r = null;
         try {
             String req = "Select * from reservation";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                r = new Reservation(rs.getInt("id_res"), rs.getString("nom_res"), rs.getString("prenom_res"), rs.getString("typeticket_res"), rs.getInt("numfilm_res"), rs.getInt("idproduit_res"), rs.getString("date_res"));
-            }
-        } catch (SQLException ex) {
+                if (id==rs.getInt("id_res")){
+       r = new Reservation (rs.getInt("id_res"), rs.getString("nom_res"),rs.getString("prenom_res"),
+                        rs.getString("typeticket_res"),rs.getInt("numfilm_res"),rs.getInt("idproduit_res"),rs.getString("date_res"));            }
+        }} catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
         return r;
     }
+
+    }
     
-}
+ 

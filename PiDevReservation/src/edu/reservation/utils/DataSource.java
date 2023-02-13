@@ -19,7 +19,7 @@ public class DataSource {
     private static DataSource instance;
     
     private final String USER = "root";
-    private final String PWD = "root";
+    private final String PWD = "";
     private final String URL = "jdbc:mysql://localhost:3306/pidevmetax";
 
     private DataSource() {
