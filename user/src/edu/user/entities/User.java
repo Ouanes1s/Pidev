@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package UserEntities;
+package edu.user.entities;
 
 /**
  *
@@ -100,6 +100,10 @@ public class User {
 
     public void setMdp_user(String mdp_user) {
         this.mdp_user = mdp_user;
+    }
+
+    public String toString() {
+        return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +role_user+'}' ;
     }
 
   
