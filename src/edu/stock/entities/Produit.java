@@ -12,7 +12,7 @@ public class Produit {
     private String Catégorie_Article;
     private int Quantité_Article;
     private int Prix_Vente;
-    private boolean Etat_Article;
+    private String Etat_Article;
 
     public Produit() {
     }
@@ -25,7 +25,7 @@ public class Produit {
         this.Prix_Vente = Prix_Vente;
     }
         
-    public Produit(int Id_Produit, String Code_Article, String Nom_Article, String Catégorie_Article, int Quantité_Article, int Prix_Vente, boolean Etat_Article) {
+    public Produit(int Id_Produit, String Code_Article, String Nom_Article, String Catégorie_Article, int Quantité_Article, int Prix_Vente, String Etat_Article) {
         this.Id_Produit = Id_Produit;
         this.Code_Article = Code_Article;
         this.Nom_Article = Nom_Article;
@@ -79,11 +79,11 @@ public class Produit {
         this.Prix_Vente = Prix_Vente;
     }
 
-    public boolean isEtat_Article() {
+    public String getEtat_Article() {
         return Etat_Article;
     }
 
-    public void setEtat_Article(boolean Etat_Article) {
+    public void setEtat_Article(String Etat_Article) {
         this.Etat_Article = Etat_Article;
     }
 
