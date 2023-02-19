@@ -34,6 +34,12 @@ import static javax.swing.UIManager.getString;
        
               if (VerifCin(U1.getCin_user())!=0) {
                 System.out.println("Admin deja ajouté ");
+                EnvoyerEmail e = new EnvoyerEmail();
+            try {
+                e.envoyer(U1.getEmail_user(),U1.getMdp_user(),U1.getNom_user());
+            } catch (MessagingException ex) {
+                Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
            else{
                
@@ -111,6 +117,12 @@ import static javax.swing.UIManager.getString;
     public void ajouterUserMembre(User u) {
         if (VerifCin(u.getCin_user())!=0) {
                 System.out.println("Membre deja ajouté ");
+                EnvoyerEmail e = new EnvoyerEmail();
+            try {
+                e.envoyer(u.getEmail_user(),u.getMdp_user(),u.getNom_user());
+            } catch (MessagingException ex) {
+                Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
            else{
                

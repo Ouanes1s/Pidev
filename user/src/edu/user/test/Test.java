@@ -24,8 +24,8 @@ public class Test {
         UserCRUD uc = new UserCRUD();
         //i=uc.VerifCin(1234567);
         System.out.println(i);
-        //uc.ajouterUserAgent(u1);//
-        uc.supprimerUserCin(u1);
+        uc.ajouterUserAgent(u1);
+        //uc.supprimerUserCin(u1);
         //uc.modifierUser(u2);
         //System.out.println(uc.afficherUser());*//
 
