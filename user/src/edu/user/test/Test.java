@@ -24,10 +24,10 @@ public class Test {
         UserCRUD uc = new UserCRUD();
         //i=uc.VerifCin(1234567);
         System.out.println(i);
-        uc.ajouterUserAgent(u1);//
-        /*uc.supprimerUser(u1);
-        uc.modifierUser(u2);
-        System.out.println(uc.afficherUser());*/
+        //uc.ajouterUserAgent(u1);//
+        uc.supprimerUserCin(u1);
+        //uc.modifierUser(u2);
+        //System.out.println(uc.afficherUser());*//
 
         u=uc.getOneByCin("1234567");
         System.out.println(u.toString());

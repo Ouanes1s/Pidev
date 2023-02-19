@@ -28,7 +28,7 @@ public class EnvoyerEmail {
             
             String username = "mohamedouanes.chebil@esprit.tn";
             String password ="213JMT5601";
-            System.out.println("Entrain d'envoyer un email de vérification !! ");
+            System.out.println("Entrain d'envoyer un email de Récuperation de MDP !! ");
             // Etape 1 : Création de la session
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");

@@ -229,6 +229,19 @@ import static javax.swing.UIManager.getString;
             System.out.println(ex.getMessage());
         }
     }
+     public void supprimerUserCin(User u) {
+        try{
+           
+            String req = "DELETE FROM user WHERE cin_user=?" ;
+            Statement st;
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setString(1, u.getCin_user());
+            pst.executeUpdate();
+            System.out.println("A user was deleted successfully!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
      
     @Override
     public List<User> afficherUserMembre() {

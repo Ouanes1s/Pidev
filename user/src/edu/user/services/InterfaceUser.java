@@ -28,6 +28,7 @@ import java.util.List;
     
 
     public void supprimerUser (user u);
+     public void supprimerUserCin(User u);
     
     public List<user> afficherUserMembre();
     public List<user> afficherUserAgent();
