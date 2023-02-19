@@ -4,6 +4,7 @@
  */
 package edu.user.services;
 
+import edu.user.entities.User;
 import java.util.List;
 
 /**
@@ -17,11 +18,21 @@ import java.util.List;
      * @param <user>
      */
     public interface InterfaceUser <user> {
-    public void ajouterUser (user u);
-    public void modifierUser (user u);
+    public void ajouterUserAgent(User u);
+    public void ajouterUserMembre(User u);
+    public void ajouterUserAdmin(User U1);
+    
+    public void modifierUserAdmin (User u);
+    public void modifierUserAgent(User u);
+    public void modifierUserMembre(User u);
+    
+
     public void supprimerUser (user u);
-    public List<user> afficherUser();
-    public user getOneById(int id);
+    
+    public List<user> afficherUserMembre();
+    public List<user> afficherUserAgent();
+    
+    public user getOneByCin(int cin);
   
 }
 

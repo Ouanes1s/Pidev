@@ -4,6 +4,7 @@
  */
 package edu.user.test;
 
+import edu.user.entities.Agent;
 import edu.user.entities.User;
 import edu.user.services.UserCRUD;
 import edu.user.utils.ConnectionToDB;
@@ -16,19 +17,19 @@ public class Test {
     public static void main(String[] args) {
      
         
-        User u1=new User (5,"Chebil","Ouanes","12345678","mohamedouanes.chebil@esprit.tn","Admin","Jesuisunemotdepasse123");
-                User u2=new User (8,"Khalfaoui","Amine","12345678","Amine.Khalfaoui@esprit.tn","Utilisateur","Jesuisunemotdepasse123");
-User u = new User();
+        User u1=new Agent ("1500", "Agent1", "2Ans", "Ouanes", "Chebil", "1234567", "Mohamedouanes.chebil@esprit.tn" ,"542365");
+       // User u2=new User (8,"Khalfaoui","Amine","12345678","Amine.Khalfaoui@esprit.tn","Utilisateur","Jesuisunemotdepasse123");
+        User u = new User();
         UserCRUD uc = new UserCRUD();
-        uc.ajouterUser(u1);
-        uc.supprimerUser(u1);
+        uc.ajouterUserAgent(u1);
+        /*uc.supprimerUser(u1);
         uc.modifierUser(u2);
         System.out.println(uc.afficherUser());
         u=uc.getOneById(6);
-        System.out.println(u.toString());
+        System.out.println(u.toString());*/
        
         
-        
+         
         
         
       

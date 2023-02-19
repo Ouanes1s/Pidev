@@ -15,7 +15,6 @@ public class User {
     private String prenom_user;
     private String cin_user;
     private String email_user;
-    private String role_user;
     private String mdp_user;
 
     public User() {
@@ -23,28 +22,30 @@ public class User {
     
     
 
-    public User(int id_user, String nom_user, String prenom_user, String cin_user, String email_user, String role_user, String mdp_user) {
+    public User(int id_user, String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user) {
         this.id_user = id_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.cin_user = cin_user;
         this.email_user = email_user;
-        this.role_user = role_user;
+       
         this.mdp_user = mdp_user;
     }
 
-    public User(String nom_user, String prenom_user, String cin_user, String email_user, String role_user, String mdp_user) {
+    public User(String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user) {
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
         this.cin_user = cin_user;
         this.email_user = email_user;
-        this.role_user = role_user;
+    
         this.mdp_user = mdp_user;
     }
 
-    public User(String role_user) {
-        this.role_user=role_user;
+    public User(int aInt, String string, String string0, String string1, String string2, String string3, String string4) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     public int getId_user() {
         return id_user;
@@ -66,10 +67,7 @@ public class User {
         return email_user;
     }
 
-    public String getRole_user() {
-        return role_user;
-    }
-
+   
     public String getMdp_user() {
         return mdp_user;
     }
@@ -94,21 +92,19 @@ public class User {
         this.email_user = email_user;
     }
 
-    public void setRole_user(String role_user) {
-        this.role_user = role_user;
-    }
+
 
     public void setMdp_user(String mdp_user) {
         this.mdp_user = mdp_user;
     }
 
     public String toString() {
-        return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +role_user+'}' ;
+        return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +'}' ;
     }
 
   
     
 
     }
-    
+
 
