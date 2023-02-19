@@ -32,7 +32,9 @@ import java.util.List;
     public List<user> afficherUserMembre();
     public List<user> afficherUserAgent();
     
-    public user getOneByCin(int cin);
+    public user getOneByCin(String cin);
+    public int VerifCin(String cin);
+      public boolean verifierEmailBd(String email);
   
 }
 

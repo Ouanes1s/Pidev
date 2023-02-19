@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.U;
+import javax.mail.MessagingException;
+import static javax.swing.UIManager.getString;
 
 /**
  *
@@ -29,9 +31,15 @@ import static javafx.scene.input.KeyCode.U;
 
      @Override
     public void ajouterUserAdmin(User U1) {
-        try{
-              
+       
+              if (VerifCin(U1.getCin_user())!=0) {
+                System.out.println("Admin deja ajouté ");
+            }
+           else{
                
+    
+
+             try{   
                 
             String req ="INSERT INTO user (nom_user, prenom_user, cin_user, email_user, role_user, mdp_user) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(req);
@@ -51,11 +59,22 @@ import static javafx.scene.input.KeyCode.U;
             
         }catch (SQLException ex){
             System.out.println(ex.getMessage());
-        }
+        }}
     }
     
     @Override
     public void ajouterUserAgent(User u) {
+        if (VerifCin(u.getCin_user())!=0) {
+                System.out.println("Agent deja ajouté ");
+               EnvoyerEmail e = new EnvoyerEmail();
+            try {
+                e.envoyer(u.getEmail_user(),u.getMdp_user(),u.getNom_user());
+            } catch (MessagingException ex) {
+                Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+           else{
+               
         try{
               
                    
@@ -86,10 +105,15 @@ import static javafx.scene.input.KeyCode.U;
             System.out.println(ex.getMessage());
         }
 
-         }
+         }}
     
     @Override
     public void ajouterUserMembre(User u) {
+        if (VerifCin(u.getCin_user())!=0) {
+                System.out.println("Membre deja ajouté ");
+            }
+           else{
+               
         try{
               
                    
@@ -117,7 +141,7 @@ import static javafx.scene.input.KeyCode.U;
             System.out.println(ex.getMessage());
         }
 
-         }
+         }}
     
 
     @Override
@@ -253,15 +277,15 @@ import static javafx.scene.input.KeyCode.U;
 
    
 
-    @Override
-    public User getOneByCin(int cin) {
+     @Override
+    public User getOneByCin(String cin) {
         User u = null;
         try {
             String req = "Select * from user";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                if (cin==rs.getInt("cin_user")){
+                if (cin.equals(rs.getString("cin_user"))){
             u = new User (rs.getInt("id_user"), rs.getString("nom_user"),rs.getString("prenom_user"),rs.getString("cin_user"),rs.getString("email_user"),rs.getString("mdp_user"));}
                 
         }
@@ -274,10 +298,57 @@ import static javafx.scene.input.KeyCode.U;
         
     }
 
-    
+    /**
+     *
+     * @param cin
+     * @return
+     */
+    @Override
+    public int VerifCin(String cin) {
+        User u = null;
+         int nb = 0;
+        try {
+            String req = "Select * from user";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                if (cin.equals(rs.getString("cin_user"))){
+           nb=1;}
+                
+        }
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nb;
+
+        
+    }
+     @Override
+    public boolean verifierEmailBd(String email) {
+	PreparedStatement stmt = null;
+	ResultSet rst = null;
+	try {
+	    String sql = "SELECT * FROM User WHERE email_user=?";
+	    stmt = cnx.prepareStatement(sql);
+	    stmt.setString(1, email);
+	    rst = stmt.executeQuery();
+	    if (rst.next()) {
+		return true;
+	    }
+	} catch (SQLException ex) {
+	    System.out.println(ex.getMessage());
+	}
+	return false;
 
     }
 
+    public int VerifCin(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    }
     
 
     

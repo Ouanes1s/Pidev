@@ -96,6 +96,11 @@ public class Agent extends User {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Agent{" + "Salaire=" + Salaire + ", type_A=" + type_A + ", date_contract=" + date_contract + '}';
+    }
     
 
     

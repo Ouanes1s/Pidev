@@ -20,13 +20,17 @@ public class Test {
         User u1=new Agent ("1500", "Agent1", "2Ans", "Ouanes", "Chebil", "1234567", "Mohamedouanes.chebil@esprit.tn" ,"542365");
        // User u2=new User (8,"Khalfaoui","Amine","12345678","Amine.Khalfaoui@esprit.tn","Utilisateur","Jesuisunemotdepasse123");
         User u = new User();
+        int i = 0;
         UserCRUD uc = new UserCRUD();
-        uc.ajouterUserAgent(u1);
+        //i=uc.VerifCin(1234567);
+        System.out.println(i);
+        uc.ajouterUserAgent(u1);//
         /*uc.supprimerUser(u1);
         uc.modifierUser(u2);
-        System.out.println(uc.afficherUser());
-        u=uc.getOneById(6);
-        System.out.println(u.toString());*/
+        System.out.println(uc.afficherUser());*/
+
+        u=uc.getOneByCin("1234567");
+        System.out.println(u.toString());
        
         
          

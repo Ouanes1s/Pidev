@@ -4,6 +4,8 @@
  */
 package edu.user.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author chebi
@@ -43,6 +45,45 @@ public class User {
 
     public User(int aInt, String string, String string0, String string1, String string2, String string3, String string4) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.id_user != other.id_user) {
+            return false;
+        }
+        if (!Objects.equals(this.nom_user, other.nom_user)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom_user, other.prenom_user)) {
+            return false;
+        }
+        if (!Objects.equals(this.cin_user, other.cin_user)) {
+            return false;
+        }
+        if (!Objects.equals(this.email_user, other.email_user)) {
+            return false;
+        }
+        if (!Objects.equals(this.mdp_user, other.mdp_user)) {
+            return false;
+        }
+        return true;
     }
 
     
