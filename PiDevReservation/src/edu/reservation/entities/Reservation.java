@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package edu.reservation.entities;
-import java.util.Date;
+ 
 
 /**
  *
@@ -13,10 +13,10 @@ import java.util.Date;
 public class Reservation {
      
     private int id_res ;
-    private String nom_res, prenom_res;
+    private String nom_res , prenom_res;
     private String typeticket_res ;
-    private int numfilm_res ;
-    private int idproduit_res ;
+    private int id_film ;
+    private String code_offr ;
      
     private String date_res ;
     
@@ -24,23 +24,24 @@ public class Reservation {
     public Reservation() {
     }
     
-    public Reservation(String nom_res, String prenom_res, String typeticket_res, int numfilm_res,int idproduit_res, String date_res) {
+    public Reservation(String nom_res, String prenom_res, String typeticket_res, int id_film,  String date_res, String code_offr) {
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;
         this.typeticket_res = typeticket_res;
-        this.numfilm_res = numfilm_res;
-        this.idproduit_res = idproduit_res;
+        this.id_film = id_film;
+        this.code_offr = code_offr;
         this.date_res = date_res;
         
     }
 
-    public Reservation(int id_res, String nom_res, String prenom_res, String typeticket_res, int numfilm_res, int idproduit_res, String date_res ) {
+    public Reservation(int id_res, String nom_res, String prenom_res, String typeticket_res, int id_film,   String date_res, String code_offr ) {
         this.id_res = id_res;
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;
         this.typeticket_res = typeticket_res;
-        this.numfilm_res = numfilm_res;
-        this.idproduit_res = idproduit_res;
+        this.id_film = id_film;
+        this.code_offr = code_offr;
+         
          
         this.date_res = date_res;
 
@@ -62,14 +63,11 @@ public class Reservation {
         return typeticket_res;
     }
      
-    public int getNumFilm_res() {
-        return numfilm_res;
+    public int getId_film() {
+        return id_film;
     }
     
-    public int getIdProduit_res() {
-        return idproduit_res;
-    }
-    
+   
      public String getDate_res() {
         return date_res;
     }
@@ -90,23 +88,31 @@ public class Reservation {
         this.typeticket_res = typeticket_res;
     }
     
-    public void getNumFilm_res(int numfilm_res) {
-        this.numfilm_res = numfilm_res;
+    public void getId_film(int id_film) {
+        this.id_film = id_film;
     }
     
-     
-    public void getIdProduit_res(int idproduit_res) {
-        this.idproduit_res = idproduit_res;
-    }
+    
     
     public void getDate_res(String date_res) {
         this.date_res = date_res;
     }
 
+    public String getCode_offr() {
+        return code_offr;
+    }
+
+    public void setCode_offr(String code_offr) {
+        this.code_offr = code_offr;
+    }
+
     @Override
     public String toString() {
-        return "Reservation{" + "nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", typeticket_res=" + typeticket_res + ", numfilm_res=" + numfilm_res +  ", idproduit_res=" + idproduit_res + ", date_res=" + date_res + '}';
+        return "Reservation{" + "id_res=" + id_res + ", nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", typeticket_res=" + typeticket_res + ", id_film=" + id_film + ", code_offr=" + code_offr + ", date_res=" + date_res + '}';
     }
+    
+    
+ 
 
     @Override
     public int hashCode() {

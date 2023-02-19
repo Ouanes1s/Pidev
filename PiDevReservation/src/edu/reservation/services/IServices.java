@@ -11,11 +11,11 @@ import java.util.List;
  * @author Amine Khalfaoui
  */
  
- public interface IServiceReservation <T>{
-    public void ajouterReservation(T r);
-    public void supprimerReservation(int id_res);
-    public void modifierReservation(T r);
+ public interface IServices <T>{
+    public void ajouter (T r);
+    public void supprimer (int id );
+    public void modifier (T r);
     public List<T> getAll();
-    public T getOneById(int id_res);
+    public T getOneById(int id );
     
 }
