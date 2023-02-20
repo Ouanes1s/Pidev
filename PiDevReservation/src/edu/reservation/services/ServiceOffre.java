@@ -122,6 +122,7 @@ public class ServiceOffre implements IServices<Offre> {
     public List<Offre> trierOffreParDate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    }
     
     
     
@@ -143,7 +144,7 @@ public class ServiceOffre implements IServices<Offre> {
 //      e.printStackTrace();
 //    }
 //  }
-}
+ 
 
 
  
@@ -151,6 +152,7 @@ public class ServiceOffre implements IServices<Offre> {
 
      
  
+  
+
  
  
-}
