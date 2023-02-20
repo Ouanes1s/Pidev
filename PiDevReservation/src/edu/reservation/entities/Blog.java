@@ -13,19 +13,19 @@ public class Blog {
     
     private int id_blg ;
     private String titre_blg;
-    private int id_user ;
+    private int email_user ;
     private String contenu_blg ;
 
-    public Blog(int id_blg, String titre_blg, int id_user, String contenu_blg) {
+    public Blog(int id_blg, String titre_blg, int email_user, String contenu_blg) {
         this.id_blg = id_blg;
         this.titre_blg = titre_blg;
-        this.id_user = id_user;
+        this.email_user = email_user;
         this.contenu_blg = contenu_blg;
     }
 
-    public Blog(String titre_blg, int id_user, String contenu_blg) {
+    public Blog(String titre_blg, int email_user, String contenu_blg) {
         this.titre_blg = titre_blg;
-        this.id_user = id_user;
+        this.email_user = email_user;
         this.contenu_blg = contenu_blg;
     }
 
@@ -45,12 +45,12 @@ public class Blog {
         this.titre_blg = titre_blg;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getEmail_user() {
+        return email_user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_user(int email_user) {
+        this.email_user = email_user;
     }
 
     public String getContenu_blg() {
@@ -65,7 +65,7 @@ public class Blog {
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + this.id_blg;
-        hash = 23 * hash + this.id_user;
+        hash = 23 * hash + this.email_user;
         return hash;
     }
 
@@ -84,7 +84,7 @@ public class Blog {
         if (this.id_blg != other.id_blg) {
             return false;
         }
-        if (this.id_user != other.id_user) {
+        if (this.email_user != other.email_user) {
             return false;
         }
         return true;
@@ -92,7 +92,7 @@ public class Blog {
 
     @Override
     public String toString() {
-        return "Blog{" + "id_blg=" + id_blg + ", titre_blg=" + titre_blg + ", id_user=" + id_user + ", contenu_blg=" + contenu_blg + '}';
+        return "Blog{" + "id_blg=" + id_blg + ", titre_blg=" + titre_blg + ", email_user=" + email_user + ", contenu_blg=" + contenu_blg + '}';
     }
     
     

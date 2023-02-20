@@ -13,7 +13,7 @@ package edu.reservation.entities;
 public class Reservation {
      
     private int id_res ;
-    private String nom_res , prenom_res;
+    private String nom_res , prenom_res, email_res;
     private String typeticket_res ;
     private int id_film ;
     private String code_offr ;
@@ -23,30 +23,46 @@ public class Reservation {
 
     public Reservation() {
     }
-    
-    public Reservation(String nom_res, String prenom_res, String typeticket_res, int id_film,  String date_res, String code_offr) {
-        this.nom_res = nom_res;
-        this.prenom_res = prenom_res;
-        this.typeticket_res = typeticket_res;
-        this.id_film = id_film;
-        this.code_offr = code_offr;
-        this.date_res = date_res;
-        
-    }
 
-    public Reservation(int id_res, String nom_res, String prenom_res, String typeticket_res, int id_film,   String date_res, String code_offr ) {
+    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, int id_film , String date_res, String code_offr) {
         this.id_res = id_res;
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;
+        this.email_res = email_res;
         this.typeticket_res = typeticket_res;
         this.id_film = id_film;
         this.code_offr = code_offr;
-         
-         
         this.date_res = date_res;
-
     }
 
+    public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, int id_film , String date_res, String code_offr) {
+        this.nom_res = nom_res;
+        this.prenom_res = prenom_res;
+        this.email_res = email_res;
+        this.typeticket_res = typeticket_res;
+        this.id_film = id_film;
+        this.code_offr = code_offr;
+        this.date_res = date_res;
+    }
+
+    public String getEmail_res() {
+        return email_res;
+    }
+
+    public void setEmail_res(String email_res) {
+        this.email_res = email_res;
+    }
+
+    public String getTypeticket_res() {
+        return typeticket_res;
+    }
+
+    public void setTypeticket_res(String typeticket_res) {
+        this.typeticket_res = typeticket_res;
+    }
+    
+    
+ 
     public int getId_res() {
         return id_res;
     }
@@ -108,8 +124,10 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" + "id_res=" + id_res + ", nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", typeticket_res=" + typeticket_res + ", id_film=" + id_film + ", code_offr=" + code_offr + ", date_res=" + date_res + '}';
+        return "Reservation{" + "id_res=" + id_res + ", nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", email_res=" + email_res + ", typeticket_res=" + typeticket_res + ", id_film=" + id_film + ", code_offr=" + code_offr + ", date_res=" + date_res + '}';
     }
+
+ 
     
     
  

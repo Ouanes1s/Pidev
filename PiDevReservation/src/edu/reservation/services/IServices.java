@@ -17,5 +17,8 @@ import java.util.List;
     public void modifier (T r);
     public List<T> getAll();
     public T getOneById(int id );
+    public int VerifTitre(String titre) ;
+    public int VerifOffr(String code, String nom, String prenom) ;
+    public List<T> trierOffreParDate();
     
 }

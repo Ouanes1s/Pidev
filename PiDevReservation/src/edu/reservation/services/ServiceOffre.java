@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
  
 /**
@@ -101,10 +102,55 @@ public class ServiceOffre implements IServices<Offre> {
 
         return r;
        }
+    
+    
+    
+ 
+
+    @Override
+    public int VerifTitre(String titre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
+
+    @Override
+    public int VerifOffr(String code, String nom, String prenom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Offre> trierOffreParDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+//
+//    public class JoinTablesExample {
+//    public static void main(String[] args) {
+//    String url = "jdbc:mysql://localhost:3306/mydatabase";
+//    String user = "username";
+//    String password = "password";
+//
+//    try (Connection conn = DriverManager.getConnection(url, user, password);
+//         Statement stmt = conn.createStatement();
+//         ResultSet rs = stmt.executeQuery("SELECT * FROM table1 JOIN table2 ON table1.id = table2.id")) {
+//
+//      while (rs.next()) {
+//        // Process the data here
+//      }
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    }
+//  }
+}
+
+
+ 
   
 
      
-
+ 
  
  
 }
