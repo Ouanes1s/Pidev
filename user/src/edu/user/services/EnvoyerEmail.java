@@ -55,7 +55,7 @@ public class EnvoyerEmail {
             message.setFrom(new InternetAddress(username));
             message.setRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(destinataire));
             message.setSubject("Mot de passe oublié");
-            message.setText("Mr "+name+" ,     Votre mot de passe est le suivant: "+code+"\nVotre compte n'est pas accessible sans ce mot de passe");
+            message.setText("Mr/Mrs "+name+" ,\n Votre mot de passe est le suivant: "+code+"\nVotre compte n'est pas accessible sans ce mot de passe.");
             return message;
         } catch (AddressException ex) {
             Logger.getLogger(EnvoyerEmail.class.getName()).log(Level.SEVERE, null, ex);

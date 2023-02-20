@@ -33,7 +33,7 @@ public class Test {
         //uc.supprimerUserCin(u1);
         //uc.modifierUser(u2);
         System.out.println(uc.afficherUserMembre());
-   uc.Authentification("Amine.Khalfaoui@esprit.tn","Jesuisunmotdepasse123");
+   uc.Authentification("Mohamedouanes.chebil@esprit.tn","54265");
        // u=uc.getOneByCin("1234567");
        // System.out.println(u.toString());
        

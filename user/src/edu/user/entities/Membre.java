@@ -50,7 +50,7 @@ private String Date_inscri ;
 
     @Override
     public String toString() {
-        return "Membre{"+ "nom_user=" + getNom_user() + ", prenom_user=" + getPrenom_user() + ", cin_user=" + getCin_user() + ", email_user=" + getEmail_user() + ", mdp_user=" + getMdp_user() + '}'+ "Date_inscri=" + Date_inscri + '}';
+        return "Membre{"+ "nom_user=" + getNom_user() + ", prenom_user=" + getPrenom_user() + ", cin_user=" + getCin_user() + ", email_user=" + getEmail_user() + ", mdp_user=" + getMdp_user() + "Date_inscri=" + Date_inscri + '}';
     }
 
     @Override
