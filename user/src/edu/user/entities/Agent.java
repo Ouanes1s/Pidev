@@ -99,7 +99,7 @@ public class Agent extends User {
 
     @Override
     public String toString() {
-        return "Agent{" + "Salaire=" + Salaire + ", type_A=" + type_A + ", date_contract=" + date_contract + '}';
+        return "Agent{"+ "nom_user=" + getNom_user() + ", prenom_user=" + getPrenom_user() + ", cin_user=" + getCin_user() + ", email_user=" + getEmail_user() + ", mdp_user=" + getMdp_user()  + "Salaire=" + Salaire + ", type_A=" + type_A + ", date_contract=" + date_contract + '}';
     }
     
 

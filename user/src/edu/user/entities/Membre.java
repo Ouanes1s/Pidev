@@ -23,8 +23,9 @@ private String Date_inscri ;
         this.Date_inscri = Date_inscri ;
     }
 
-    public Membre(String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user, String Sate_inscri) {
+    public Membre(String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user, String Date_inscri) {
         super(nom_user, prenom_user, cin_user, email_user, mdp_user);
+        this.Date_inscri = Date_inscri ;
     }
 
     public Membre(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5) {
@@ -49,7 +50,7 @@ private String Date_inscri ;
 
     @Override
     public String toString() {
-        return "Membre{" + "Date_inscri=" + Date_inscri + '}';
+        return "Membre{"+ "nom_user=" + getNom_user() + ", prenom_user=" + getPrenom_user() + ", cin_user=" + getCin_user() + ", email_user=" + getEmail_user() + ", mdp_user=" + getMdp_user() + '}'+ "Date_inscri=" + Date_inscri + '}';
     }
 
     @Override
@@ -76,6 +77,7 @@ private String Date_inscri ;
         }
         return true;
     }
+}
 
     
-}
+

@@ -26,6 +26,7 @@ import java.util.List;
     public void modifierUserAgent(User u);
     public void modifierUserMembre(User u);
     
+    public void majmdp (User U1, String mdp);
 
     public void supprimerUser (user u);
      public void supprimerUserCin(User u);
@@ -36,6 +37,7 @@ import java.util.List;
     public user getOneByCin(String cin);
     public int VerifCin(String cin);
       public boolean verifierEmailBd(String email);
-  
+      public boolean verifiermdp(String mdp);
+  public void Authentification(String email , String mdp);
 }
 

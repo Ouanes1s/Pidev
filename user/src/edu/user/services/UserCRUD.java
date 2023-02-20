@@ -276,7 +276,23 @@ import static javax.swing.UIManager.getString;
         }
         return list;
     }
-    
+    public void majmdp (User U1, String mdp){
+    try{
+            
+        String req = "UPDATE user SET mdp_user=? WHERE id_user=?";
+        PreparedStatement pst = cnx.prepareStatement(req);
+            
+          
+            pst.setString(1, mdp);
+            pst.setInt(2, U1.getId_user());
+            
+            pst.executeUpdate();
+            System.out.println("Your Password was updated successfully!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
     @Override
     public List<User> afficherUserAgent() {
         List <User> list = new ArrayList<>();
@@ -367,13 +383,90 @@ import static javax.swing.UIManager.getString;
 	return false;
 
     }
+     @Override
+    public boolean verifiermdp(String mdp) {
+	PreparedStatement stmt = null;
+	ResultSet rst = null;
+	try {
+	    String sql = "SELECT * FROM User WHERE mdp_user=?";
+	    stmt = cnx.prepareStatement(sql);
+	    stmt.setString(1, mdp);
+	    rst = stmt.executeQuery();
+	    if (rst.next()) {
+		return true;
+	    }
+	} catch (SQLException ex) {
+	    System.out.println(ex.getMessage());
+	}
+	return false;
 
-    public int VerifCin(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    /**
+     *
+     * @param email
+     * @param mdp
+     * @return
+     * @throws MessagingException
+     * @throws SQLException
+     */
+     @Override
+     public void Authentification(String email , String mdp)  {
+    String s= "";
+    PreparedStatement stmt = null;
+	ResultSet rst = null;
+    if (verifierEmailBd(email)==false) {
+        System.out.println("Email n'est pas reconnu. Veuillez vous inscrire!!!");
+    }
+    else {
+       if (verifiermdp(mdp)==false) {
+        System.out.println("Votre Mdp est erroné . Un Email de verification vous sera envoyé pour changer de mot de passe!");
+        try {
+	    String sql = "SELECT * FROM User WHERE email_user=?";
+	    stmt = cnx.prepareStatement(sql);
+	    stmt.setString(1, email);
+	    rst = stmt.executeQuery();
+            if (rst.next()) {
+	  s=rst.getString("nom_user");
+		EnvoyerEmail e = new EnvoyerEmail();
+            try {
+                e.envoyer(email,rst.getString("mdp_user"),s);
+            } catch (MessagingException ex) {
+                Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }}
+	    
+	} catch (SQLException ex) {
+	    System.out.println(ex.getMessage());
+	}}
+        else { 
+           try {
+               String sq1 = "SELECT * FROM User WHERE email_user=?";
+               stmt = cnx.prepareStatement(sq1);
+               stmt.setString(1, email);
+               rst = stmt.executeQuery();
+               if (rst.next()) {
+               if ("Agent".equals(rst.getString("role_user"))){
+                   System.out.println("Bonjour Mr "+rst.getString("nom_user")+"Vous etes  Agent de "+ rst.getString("type_A") );
+               }
+               if ("Membre".equals(rst.getString("role_user"))){
+                   System.out.println("Bonjour Mr "+rst.getString("nom_user")+" Membre Depuis "+ rst.getString("Date_inscri") );
+               }
+               if ("Admin".equals(rst.getString("role_user"))){
+                   System.out.println("Bonjour Mr "+rst.getString("nom_user")+" Admin de l'app " );
+               }}
+           } catch (SQLException ex) {
+               Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+           }
+      
+       }}
+    
+     }}
+    
+        
+        
 
     
-    }
+    
     
 
     

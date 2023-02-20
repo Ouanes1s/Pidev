@@ -139,9 +139,14 @@ public class User {
         this.mdp_user = mdp_user;
     }
 
+    @Override
     public String toString() {
-        return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +'}' ;
+        return "User{" + "nom_user=" + nom_user + ", prenom_user=" + prenom_user + ", cin_user=" + cin_user + ", email_user=" + email_user + ", mdp_user=" + mdp_user + '}';
     }
+
+   // public String toString() {
+        //return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +'}' ;
+    //}
 
   
     
