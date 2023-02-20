@@ -29,6 +29,9 @@ public class Blog {
         this.contenu_blg = contenu_blg;
     }
 
+    public Blog() {
+     }
+
     public int getId_blg() {
         return id_blg;
     }
