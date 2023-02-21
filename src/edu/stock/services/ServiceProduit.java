@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.stock.services;
 
 import edu.stock.entities.Produit;
@@ -21,7 +26,7 @@ public class ServiceProduit implements ServiceStock<Produit>{
         try {
             String req ="INSERT INTO `produit`(`Code_Article`, `Nom_Article`, `Catégorie_Article`, `Quantité_Article`, `Prix_Vente`, `Etat_Article`) "
                 + "VALUES ('" + p.getCode_Article() + "','" + p.getNom_Article() + "','" + p.getCatégorie_Article() + "','" + p.getQuantité_Article() + "'"
-                + ",'" + p.getPrix_Vente() + "','" + p.getEtat_Article() + "')";
+                + ",'" + p.getPrix_Vente() + "','" + p.isEtat_Article() + "')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Product created !");
@@ -45,7 +50,7 @@ public class ServiceProduit implements ServiceStock<Produit>{
     @Override
     public void modifier(Produit p) {
         try {
-            String req="UPDATE `produit` SET `Code_Article`='" + p.getCode_Article() + "',`Nom_Article`='" + p.getNom_Article() + "',`Catégorie_Article`='" + p.getCatégorie_Article() + "',`Quantité_Article`='" + p.getQuantité_Article() + "',`Prix_Vente`='" + p.getPrix_Vente() + "',`Etat_Article`='" + p.getEtat_Article() + "' "
+            String req="UPDATE `produit` SET `Code_Article`='" + p.getCode_Article() + "',`Nom_Article`='" + p.getNom_Article() + "',`Catégorie_Article`='" + p.getCatégorie_Article() + "',`Quantité_Article`='" + p.getQuantité_Article() + "',`Prix_Vente`='" + p.getPrix_Vente() + "',`Etat_Article`='" + p.isEtat_Article() + "' "
                     + "WHERE `produit`.`Id_Produit` = " + p.getId_Produit();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -63,7 +68,7 @@ public class ServiceProduit implements ServiceStock<Produit>{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -81,7 +86,7 @@ public class ServiceProduit implements ServiceStock<Produit>{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getString(7));                
+                p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));                
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
