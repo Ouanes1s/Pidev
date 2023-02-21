@@ -127,6 +127,7 @@ public class ReclamationService implements IService<Reclamation>{
         ).forEach(System.out::println);
     }
     
+    //TRI
     public List<Reclamation> sortReclamations() throws SQLException {
         ReclamationService rs = new ReclamationService();
         List<Reclamation> sortedReclamations = rs.recuperer().stream()
@@ -135,24 +136,25 @@ public class ReclamationService implements IService<Reclamation>{
         return sortedReclamations;
     }
     
-    public int checkExistence(Reclamation reclamation) throws SQLException{
+    //controle de saisie
+    public int checkExistence(Reclamation reclamation) throws SQLException{ //pour le mm message 
         Statement s = cnx.createStatement();
         ResultSet rs = s.executeQuery("SELECT COUNT(*) from RECLAMATION WHERE message_reclamation= '" +
-                reclamation.getMessageReclamation()+ "'");
+                reclamation.getMessageReclamation()+ "'"); //on compte nbr enregistrement
         int size = 0;
         rs.next();
         size = rs.getInt(1);
-        return size;
+        return size; //si 0 aucun enregistrement
     }
     //controle de saisie 
     public boolean checkEmpty(Reclamation reclamation) throws SQLException{
         if (reclamation.getCategorieReclamation() == null || reclamation.getDateOccReclamation() == null
             || reclamation.getMessageReclamation() == null || reclamation.getTypeReclamation() == null
                 || reclamation.getImportanceReclamation() == 0){
-            System.out.println("U Have Smthg Wrong!!");
+            System.out.println("L'un des champs obligatoires à remplir est vide!!"); //message d'erreur
             return false;
         }
-        System.out.println("All Is Good !!");
+        System.out.println("Tous les champs obligatoires sont remplis !!");
         return true;
     }
     
