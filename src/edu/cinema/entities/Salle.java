@@ -5,48 +5,48 @@
  */
 package edu.cinema.entities;
 
-public class Cinema {
+public class Salle {
     private int id;
-    private String nom_cinema, adresse;
-    private String num;
+    private String nom_salle, adresse;
+    private String num_places;
 
-    public Cinema() {
+    public Salle() {
     }
     
-    public Cinema(String nom_cinema, String adresse,String num) {
-        this.nom_cinema = nom_cinema;
+    public Salle(String nom_salle, String adresse,String num_places) {
+        this.nom_salle = nom_salle;
         this.adresse = adresse;
-        this.num=num;
+        this.num_places=num_places;
     }
 
-    public Cinema(int id, String nom_cinema, String adresse_cinema,String num) {
+    public Salle(int id, String nom_salle, String adresse_cinema,String num_places) {
         this.id = id;
-        this.nom_cinema = nom_cinema;
+        this.nom_salle = nom_salle;
         this.adresse = adresse;
-        this.num=num;
+        this.num_places=num_places;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNom_cinema() {
-        return nom_cinema;
+    public String getNom_salle() {
+        return nom_salle;
     }
 
     public String getAdresse() {
         return adresse;
     }
-    public String getNum(){
-    return num;
+    public String getNum_places(){
+    return num_places;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNom_cinema(String nom_cinema) {
-        this.nom_cinema = nom_cinema;
+    public void setNom_cinema(String nom_salle) {
+        this.nom_salle = nom_salle;
     }
 
     public void setAdresse(String adresse) {
@@ -55,7 +55,7 @@ public class Cinema {
 
     @Override
     public String toString() {
-        return "Cinema{" + "nom_cinema=" + nom_cinema + ", adresse=" + adresse+", num="+ num+ '}';
+        return "Salle{" + "nom_salle=" + nom_salle + ", adresse=" + adresse+", num_places="+ num_places+ '}';
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Cinema {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cinema other = (Cinema) obj;
+        final Salle other = (Salle) obj;
         if (this.id != other.id) {
             return false;
         }

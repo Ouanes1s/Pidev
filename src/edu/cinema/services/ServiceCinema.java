@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.workshopjdbc3a48.services;
+package edu.cinema.services;
 
-import edu.workshopjdbc3a48.entities.Cinema;
-import edu.workshopjdbc3a48.utils.DataSource;
+import edu.cinema.entities.Cinema;
+import edu.cinema.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 
 public class ServiceCinema implements IService<Cinema> {
@@ -34,16 +33,20 @@ public class ServiceCinema implements IService<Cinema> {
         }
     }
 
-    public void ajouter2(Cinema p) {
-        try {
-            String req = "INSERT INTO `cinema` (`nom`, `adresse`,`num) VALUES (?,?,?)";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(2, p.getNom_cinema());
-            ps.setString(1, p.getAdresse());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+    public void ajouter2(Cinema p) throws SQLException {
+        if(checkExistence(p) == 0 && checkEmpty(p)){
+            
+        try{
+            String query = "INSERT INTO `cinema` (`nom_cinema`, `adresse`,`num`) VALUES ('" + p.getNom_cinema() + "', '" + p.getAdresse() +"','"+p.getNum()+ "')";
+           Statement st = cnx.createStatement();
+            st.executeUpdate(query);
+            System.out.println("Cinema created !");;
         }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        } else if(checkExistence(p) != 0)
+            System.out.println("Cinema exists!!");
     }
 
     @Override
@@ -60,7 +63,7 @@ public class ServiceCinema implements IService<Cinema> {
 
     public void modifierCinema(Cinema u,int i) {
         try{
-        String req = "UPDATE cinema SET nom_cinema=?,adresse=?,num=? WHERE id=id";
+        String req = "UPDATE cinema SET nom_cinema=?,adresse=?,num=? WHERE id="+i;
         PreparedStatement pst = cnx.prepareStatement(req);
             
             pst.setString(1, u.getNom_cinema());
@@ -91,8 +94,8 @@ public class ServiceCinema implements IService<Cinema> {
             st =cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
-                Cinema c = new Cinema (rs.getInt("id"), rs.getString("nom_Cinema"),rs.getString("adresse"),
-                        rs.getString("adresse"));
+                Cinema c = new Cinema ( rs.getString("nom_Cinema"),rs.getString("adresse"),
+                        rs.getString("num"));
                 list.add(c);
             }
         }
@@ -135,6 +138,43 @@ public class ServiceCinema implements IService<Cinema> {
         }
 
         return c;
+    }
+     public int checkExistence(Cinema c) throws SQLException{
+        Statement s = cnx.createStatement();
+        ResultSet rs = s.executeQuery("SELECT COUNT(*) from cinema WHERE nom_cinema= '" +
+                c.getNom_cinema()+ "'");
+        int size = 0;
+        rs.next();
+        size = rs.getInt(1);
+        return size;
+    }
+    //controle de saisie 
+    public boolean checkEmpty(Cinema c) throws SQLException{
+        if (c.getNom_cinema() == null || c.getAdresse() ==null
+            || c.getNum() == null ){
+            System.out.println("U Have Smthg Wrong!!");
+            return false;
+        }
+        System.out.println("All Is Good !!");
+        return true;
+    }
+    //public void Recherche(String target) throws SQLException{
+      //  ServiceCinema sc = new ServiceCinema();
+        //sc.afficherCinema().stream().filter(
+          //      (Cinema r)
+            //            -> r.getNom_cinema().toLowerCase().contains(target.toLowerCase())
+              //          || r.getAdresse().toLowerCase().contains(target.toLowerCase())
+                //        || r.getNum().toLowerCase().contains(target.toLowerCase())
+                        
+       // ).forEach(System.out::println);
+    //}
+    
+    public List<Cinema> sortCinema() throws SQLException {
+        ServiceCinema sc = new ServiceCinema();
+            List<Cinema> sortedCinema= sc.afficherCinema().stream()
+                                             .sorted()
+                                             .collect(Collectors.toList());
+        return sortedCinema;
     }
 
 }

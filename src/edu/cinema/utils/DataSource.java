@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.workshopjdbc3a48.utils;
+package edu.cinema.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
