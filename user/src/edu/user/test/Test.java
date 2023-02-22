@@ -18,7 +18,7 @@ public class Test {
     public static void main(String[] args) {
      
         
-        User u1=new Agent ("1500", "Stock", "2Ans", "Ouanes", "Chebil", "1234567", "Mohamedouanes.chebil@esprit.tn" ,"542365");
+        User u1=new Agent ("1500", "Stock", "2Ans", "Ouanes", "Chebil", "123458867", "chaima.hichri1@esprit.tn" ,"542365");
         
      
         
@@ -32,8 +32,8 @@ public class Test {
         //uc.ajouterUserMembre(u2);
         //uc.supprimerUserCin(u1);
         //uc.modifierUser(u2);
-        System.out.println(uc.afficherUserMembre());
-   uc.Authentification("Mohamedouanes.chebil@esprit.tn","54265");
+       // System.out.println(uc.afficherUserMembre());
+   //uc.Authentification("chaima.hichri1@esprit.tn","542365");
        // u=uc.getOneByCin("1234567");
        // System.out.println(u.toString());
        

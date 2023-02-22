@@ -115,7 +115,7 @@ import static javax.swing.UIManager.getString;
     
     @Override
     public void ajouterUserMembre(User u) {
-        if (VerifCin(u.getCin_user())!=0) {
+        /*if (VerifCin(u.getCin_user())!=0) {
                 System.out.println("Membre deja ajouté ");
                 EnvoyerEmail e = new EnvoyerEmail();
             try {
@@ -124,7 +124,7 @@ import static javax.swing.UIManager.getString;
                 Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
             }
-           else{
+           else{*/
                
         try{
               
@@ -153,7 +153,7 @@ import static javax.swing.UIManager.getString;
             System.out.println(ex.getMessage());
         }
 
-         }}
+         }
     
 
     @Override
