@@ -30,10 +30,17 @@ public class Agent extends User {
         this.date_contract = date_contract;
     }
 
-    public Agent(String Salaire, String type_E, String date_contract, String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user) {
+    /*public Agent(String Salaire, String type_E, String date_contract, String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user) {
         super(nom_user, prenom_user, cin_user, email_user, mdp_user);
         this.Salaire = Salaire;
         this.type_A = type_E;
+        this.date_contract = date_contract;
+    }*/
+
+    public Agent( String nom_user, String prenom_user, String cin_user, String email_user, String mdp_user,String Salaire, String type_A, String date_contract) {
+        super(nom_user, prenom_user, cin_user, email_user, mdp_user);
+        this.Salaire = Salaire;
+        this.type_A = type_A;
         this.date_contract = date_contract;
     }
 

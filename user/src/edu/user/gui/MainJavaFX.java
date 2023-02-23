@@ -22,7 +22,7 @@ public class MainJavaFX extends Application {
     public void start(Stage primaryStage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("InscriptionMembre.fxml"));
+            root = FXMLLoader.load(getClass().getResource("GestionUser.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Welcome");

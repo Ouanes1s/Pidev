@@ -47,6 +47,10 @@ public class User {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public User(String nom, String prenom, String cin, String email, String role, String mdp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

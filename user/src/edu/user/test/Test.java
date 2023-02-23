@@ -18,7 +18,7 @@ public class Test {
     public static void main(String[] args) {
      
         
-        User u1=new Agent ("1500", "Stock", "2Ans", "Ouanes", "Chebil", "123458867", "chaima.hichri1@esprit.tn" ,"542365");
+     //   User u1=new Agent ("1500", "Stock", "2Ans", "Ouanes", "Chebil", "123458867", "chaima.hichri1@esprit.tn" ,"542365");
         
      
         

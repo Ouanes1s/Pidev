@@ -303,7 +303,7 @@ import static javax.swing.UIManager.getString;
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
                 if (rs.getString("role_user").equals("Agent")){
-                User u= new Membre(rs.getInt("id_user"), rs.getString("nom_user"),rs.getString("prenom_user"),
+                User u= new Agent( rs.getString("nom_user"),rs.getString("prenom_user"),
                         rs.getString("cin_user"),rs.getString("email_user"),rs.getString("mdp_user"),rs.getString("salaire"),rs.getString("type_A"),rs.getString("date_contract")); 
                 
                
