@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.GestionUserController">
    <children>
-      <TableView fx:id="table" layoutX="91.0" layoutY="117.0" onMouseClicked="#getSelected" prefHeight="379.0" prefWidth="913.0">
+      <TableView fx:id="table" layoutX="425.0" layoutY="604.0" onMouseClicked="#getSelected" prefHeight="379.0" prefWidth="913.0">
         <columns>
           <TableColumn fx:id="NomColumn" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="PrenomColumn" prefWidth="75.0" text="Prénom" />
@@ -42,5 +43,6 @@
       <Button fx:id="btnAjouter" layoutX="612.0" layoutY="574.0" mnemonicParsing="false" onAction="#AjouterAgent" prefHeight="84.0" prefWidth="207.0" text="Ajouter" />
       <Button fx:id="btnModifier" layoutX="612.0" layoutY="711.0" mnemonicParsing="false" onAction="#ModifierAgent" prefHeight="84.0" prefWidth="207.0" text="Modifier" />
       <Button fx:id="btnSupprimer" layoutX="612.0" layoutY="850.0" mnemonicParsing="false" onAction="#SupprimerAgent" prefHeight="84.0" prefWidth="207.0" text="Supprimer" />
+      <ListView fx:id="listView" layoutX="174.0" layoutY="82.0" prefHeight="432.0" prefWidth="941.0" />
    </children>
 </AnchorPane>

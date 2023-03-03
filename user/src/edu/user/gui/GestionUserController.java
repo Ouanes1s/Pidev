@@ -9,6 +9,7 @@ import edu.user.entities.User;
 import edu.user.entities.Agent;
 import edu.user.services.UserCRUD;
 import edu.user.utils.ConnectionToDB;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,15 +22,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
+
+//import javafx.scene.image.Image ;//
 /**
  * FXML Controller class
  *
@@ -80,16 +91,58 @@ public class GestionUserController implements Initializable {
     private Button btnSupprimer;
     @FXML
     private TextField gcontract;
-
+    
+    @FXML
+    private ListView<Agent> listView ;
     /**
      * Initializes the controller class.
      */
+    public void list_affiche(){
+    Connection cnx = ConnectionToDB.getInstance().getConnection();
+    ObservableList<Agent> agents = FXCollections.observableArrayList();
+    PreparedStatement stmt = null;
+    ResultSet rst = null;
+
+    try {
+        String req = "SELECT * FROM User WHERE role_user= ?";
+        stmt = cnx.prepareStatement(req);
+        stmt.setString(1, "Agent");
+        rst = stmt.executeQuery();
+
+        while(rst.next()){
+            Agent agent = new Agent(
+                    rst.getString("nom_user"),
+                    rst.getString("prenom_user"),
+                    rst.getString("cin_user"),
+                   
+                    rst.getString("email_user"),
+                    rst.getString("mdp_user"),
+                    
+                   
+                    rst.getString("Salaire"),
+                    rst.getString("Type_A"),
+                    rst.getString("date_contract")
+            ) ;
+            agents.add(agent);
+        }
+
+        listView.setItems(agents);
+    }
+    catch (SQLException ex){
+        System.err.println(ex.getMessage());
+    }
+}
+  
+
+   
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
      // TODO
         //combobox
-        ObservableList<String> listrole = FXCollections.observableArrayList("","Stock","Reclamation","Gestion de Reservation","Films et events","Cinemas et salles","Gestion de Parkings");
+      ObservableList<String> listrole = FXCollections.observableArrayList("","Stock","Reclamation","Gestion de Reservation","Films et events","Cinemas et salles","Gestion de Parkings");
         boxrole2.setValue("");
         boxrole2.setItems(listrole);
         //Table
@@ -107,10 +160,107 @@ public class GestionUserController implements Initializable {
          this.gcontract.setText(newValue.getNom_user());
         }   
         });
+        //List
+        list_affiche();
+              listView.setCellFactory(param -> new ListCell<Agent>() {
+    @Override
+    protected void updateItem(Agent agent, boolean empty) {
+        super.updateItem(agent, empty);
+        if (empty || agent == null) {
+            setText(null);
+        } else {
+            setText(agent.getNom_user() + " " + agent.getPrenom_user()+" "+agent.getCin_user()+" "+agent.getSalaire());
+        /* // création d'une image pour chaque cellule../edu.user.gui/KitsunePrev.png
+                   ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
+
+
+
+                    // personnalisation de l'image
+                    imageView.setFitHeight(50);
+                    imageView.setFitWidth(50);
+
+                    // ajout de l'image à la cellule
+                    setGraphic(imageView); */
+          ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);
+        }
+    }
+}
+              );
+              /*   // personnalisation de l'affichage des cellules
+        listView.setCellFactory((ListView<Agent> param) -> new ListCell<Agent>() {
+            @Override
+            protected void updateItem(Agent agent, boolean empty) {
+                super.updateItem(agent, empty);
+                if (empty || agent == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(agent.getNom_user() + " " + agent.getPrenom_user());
+
+                    // création d'une image pour chaque cellule../edu.user.gui/KitsunePrev.png
+                   ImageView imageView = new ImageView(new Image("../edu.user.gui/KitsunePrev.png"));
+
+
+                    // personnalisation de l'image
+                    imageView.setFitHeight(50);
+                    imageView.setFitWidth(50);
+
+                    // ajout de l'image à la cellule
+                    setGraphic(imageView);
+                }
+            }
+        });*/
+              listView.setOnMouseClicked(event -> {
+    if (event.getClickCount() == 2) {
+        Agent agent = listView.getSelectionModel().getSelectedItem();
+        if (agent != null) {
+            supprimerAgent(agent);
+            listView.getItems().remove(agent);
+        }
+    }
+});
+    
                 }
     
-   
-                
+
+     public void supprimerAgent(Agent agent) {
+    Connection cnx = ConnectionToDB.getInstance().getConnection();
+    PreparedStatement stmt = null;
+    
+    try {
+        String req = "DELETE FROM User WHERE cin_user = ?";
+        stmt = cnx.prepareStatement(req);
+        stmt.setString(1, agent.getCin_user());
+        stmt.executeUpdate();
+    }
+    catch (SQLException ex){
+        System.err.println(ex.getMessage());
+    }
+    finally {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            }
+            catch (SQLException ex){
+                System.err.println(ex.getMessage());
+            }
+        }
+    }
+}
+ 
+           
     public void table_affiche(){
         Connection cnx = ConnectionToDB.getInstance().getConnection();
         ObservableList<User> users = FXCollections.observableArrayList();
@@ -198,10 +348,9 @@ public class GestionUserController implements Initializable {
 
     @FXML
     private void getSelected(MouseEvent event) {
-        User clicked = table.getSelectionModel().getSelectedItem();
+        User clicked = listView.getSelectionModel().getSelectedItem();
         gcin.setText(String.valueOf(clicked.getCin_user()));
     }
-
   /*  private void back_tologin(MouseEvent event) {
         try {
                      Parent root = FXMLLoader.load(getClass().getResource("Authentification.fxml"));
@@ -393,5 +542,4 @@ private void ModifierAgent(ActionEvent event) {
                 table_affiche();
             }*/
     }
-    } 
-    
+    }   

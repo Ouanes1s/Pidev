@@ -17,7 +17,7 @@ public class Agent extends User {
     
     private String  date_contract;
 
-    public Agent(String Salaire, String type_E, String date_contract) {
+    /*public Agent(String Salaire, String type_E, String date_contract) {
         this.Salaire = Salaire;
         this.type_A = type_E;
         this.date_contract = date_contract;
