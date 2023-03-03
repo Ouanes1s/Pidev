@@ -58,7 +58,8 @@ public class AuthentificationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+    Connection cnx = ConnectionToDB.getInstance().getConnection();
  public String role_selection(String email){
        String role="";
         Connection cnx = ConnectionToDB.getInstance().getConnection();
@@ -80,19 +81,54 @@ public class AuthentificationController implements Initializable {
                     }
          return role; 
     }
+ public boolean verifierEmailBd(String email) {
+	PreparedStatement stmt = null;
+	ResultSet rst = null;
+	try {
+	    String sql = "SELECT * FROM User WHERE email_user=?";
+	    stmt = cnx.prepareStatement(sql);
+	    stmt.setString(1, email);
+	    rst = stmt.executeQuery();
+	    if (rst.next()) {
+		return true;
+	    }
+	} catch (SQLException ex) {
+	    System.out.println(ex.getMessage());
+	}
+	return false;
+
+    }
+ 
+ public String mdptaker(String email) {
+	PreparedStatement stmt = null;
+	ResultSet rst = null;
+	try {
+	    String sql = "SELECT mdp_user FROM User WHERE email_user=?";
+	    stmt = cnx.prepareStatement(sql);
+	    stmt.setString(1, email);
+	    rst = stmt.executeQuery();
+	    while (rst.next()) {
+		return rst.getString("mdp_user");
+	    }
+	} catch (SQLException ex) {
+	    System.out.println(ex.getMessage());
+	}
+        return null;
+	}
     @FXML
-    private void authentification(ActionEvent event) throws IOException {
+    private void authentification(ActionEvent event) throws IOException, SQLException {
       int id=0;
        Connection cnx = ConnectionToDB.getInstance().getConnection();
        PreparedStatement ps = null;
        ResultSet rs = null;
-       try {            System.out.println(authemail.getText()+authmdp.getText());
-                        ps = cnx.prepareStatement("SELECT id_user,type_A FROM user WHERE email_user='"+authemail.getText()+"' AND mdp_user ='"+authmdp.getText()+"'");
+                  /* System.out.println(authemail.getText()+authmdp.getText());*/
+                        ps = cnx.prepareStatement("SELECT id_user,type_A,role_user FROM user WHERE email_user='"+authemail.getText()+"' AND mdp_user ='"+authmdp.getText()+"'");
                         
                         rs = ps.executeQuery();
-                        
-                        if (rs.next()) {
-                            id = rs.getInt("id_user");
+           
+                        if (verifierEmailBd(authemail.getText())==true){
+                        while (rs.next()) {
+                           //id = rs.getInt("id_user");
                             specialiteConnecte = rs.getString("type_A");
                             idConnecte=id;
                             if (rs.getString("role_user").equals("Administrateur")){
@@ -158,7 +194,7 @@ public class AuthentificationController implements Initializable {
                             }
                             else if (rs.getString("type_A").equals("Reclamation")){
                                
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeReclamations.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("GestionUser.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -228,7 +264,7 @@ public class AuthentificationController implements Initializable {
                             
                             
                         
-                        }
+                        }}
                         else {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Failed");
@@ -237,16 +273,31 @@ public class AuthentificationController implements Initializable {
                             alert.show();
                         }
  
-     
-    }catch(SQLException e){}   
-    }
+     } 
+    
 
     @FXML
-    private void mdp_oublie(MouseEvent event) {
+     public void mdp_oublie(MouseEvent event) {
+    try {
+                     Parent root = FXMLLoader.load(getClass().getResource("ForgotMdp.fxml"));
+        Stage Stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            Stage1.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            Stage1.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        Stage1.setScene(scene);
+                        Stage1.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }      
     }
 
     @FXML
     private void back_tologin(MouseEvent event) {
-    }
+    }}
     
-}
+
