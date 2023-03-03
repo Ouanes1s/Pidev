@@ -107,7 +107,7 @@ public class InscriptionMembreController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Failed");
             alert.setHeaderText("Attention !!");
-            alert.setContentText("USER ALREADY EXISTS. CIN or Email are taken");
+            alert.setContentText("USER ALREADY EXISTS. CIN or Email is taken");
             alert.show(); 
             }
             

@@ -161,19 +161,19 @@ import static javax.swing.UIManager.getString;
         try{
             if (u instanceof Agent ){
                  Agent U1=(Agent) u;
-        String req = "UPDATE user SET nom_user=?,prenom_user=?,cin_user=?,email_user=?,role_user=?,mdp_user=?,salaire=?,type_A=?,date_contract=? WHERE id_user=?";
+        String req = "UPDATE user SET nom_user=?,prenom_user=?,email_user=?,role_user=?,mdp_user=?,salaire=?,type_A=?,date_contract=? WHERE cin_user=?";
         PreparedStatement pst = cnx.prepareStatement(req);
             
             pst.setString(1, U1.getNom_user());
             pst.setString(2, U1.getPrenom_user());
-            pst.setString(3, U1.getCin_user());
-            pst.setString(4, U1.getEmail_user());
-            pst.setString(5, "Agent");
-            pst.setString(6, U1.getMdp_user());
-            pst.setString(7, U1.getSalaire());
-            pst.setString(8, U1.getType_A());
-            pst.setString(9, U1.getDate_contract());
-            pst.setInt(10, U1.getId_user());
+         
+            pst.setString(3, U1.getEmail_user());
+            pst.setString(4, "Agent");
+            pst.setString(5, U1.getMdp_user());
+            pst.setString(6, U1.getSalaire());
+            pst.setString(7, U1.getType_A());
+            pst.setString(8, U1.getDate_contract());
+            pst.setString(9, U1.getCin_user());
             
             pst.executeUpdate();
             System.out.println("An agent was updated successfully!");}
