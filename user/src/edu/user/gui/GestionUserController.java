@@ -16,13 +16,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Comparator;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -38,7 +43,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
+import javafx.stage.Stage;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList ;
+import javafx.collections.transformation.SortedList;
 
 //import javafx.scene.image.Image ;//
 /**
@@ -94,6 +102,8 @@ public class GestionUserController implements Initializable {
     
     @FXML
     private ListView<Agent> listView ;
+    @FXML
+    private TextField searchField;
     /**
      * Initializes the controller class.
      */
@@ -127,6 +137,35 @@ public class GestionUserController implements Initializable {
         }
 
         listView.setItems(agents);
+          // Créer un champ de recherche
+      // Ajout de la recherche intelligente
+        FilteredList<Agent> filteredAgents = new FilteredList<>(agents, p -> true);
+        searchField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            filteredAgents.setPredicate(agent -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (agent.getNom_user().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (agent.getPrenom_user().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (agent.getCin_user().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (agent.getEmail_user().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            }); 
+            SortedList<Agent> sortedAgents;
+            sortedAgents = new SortedList<>(filteredAgents, Comparator.comparing(Agent::getNom_user));
+        listView.setItems(sortedAgents);
+       
+        });
+
+      
     }
     catch (SQLException ex){
         System.err.println(ex.getMessage());
@@ -168,6 +207,7 @@ public class GestionUserController implements Initializable {
         super.updateItem(agent, empty);
         if (empty || agent == null) {
             setText(null);
+            setGraphic(null);
         } else {
             setText(agent.getNom_user() + " " + agent.getPrenom_user()+" "+agent.getCin_user()+" "+agent.getSalaire());
         /* // création d'une image pour chaque cellule../edu.user.gui/KitsunePrev.png
@@ -196,6 +236,7 @@ public class GestionUserController implements Initializable {
                         setGraphic(vbox);
         }
     }
+    
 }
               );
               /*   // personnalisation de l'affichage des cellules

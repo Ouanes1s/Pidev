@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author chebi
  */
-public class Agent extends User {
+public class Agent extends User { 
     private String Salaire ;
       private String type_A;
     

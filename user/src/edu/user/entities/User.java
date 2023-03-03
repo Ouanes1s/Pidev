@@ -4,13 +4,14 @@
  */
 package edu.user.entities;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  *
  * @author chebi
  */
-public class User {
+public class User implements Comparator<User>{
 
     private int id_user;
     private String nom_user;
@@ -151,6 +152,16 @@ public class User {
    // public String toString() {
         //return "User{" + "nom=" + nom_user + ", prenom=" + prenom_user +", role" +'}' ;
     //}
+
+    @Override
+    public int compare(User o1, User o2) {
+        return o1.getNom_user().compareTo(o2.getNom_user());
+    }
+
+    @Override
+    public Comparator<User> reversed() {
+        return Comparator.super.reversed(); //To change body of generated methods, choose Tools | Templates.
+    }
 
   
     

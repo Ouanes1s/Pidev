@@ -17,7 +17,7 @@
       <Text layoutX="261.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" />
       <Text layoutX="265.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CIN" />
       <Text layoutX="264.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-      <Text layoutX="261.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'anniversaire" />
+      <Text layoutX="261.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" />
       <TextField fx:id="txtnom" layoutX="325.0" layoutY="202.0" />
       <TextField fx:id="txtprenom" layoutX="325.0" layoutY="271.0" />
       <TextField fx:id="txtcin" layoutX="325.0" layoutY="337.0" />
