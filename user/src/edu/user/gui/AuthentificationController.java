@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,11 +123,11 @@ public class AuthentificationController implements Initializable {
        PreparedStatement ps = null;
        ResultSet rs = null;
                   /* System.out.println(authemail.getText()+authmdp.getText());*/
-                        ps = cnx.prepareStatement("SELECT id_user,type_A,role_user FROM user WHERE email_user='"+authemail.getText()+"' AND mdp_user ='"+authmdp.getText()+"'");
+                        ps = cnx.prepareStatement("SELECT * FROM user WHERE email_user='"+authemail.getText()+"' AND mdp_user ='"+authmdp.getText()+"'");
                         
                         rs = ps.executeQuery();
            
-                        if (verifierEmailBd(authemail.getText())==true){
+                        if (verifierEmailBd(authemail.getText())==true && mdptaker(authemail.getText()).equals(authmdp.getText()) ){
                         while (rs.next()) {
                            //id = rs.getInt("id_user");
                             specialiteConnecte = rs.getString("type_A");
@@ -146,8 +147,8 @@ public class AuthentificationController implements Initializable {
                                     Stage stage = (Stage) node.getScene().getWindow();
                                     stage.close();
                             }
-                            else if (rs.getString("role_user").equals("membre")){
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeMembre.fxml"));
+                            else if (rs.getString("role_user").equals("Membre")){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgotMDP.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -162,7 +163,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Stock")){
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeStocks.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionMembre.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -258,7 +259,7 @@ public class AuthentificationController implements Initializable {
                             }
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Welcome");
-                            alert.setHeaderText("WELCOME TO SafeEYE");
+                            alert.setHeaderText("WELCOME TO Mycinema");
                             alert.setContentText("You're connected");
                             alert.show();
                             
@@ -269,11 +270,38 @@ public class AuthentificationController implements Initializable {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Failed");
                             alert.setHeaderText("Attention !!");
-                            alert.setContentText("Can not connect to SafeEYE");
+                            alert.setContentText("Can not connect to Mycinema. Vos données sont erronés.");
                             alert.show();
                         }
  
      } 
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AuthentificationController other = (AuthentificationController) obj;
+        if (!Objects.equals(this.authemail, other.authemail)) {
+            return false;
+        }
+        if (!Objects.equals(this.authmdp, other.authmdp)) {
+            return false;
+        }
+        return true;
+    }
     
 
     @FXML
