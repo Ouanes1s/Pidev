@@ -11,7 +11,7 @@ package edu.reservation.entities;
  */
 public class Offre {
     private int id_offr ;
-    private int id_film ;
+    private String nomfilm_offr ;
     private String contenu_offr;
     private String datedebut_offr , datefin_offr ;
     private String code_offr ;
@@ -19,17 +19,17 @@ public class Offre {
     public Offre() {
     }
 
-    public Offre(int id_offr, int id_film, String contenu_offr, String datedebut_offr, String datefin_offr, String code_offr) {
+    public Offre(int id_offr, String nomfilm_offr, String contenu_offr, String datedebut_offr, String datefin_offr, String code_offr) {
         this.id_offr = id_offr;
-        this.id_film = id_film;
+        this.nomfilm_offr = nomfilm_offr;
         this.contenu_offr = contenu_offr;
         this.datedebut_offr = datedebut_offr;
         this.datefin_offr = datefin_offr;
         this.code_offr = code_offr;
     }
 
-    public Offre(int id_film, String contenu_offr, String datedebut_offr, String datefin_offr, String code_offr) {
-        this.id_film = id_film;
+    public Offre(String nomfilm_offr, String contenu_offr, String datedebut_offr, String datefin_offr, String code_offr) {
+        this.nomfilm_offr = nomfilm_offr;
         this.contenu_offr = contenu_offr;
         this.datedebut_offr = datedebut_offr;
         this.datefin_offr = datefin_offr;
@@ -45,12 +45,12 @@ public class Offre {
         
     }
 
-    public int getId_film() {
-        return id_film;
+    public String getNomfilm_offr() {
+        return nomfilm_offr;
     }
 
-    public void setId_film(int id_film) {
-        this.id_film = id_film;
+    public void setNomfilm_offr(String nomfilm_offr) {
+        this.nomfilm_offr = nomfilm_offr;
     }
     
     
@@ -114,7 +114,7 @@ public class Offre {
 
     @Override
     public String toString() {
-        return "Offre{" + "id_offr=" + id_offr + ", id_film=" + id_film + ", contenu_offr=" + contenu_offr + ", datedebut_offr=" + datedebut_offr + ", datefin_offr=" + datefin_offr + ", code_offr=" + code_offr + '}';
+        return "Offre{" + "id_offr=" + id_offr + ", id_film=" + nomfilm_offr + ", contenu_offr=" + contenu_offr + ", datedebut_offr=" + datedebut_offr + ", datefin_offr=" + datefin_offr + ", code_offr=" + code_offr + '}';
     }
 
      

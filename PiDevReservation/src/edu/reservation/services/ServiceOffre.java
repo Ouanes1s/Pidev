@@ -28,9 +28,9 @@ public class ServiceOffre implements IServices<Offre> {
     @Override
     public void ajouter (Offre r) {
         try {
-            String req = "INSERT INTO `offre`( `id_film`,`contenu_offr`, `datedebut_offr`, `datefin_offr`, `code_offr` ) VALUES (?,?,?,?,? )";
+            String req = "INSERT INTO `offre`( `nomfilm_offr`,`contenu_offr`, `datedebut_offr`, `datefin_offr`, `code_offr` ) VALUES (?,?,?,?,? )";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, r.getId_film());
+            ps.setString(1, r.getNomfilm_offr());
             ps.setString(2, r.getContenu_offr());
             ps.setString(3, r.getDatedebut_offr());
              ps.setString(4, r.getDatefin_offr());
@@ -58,7 +58,7 @@ public class ServiceOffre implements IServices<Offre> {
     @Override
     public void modifier(Offre r) {
   try {
-            String req = "UPDATE `offre` SET  `id_film` = '" + r.getId_film() + "', `contenu_offr` = '" + r.getContenu_offr() + "', `datedebut_offr` = '" + r.getDatedebut_offr() + "', `datefin_offr` = '" + r.getDatefin_offr() + "', `code_offr` = '" + r.getCode_offr() +   "' WHERE `offre`.`id_offr` = " + r.getId_offr();
+            String req = "UPDATE `offre` SET  `id_film` = '" + r.getNomfilm_offr() + "', `contenu_offr` = '" + r.getContenu_offr() + "', `datedebut_offr` = '" + r.getDatedebut_offr() + "', `datefin_offr` = '" + r.getDatefin_offr() + "', `code_offr` = '" + r.getCode_offr() +   "' WHERE `offre`.`id_offr` = " + r.getId_offr();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Offre updated !");
@@ -67,14 +67,14 @@ public class ServiceOffre implements IServices<Offre> {
         }    }
 
     @Override
-    public List<Offre> getAll() {
+    public List<Offre> Afficher() {
     List<Offre> list = new ArrayList<>();
         try {
             String req = "Select * from offre";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Offre r = new Offre(rs.getInt("id_offr"), rs.getInt("id_film"), rs.getString("contenu_offr"), rs.getString("datedebut_offr"), rs.getString("datefin_offr"), rs.getString("code_offr") );
+                Offre r = new Offre(rs.getInt("id_offr"), rs.getString("nomfilm_offr"), rs.getString("contenu_offr"), rs.getString("datedebut_offr"), rs.getString("datefin_offr"), rs.getString("code_offr") );
                 list.add(r);
             }
         } catch (SQLException ex) {
@@ -94,7 +94,7 @@ public class ServiceOffre implements IServices<Offre> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 if (id==rs.getInt("id_offr")){
-       r = new Offre (rs.getInt("id_offr"), rs.getInt("id_film"), rs.getString("contenu_offr"),rs.getString("datedebut_offr"),
+       r = new Offre (rs.getInt("id_offr"), rs.getString("nomfilm_offr"), rs.getString("contenu_offr"),rs.getString("datedebut_offr"),
                         rs.getString("datefin_offr"),rs.getString("code_offr") );            }
         }} catch (SQLException ex) {
             System.out.println(ex.getMessage());

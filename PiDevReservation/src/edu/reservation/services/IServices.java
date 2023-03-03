@@ -15,7 +15,7 @@ import java.util.List;
     public void ajouter (T r);
     public void supprimer (int id );
     public void modifier (T r);
-    public List<T> getAll();
+    public List<T> Afficher();
     public T getOneById(int id );
     public int VerifTitre(String titre) ;
     public int VerifOffr(String code, String nom, String prenom) ;

@@ -27,10 +27,10 @@ public class ServiceBlog implements IServices<Blog> {
                 if (VerifTitre(r.getTitre_blg())!=0) {
                 System.out.println("Titre deja existe "); }
         try {
-            String req = "INSERT INTO `blog`( `titre_blg`, `email_user`, `contenu_blg`  ) VALUES (?,?,? )";
+            String req = "INSERT INTO `blog`( `titre_blg`, `email_blg`, `contenu_blg`  ) VALUES (?,?,? )";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, r.getTitre_blg());
-            ps.setInt(2, r.getEmail_user());
+            ps.setString(2, r.getEmail_blg());
              ps.setString(3, r.getContenu_blg());
              
   
@@ -55,7 +55,7 @@ public class ServiceBlog implements IServices<Blog> {
     @Override
     public void modifier(Blog r) {
         try {
-            String req = "UPDATE `blog` SET `titre_blg` = '" + r.getTitre_blg() + "', `email_user` = '" + r.getEmail_user() + "', `contenu_blg` = '" + r.getContenu_blg() +    "' WHERE `blog`.`id_blg` = " + r.getId_blg();
+            String req = "UPDATE `blog` SET `titre_blg` = '" + r.getTitre_blg() + "', `email_blg` = '" + r.getEmail_blg() + "', `contenu_blg` = '" + r.getContenu_blg() +    "' WHERE `blog`.`id_blg` = " + r.getId_blg();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Blog updated !");
@@ -64,14 +64,14 @@ public class ServiceBlog implements IServices<Blog> {
         }    }     
 
     @Override
-    public List<Blog> getAll() {
+    public List<Blog> Afficher() {
     List<Blog> list = new ArrayList<>();
         try {
             String req = "Select * from blog";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Blog r = new Blog(rs.getInt("id_blg"), rs.getString("titre_blg"), rs.getInt("id_user"), rs.getString("contenu_blg")  );
+                Blog r = new Blog( rs.getString("titre_blg"), rs.getString("email_blg"), rs.getString("contenu_blg")  );
                 list.add(r);
             }
         } catch (SQLException ex) {
@@ -80,27 +80,27 @@ public class ServiceBlog implements IServices<Blog> {
 
         return list;      }
 
-    @Override
-    public Blog getOneById(int id) {
-        Blog r = null;
-        try {
-            String req = "Select * from blog";
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {
-                if (id==rs.getInt("id_blg")){
-            r = new Blog (rs.getInt("id_blg"), rs.getString("titre_blg"),rs.getInt("id_user"),
-                        rs.getString("contenu_blg")  );            
-                }
-           }
-           } 
-        catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return r;
- 
-       }  
+//    @Override
+//    public Blog getOneById(int id) {
+//        Blog r = null;
+//        try {
+//            String req = "Select * from blog";
+//            Statement st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(req);
+//            while (rs.next()) {
+//                if (id==rs.getInt("id_blg")){
+//            r = new Blog ( rs.getString("titre_blg"),rs.getInt("email_blg"),
+//                        rs.getString("contenu_blg")  );            
+//                }
+//           }
+//           } 
+//        catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//
+//        return r;
+// 
+//       }  
     
      @Override
     public int VerifTitre(String titre) {
@@ -135,6 +135,11 @@ public class ServiceBlog implements IServices<Blog> {
 
     @Override
     public List<Blog> trierOffreParDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Blog getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

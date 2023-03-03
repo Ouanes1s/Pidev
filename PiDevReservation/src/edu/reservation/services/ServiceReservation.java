@@ -43,22 +43,24 @@ public class ServiceReservation implements IServices<Reservation> {
     public void ajouter (Reservation r) {
          if (VerifOffr(r.getCode_offr(),r.getNom_res(),r.getPrenom_res() )!=0) {
                 System.out.println("Vous avez deja utiliser cette offre  ");
-                   Email e = new  Email();
+                
+                   
+         }
+        else{   
+              Email e = new  Email();
             try {
                 e.envoyer(r.getEmail_res(),r.getDate_res(),r.getPrenom_res());
             } catch (MessagingException ex) {
                 Logger.getLogger(ServiceReservation.class.getName()).log(Level.SEVERE, null, ex);
          } 
-         }
-        else{        
         try {
-            String req = "INSERT INTO `reservation`( `nom_res`, `prenom_res`,`email_res`, `typeticket_res`, `id_film`, `date_res`, `code_offr`) VALUES (?,?,?,?,?,?,? )";
+            String req = "INSERT INTO `reservation`( `nom_res`, `prenom_res`,`email_res`, `typeticket_res`, `nom_evnmt`, `date_res`, `code_offr`) VALUES (?,?,?,?,?,?,? )";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(2, r.getPrenom_res());
             ps.setString(1, r.getNom_res());
             ps.setString(3, r.getEmail_res());
              ps.setString(4, r.getTypeTicket_res());
-             ps.setInt(5, r.getId_film());
+             ps.setString(5, r.getNom_evnmt());
              ps.setString(6, r.getDate_res());
              ps.setString(7, r.getCode_offr());
                 
@@ -87,7 +89,7 @@ public class ServiceReservation implements IServices<Reservation> {
     @Override
     public void modifier (Reservation r) {
         try {
-            String req = "UPDATE `reservation` SET `nom_res` = '" + r.getNom_res() + "', `prenom_res` = '" + r.getPrenom_res() + "', `email_res` = '" + r.getEmail_res() + "', `typeticket_res` = '" + r.getTypeTicket_res() + "', `id_film` = '" + r.getId_film() + "', `date_res` = '" + r.getDate_res() + "', `code_offr` = '" + r.getCode_offr() + "' WHERE `reservation`.`id_res` = " + r.getId_res();
+            String req = "UPDATE `reservation` SET `nom_res` = '" + r.getNom_res() + "', `prenom_res` = '" + r.getPrenom_res() + "', `email_res` = '" + r.getEmail_res() + "', `typeticket_res` = '" + r.getTypeTicket_res() + "', `nom_evnmt` = '" + r.getNom_evnmt() + "', `date_res` = '" + r.getDate_res() + "', `code_offr` = '" + r.getCode_offr() + "' WHERE `reservation`.`id_res` = " + r.getId_res();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Reservation updated !");
@@ -96,15 +98,14 @@ public class ServiceReservation implements IServices<Reservation> {
         }
     }
 
-    @Override
-    public List<Reservation> getAll() {
+    public List<Reservation> Afficher() {
         List<Reservation> list = new ArrayList<>();
         try {
             String req = "Select * from reservation";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Reservation r = new Reservation(rs.getInt("id_res"), rs.getString("nom_res"),  rs.getString("prenom_res"), rs.getString("email_res"), rs.getString("typeticket_res"), rs.getInt("id_film"), rs.getString("date_res"), rs.getString("code_offr"));
+                Reservation r = new Reservation( rs.getString("nom_res"),  rs.getString("prenom_res"), rs.getString("email_res"), rs.getString("typeticket_res"), rs.getString("nom_evnmt"), rs.getString("date_res"), rs.getString("code_offr"));
                 list.add(r);
             }
         } catch (SQLException ex) {
@@ -115,7 +116,7 @@ public class ServiceReservation implements IServices<Reservation> {
         
     }
 
-    @Override
+//    @Override
 //    public Reservation getOneById(int id_res) {
 //        Reservation r = null;
 //        try {
@@ -132,23 +133,23 @@ public class ServiceReservation implements IServices<Reservation> {
 //        return r;
 //    }
     
-    public Reservation getOneById(int id) {
-        Reservation r = null;
-        try {
-            String req = "Select * from reservation";
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {
-                if (id==rs.getInt("id_res")){
-       r = new Reservation (rs.getInt("id_res"), rs.getString("nom_res"),rs.getString("prenom_res"),rs.getString("email_res"),
-                        rs.getString("typeticket_res"),rs.getInt("id_film"),rs.getString("date_res"),rs.getString("code_offr"));            
-                }
-        }} catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return r;
-    }
+//    public Reservation getOneById(int id) {
+//        Reservation r = null;
+//        try {
+//            String req = "Select * from reservation";
+//            Statement st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(req);
+//            while (rs.next()) {
+//                if (id==rs.getInt("id_res")){
+//       r = new Reservation (rs.getInt("id_res"), rs.getString("nom_res"),rs.getString("prenom_res"),rs.getString("email_res"),
+//                        rs.getString("typeticket_res"),rs.getString("nom_evnmt"),rs.getString("date_res"),rs.getString("code_offr"));            
+//                }
+//        }} catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//
+//        return r;
+//    }
 
     @Override
     public int VerifTitre(String titre) {
@@ -176,6 +177,11 @@ public class ServiceReservation implements IServices<Reservation> {
 
     @Override
     public List<Reservation> trierOffreParDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Reservation getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

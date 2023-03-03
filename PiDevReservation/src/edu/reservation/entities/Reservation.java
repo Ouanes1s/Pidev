@@ -15,7 +15,7 @@ public class Reservation {
     private int id_res ;
     private String nom_res , prenom_res, email_res;
     private String typeticket_res ;
-    private int id_film ;
+    private String nom_evnmt ;
     private String code_offr ;
      
     private String date_res ;
@@ -24,26 +24,38 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, int id_film , String date_res, String code_offr) {
-        this.id_res = id_res;
+//    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt,String date_res,  String code_offr) {
+//        this.id_res = id_res;
+//        this.nom_res = nom_res;
+//        this.prenom_res = prenom_res;
+//        this.email_res = email_res;
+//        this.typeticket_res = typeticket_res;
+//        this.nom_evnmt = nom_evnmt;
+//        this.code_offr = code_offr;
+//        this.date_res = date_res;
+//    }
+
+    public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt, String date_res, String code_offr) {
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;
         this.email_res = email_res;
         this.typeticket_res = typeticket_res;
-        this.id_film = id_film;
+        this.nom_evnmt = nom_evnmt;
         this.code_offr = code_offr;
         this.date_res = date_res;
     }
 
-    public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, int id_film , String date_res, String code_offr) {
-        this.nom_res = nom_res;
-        this.prenom_res = prenom_res;
-        this.email_res = email_res;
-        this.typeticket_res = typeticket_res;
-        this.id_film = id_film;
-        this.code_offr = code_offr;
-        this.date_res = date_res;
+    public String getNom_evnmt() {
+        return nom_evnmt;
     }
+
+    public void setNom_evnmt(String nom_evnmt) {
+        this.nom_evnmt = nom_evnmt;
+    }
+
+   
+
+    
 
     public String getEmail_res() {
         return email_res;
@@ -79,9 +91,7 @@ public class Reservation {
         return typeticket_res;
     }
      
-    public int getId_film() {
-        return id_film;
-    }
+  
     
    
      public String getDate_res() {
@@ -104,9 +114,7 @@ public class Reservation {
         this.typeticket_res = typeticket_res;
     }
     
-    public void getId_film(int id_film) {
-        this.id_film = id_film;
-    }
+    
     
     
     
@@ -124,8 +132,10 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" + "id_res=" + id_res + ", nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", email_res=" + email_res + ", typeticket_res=" + typeticket_res + ", id_film=" + id_film + ", code_offr=" + code_offr + ", date_res=" + date_res + '}';
+        return "Reservation{" + "id_res=" + id_res + ", nom_res=" + nom_res + ", prenom_res=" + prenom_res + ", email_res=" + email_res + ", typeticket_res=" + typeticket_res + ", nom_evnmt=" + nom_evnmt + ", code_offr=" + code_offr + ", date_res=" + date_res + '}';
     }
+
+ 
 
  
     
