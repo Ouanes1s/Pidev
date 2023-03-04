@@ -65,6 +65,10 @@ public class ModifierBlogController implements Initializable {
     private TableColumn<Blog, String> IDColumn;
     @FXML
     private TextField gid;
+    @FXML
+    private ImageView backkey;
+    @FXML
+    private ImageView home;
 
     /**
      * Initializes the controller class.
@@ -196,6 +200,46 @@ public class ModifierBlogController implements Initializable {
             table_affiche();
             
         }
+    }
+
+    @FXML
+    private void backtoaffichblg(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("AfficherBlogClient.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+
+    @FXML
+    private void backtodashb(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("DashboardReservation.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
     }
     }
     

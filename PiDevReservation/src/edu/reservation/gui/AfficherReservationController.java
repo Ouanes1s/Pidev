@@ -66,6 +66,8 @@ public class AfficherReservationController implements Initializable {
     private ImageView backkey;
     @FXML
     private Button modres;
+    @FXML
+    private Label countLabel;
 
     /**
      * Initializes the controller class.
@@ -97,7 +99,7 @@ public class AfficherReservationController implements Initializable {
             ) ;
             res.add(reservation);
         }
-
+           countLabel.setText("Nombre de réservations est de : " + res.size());
         listView.setItems(res);
         
         

@@ -8,6 +8,7 @@ package edu.reservation.gui;
 import edu.reservation.services.ServiceOffre;
 import edu.reservation.entities.Offre;
 import edu.reservation.utils.DataSource;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,10 +22,17 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,6 +44,8 @@ public class AfficherOffreClientController implements Initializable {
     private ListView<Offre> listView;
     @FXML
     private TextField searchField;
+    @FXML
+    private ImageView backkey;
     
     
      public void list_affiche(){
@@ -127,7 +137,28 @@ public class AfficherOffreClientController implements Initializable {
     }
               });
     }
-}
+
+    @FXML
+    private void backtoajoutres(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("AjouterReservation.fxml"));
+             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+        }
+    }
+
               
     
     

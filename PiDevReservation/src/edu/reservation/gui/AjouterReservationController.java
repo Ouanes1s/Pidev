@@ -32,6 +32,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -56,6 +58,12 @@ public class AjouterReservationController implements Initializable {
     private TextField txtcodeoffr;
        @FXML
     private ComboBox<String> boxtypetick;
+    @FXML
+    private Button affichoffr;
+    @FXML
+    private ImageView backkey;
+    @FXML
+    private ImageView home;
        
 
     /**
@@ -122,6 +130,11 @@ public class AjouterReservationController implements Initializable {
             
             else {
     sr.ajouter(r);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Welcome");
+            alert.setContentText("You have successfully a reservation. Please check your e-mail box to get your Confirmation ");
+            alert.show();
     }
     }
     }
@@ -144,4 +157,49 @@ public class AjouterReservationController implements Initializable {
             System.out.println(ex.getMessage());
         }
         return nb;    }
+
+    @FXML
+    private void toaffichoffr(MouseEvent event) {
+        
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("AfficherOffreClient.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+
+    @FXML
+    private void backtofilm(MouseEvent event) {
+    }
+
+    @FXML
+    private void backtodashb(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("DashboardReservation.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
         }

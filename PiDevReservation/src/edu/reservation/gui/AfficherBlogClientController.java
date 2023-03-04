@@ -10,6 +10,7 @@ import edu.reservation.entities.Blog;
 
 import edu.reservation.services.ServiceBlog;
 import edu.reservation.utils.DataSource;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +33,33 @@ import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList ;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;import javafx.scene.control.TextField;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList ;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;import javafx.scene.control.TextField;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList ;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;import javafx.scene.control.TextField;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList ;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -44,6 +72,12 @@ public class AfficherBlogClientController implements Initializable {
     private ListView<Blog> listView;
     @FXML
     private TextField searchField;
+    @FXML
+    private ImageView backkey;
+    @FXML
+    private ImageView home;
+    @FXML
+    private Button modblg;
     
     
     public void list_affiche(){
@@ -120,11 +154,73 @@ public class AfficherBlogClientController implements Initializable {
             setText(null);
             setGraphic(null);
         } else {
-            setText(blog.getTitre_blg() + " " + blog.getEmail_blg()+" "+blog.getContenu_blg()+" ");
+            setText(blog.getTitre_blg() + "  // by  " + blog.getEmail_blg()+"   ///  "+blog.getContenu_blg()+" ");
       
             }    
     
     }
               });
+    }
+
+    @FXML
+    private void backtoajoutblg(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("AjouterBlog.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+
+    @FXML
+    private void todashb(MouseEvent event) {
+        
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("DashboardReservation.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+
+    @FXML
+    private void tomodblg(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("ModifierBlog.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+        
     }
 }

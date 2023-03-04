@@ -89,6 +89,7 @@ public class AjouterOffreController implements Initializable {
         Offre r = new Offre (   nomfilm ,  contenuoffr ,  datedebut ,  datefin ,   code);
         ServiceOffre so = new ServiceOffre();
     so.ajouter(r);
+    
     }
     
 }
