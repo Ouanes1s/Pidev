@@ -26,7 +26,7 @@ public class Reservation implements Comparator<Reservation> {
     public Reservation() {
     }
 
-    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt,String date_res,  String code_offr) {
+    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt,  String code_offr,String date_res) {
         this.id_res = id_res;
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;

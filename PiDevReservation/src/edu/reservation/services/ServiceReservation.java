@@ -88,29 +88,52 @@ public class ServiceReservation implements IServices<Reservation> {
     }
 
     @Override
-    public void modifier (Reservation r) {
-        try{
-            if (r instanceof Reservation ){
-                 Reservation R1 =(Reservation) r;
-        String req = "UPDATE reservation SET  nom_res=?,prenom_res=?,email_res=?,typeticket_res=?,nom_evnmt=?,date_res=? WHERE code_offr=?";
+//    public void modifier (Reservation r) {
+//        try{
+//            if (r instanceof Reservation ){
+//                 Reservation R1 =(Reservation) r;
+//        String req = "UPDATE reservation SET  prenom_res=?,email_res=?,typeticket_res=?,nom_evnmt=?,code_offr=?, date_res=? WHERE nom_res=?";
+//        PreparedStatement pst = cnx.prepareStatement(req);
+//            
+//            pst.setString(1, R1.getNom_res());
+//            pst.setString(2, R1.getPrenom_res());
+//         
+//            pst.setString(3, R1.getEmail_res());
+//            pst.setString(4, R1.getTypeTicket_res());
+//            pst.setString(5, R1.getNom_evnmt());
+//            pst.setString(6, R1.getCode_offr());
+//            pst.setString(7, R1.getDate_res());
+////           pst.setInt(8, R1.getId_res());
+//            
+//            pst.executeUpdate();
+//            System.out.println("A Reservation was updated successfully!");}
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    }
+    
+    public void modifier(Reservation r) {
+    try {
+        Reservation R1 = (Reservation) r;
+        String req = "UPDATE reservation SET nom_res=? , prenom_res=?, email_res=?, typeticket_res=?, nom_evnmt=?, code_offr=?, date_res=? WHERE id_res=?";
         PreparedStatement pst = cnx.prepareStatement(req);
-            
-            pst.setString(1, R1.getNom_res());
-            pst.setString(2, R1.getPrenom_res());
-         
-            pst.setString(3, R1.getEmail_res());
-            pst.setString(4, R1.getTypeTicket_res());
-            pst.setString(5, R1.getNom_evnmt());
-            pst.setString(6, R1.getCode_offr());
-            pst.setString(7, R1.getDate_res());
-//           pst.setInt(8, R1.getId_res());
-            
-            pst.executeUpdate();
-            System.out.println("A Reservation was updated successfully!");}
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+         pst.setString(1, R1.getNom_res());
+
+        pst.setString(2, R1.getPrenom_res());
+        pst.setString(3, R1.getEmail_res());
+        pst.setString(4, R1.getTypeTicket_res());
+        pst.setString(5, R1.getNom_evnmt());
+        pst.setString(6, R1.getCode_offr());
+        pst.setString(7, R1.getDate_res());
+        pst.setInt(8, R1.getId_res());
+
+        pst.executeUpdate();
+        System.out.println("A Reservation was updated successfully!");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+}
+
 
     public List<Reservation> Afficher() {
         List<Reservation> list = new ArrayList<>();

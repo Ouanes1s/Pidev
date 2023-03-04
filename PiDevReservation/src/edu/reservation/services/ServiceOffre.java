@@ -58,7 +58,7 @@ public class ServiceOffre implements IServices<Offre> {
     @Override
     public void modifier(Offre r) {
   try {
-            String req = "UPDATE `offre` SET  `id_film` = '" + r.getNomfilm_offr() + "', `contenu_offr` = '" + r.getContenu_offr() + "', `datedebut_offr` = '" + r.getDatedebut_offr() + "', `datefin_offr` = '" + r.getDatefin_offr() + "', `code_offr` = '" + r.getCode_offr() +   "' WHERE `offre`.`id_offr` = " + r.getId_offr();
+            String req = "UPDATE `offre` SET  `nomfilm_offr` = '" + r.getNomfilm_offr() + "', `contenu_offr` = '" + r.getContenu_offr() + "', `datedebut_offr` = '" + r.getDatedebut_offr() + "', `datefin_offr` = '" + r.getDatefin_offr() + "', `code_offr` = '" + r.getCode_offr() +   "' WHERE `offre`.`id_offr` = " + r.getId_offr();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Offre updated !");

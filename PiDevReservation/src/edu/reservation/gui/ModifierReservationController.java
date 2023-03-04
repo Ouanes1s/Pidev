@@ -5,6 +5,7 @@
  */
 package edu.reservation.gui;
 
+
 import edu.reservation.entities.Reservation;
 
 import edu.reservation.services.ServiceReservation;
@@ -77,6 +78,10 @@ public class ModifierReservationController implements Initializable {
     private TextField gdateres;
     @FXML
     private Button btnModifier;
+    @FXML
+    private TextField gid;
+    @FXML
+    private TableColumn<Reservation, String> IDColumn;
 
     /**
      * Initializes the controller class.
@@ -91,7 +96,7 @@ public class ModifierReservationController implements Initializable {
         table_affiche();
         table.getSelectionModel().selectedItemProperty().addListener((value, oldValue, newValue) -> {
         if (newValue != null) {
-      
+         this.gid.setText(Integer.toString(newValue.getId_res()));
         this.gnom.setText(newValue.getNom_res());
         this.gprenom.setText(newValue.getPrenom_res());
         this.gemail.setText(newValue.getEmail_res());
@@ -118,7 +123,7 @@ public class ModifierReservationController implements Initializable {
             {
                 while(rst.next()){
                 Reservation r = new Reservation();
-                
+                r.setId_res(rst.getInt("id_res"));
                 r.setNom_res(rst.getString("nom_res"));
                 r.setPrenom_res(rst.getString("prenom_res"));
                 r.setEmail_res(rst.getString("email_res"));
@@ -130,7 +135,7 @@ public class ModifierReservationController implements Initializable {
                 
                 res.add(r);}
             }   
-            
+            IDColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("id_res"));
             NomColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("nom_res"));
             PrenomColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("prenom_res"));
             EmailColumn.setCellValueFactory(new PropertyValueFactory<Reservation,String>("email_res"));
@@ -157,7 +162,7 @@ public class ModifierReservationController implements Initializable {
 
     @FXML
     private void Modifier(ActionEvent event) {
-        int ID=0;
+         int ID = Integer.parseInt(gid.getText());
         String nom,prenom,email,typetick,dateres,codeoffr, nomevnmt;
         
         
@@ -196,7 +201,7 @@ public class ModifierReservationController implements Initializable {
         }
         else{
                
-             Reservation r = new Reservation (   nom ,  prenom ,  email ,  typetick ,   nomevnmt, codeoffr, dateres  );
+             Reservation r = new Reservation ( ID,  nom ,  prenom ,  email ,  typetick ,   nomevnmt, codeoffr, dateres  );
             
 //           Reservation r1 = new Reservation (  r.getId_res(), nom ,  prenom ,  email ,  typetick ,   nomevnmt, codeoffr, dateres  );
             ServiceReservation sr = new ServiceReservation();

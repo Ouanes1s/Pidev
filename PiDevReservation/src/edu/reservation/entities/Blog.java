@@ -18,12 +18,12 @@ public class Blog implements Comparator<Blog> {
     private String email_blg ;
     private String contenu_blg ;
 
-//    public Blog(int id_blg, String titre_blg, int email_user, String contenu_blg) {
-//        this.id_blg = id_blg;
-//        this.titre_blg = titre_blg;
-//        this.email_user = email_user;
-//        this.contenu_blg = contenu_blg;
-//    }
+    public Blog(int id_blg, String titre_blg, String email_blg, String contenu_blg) {
+        this.id_blg = id_blg;
+        this.titre_blg = titre_blg;
+        this.email_blg = email_blg;
+        this.contenu_blg = contenu_blg;
+    }
 
     public Blog(String titre_blg, String email_blg, String contenu_blg) {
         this.titre_blg = titre_blg;
@@ -48,6 +48,10 @@ public class Blog implements Comparator<Blog> {
 
     public void setTitre_blg(String titre_blg) {
         this.titre_blg = titre_blg;
+    }
+    
+     public void setEmail_blg(String email_blg) {
+        this.email_blg = email_blg;
     }
 
     public String getEmail_blg() {

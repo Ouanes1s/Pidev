@@ -9,21 +9,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.reservation.gui.ModifierReservationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.reservation.gui.ModifierReservationController">
     <children>
-      <TableView fx:id="table" layoutX="2.0" layoutY="120.0" onMouseClicked="#getSelected" prefHeight="239.0" prefWidth="795.0">
+      <TableView fx:id="table" layoutX="1.0" layoutY="119.0" onMouseClicked="#getSelected" prefHeight="239.0" prefWidth="800.0">
         <columns>
-          <TableColumn fx:id="NomColumn" prefWidth="84.0" text="Nom" />
-          <TableColumn fx:id="PrenomColumn" prefWidth="86.0" text="Prénom" />
-            <TableColumn fx:id="EmailColumn" prefWidth="103.0" text="EMAIL" />
-            <TableColumn fx:id="TypeColumn" prefWidth="79.0" text="Type Ticket" />
-            <TableColumn fx:id="NomEvnmtColumn" prefWidth="172.0" text="Nom Evenement" />
-            <TableColumn fx:id="CodeColumn" prefWidth="129.0" text="Code Offre" />
-            <TableColumn fx:id="DateResColumn" prefWidth="135.0" text="Date de Reservation" />
+          <TableColumn fx:id="IDColumn" prefWidth="29.0" text="ID" />
+          <TableColumn fx:id="NomColumn" prefWidth="66.0" text="Nom" />
+          <TableColumn fx:id="PrenomColumn" prefWidth="69.0" text="Prénom" />
+            <TableColumn fx:id="EmailColumn" prefWidth="76.0" text="EMAIL" />
+            <TableColumn fx:id="TypeColumn" prefWidth="96.0" text="Type Ticket" />
+            <TableColumn fx:id="NomEvnmtColumn" prefWidth="147.0" text="Nom Evenement" />
+            <TableColumn fx:id="CodeColumn" prefWidth="77.0" text="Code Offre" />
+            <TableColumn fx:id="DateResColumn" prefWidth="312.0" text="Date de Reservation" />
             
         </columns>
       </TableView>
-      <Text layoutX="95.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+      <Text layoutX="94.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
       <Text layoutX="87.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" />
       <Text layoutX="91.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL" />
       <Text layoutX="346.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de Ticket" wrappingWidth="108.05224609375" />
@@ -47,5 +48,7 @@
          </font>
       </Text>
       <Text layoutX="15.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez cliquer sur la reservation à  modifier :" wrappingWidth="440.6708984375" />
+      <TextField fx:id="gid" layoutX="738.0" layoutY="367.0" prefHeight="25.0" prefWidth="33.0" />
+      <Text layoutX="699.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
    </children>   
 </AnchorPane>
