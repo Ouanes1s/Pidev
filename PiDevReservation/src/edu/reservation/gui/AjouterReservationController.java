@@ -117,7 +117,7 @@ public class AjouterReservationController implements Initializable {
         }
         else{
         
-        Reservation r = new Reservation (   nom ,  prenom ,  email ,  typeticket ,   nomevnmt, date, codeoffr  );
+        Reservation r = new Reservation (   nom ,  prenom ,  email ,  typeticket ,   nomevnmt, codeoffr ,date  );
         ServiceReservation sr = new ServiceReservation();
         if (VerifOffr(r.getCode_offr(),r.getNom_res(),r.getPrenom_res() )!=0){
                 Alert alert = new Alert(Alert.AlertType.ERROR);

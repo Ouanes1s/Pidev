@@ -27,6 +27,6 @@
       </ImageView>
       <Button fx:id="modres" layoutX="589.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#tomodres" text="Modifier Réservation" />
       <Text layoutX="35.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliquer 3 foir sur la réservation à supprimer" />
-      <Label fx:id="countLabel" layoutX="575.0" layoutY="88.0" text="Label" />
+      <Label fx:id="countLabel" layoutX="509.0" layoutY="28.0" text="Label" />
    </children>
 </AnchorPane>

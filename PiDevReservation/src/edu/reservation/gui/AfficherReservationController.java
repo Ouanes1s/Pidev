@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -99,7 +101,32 @@ public class AfficherReservationController implements Initializable {
             ) ;
             res.add(reservation);
         }
-           countLabel.setText("Nombre de réservations est de : " + res.size());
+        
+        // Assuming that the Reservation class has a getDate() method that returns the reservation date
+
+// Create a map to store the reservation count for each date
+Map<String, Integer> dateCountMap = new HashMap<>();
+
+// Iterate through the reservation list and count the reservations for each date
+for (Reservation reservation : res) {
+    String date = reservation.getDate_res().toString(); // Assuming the date is stored as a string
+    if (dateCountMap.containsKey(date)) {
+        int count = dateCountMap.get(date);
+        dateCountMap.put(date, count + 1);
+    } else {
+        dateCountMap.put(date, 1);
+    }
+}
+
+// Display the counts for each date in the label
+StringBuilder labelText = new StringBuilder();
+for (Map.Entry<String, Integer> entry : dateCountMap.entrySet()) {
+    labelText.append("Nombre de réservations pour la date ").append(entry.getKey()).append(" est de : ").append(entry.getValue()).append("\n");
+}
+countLabel.setText(labelText.toString());
+
+
+//           countLabel.setText("Nombre de réservations est de : " + res.size());
         listView.setItems(res);
         
         
@@ -249,9 +276,9 @@ public class AfficherReservationController implements Initializable {
     PreparedStatement stmt = null;
     
     try {
-        String req = "DELETE FROM Reservation WHERE id_res = ?";
+        String req = "DELETE FROM Reservation WHERE code_offr = ?";
         stmt = cnx.prepareStatement(req);
-        stmt.setInt(1, reservation.getId_res());
+        stmt.setString(1, reservation.getCode_offr());
         stmt.executeUpdate();
     }
     catch (SQLException ex){

@@ -72,8 +72,8 @@ public class AfficherOffreController implements Initializable {
                     rst.getString("nomfilm_offr"),
                     rst.getString("contenu_offr"),
                     rst.getString("datedebut_offr"),
-                    rst.getString("datedebut_offr"),
-                    rst.getString("datedebut_offr")
+                    rst.getString("datefin_offr"),
+                    rst.getString("code_offr")
                    
                    
             ) ;
