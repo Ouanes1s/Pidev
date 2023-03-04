@@ -89,11 +89,24 @@ public class ServiceReservation implements IServices<Reservation> {
 
     @Override
     public void modifier (Reservation r) {
-        try {
-            String req = "UPDATE `reservation` SET `nom_res` = '" + r.getNom_res() + "', `prenom_res` = '" + r.getPrenom_res() + "', `email_res` = '" + r.getEmail_res() + "', `typeticket_res` = '" + r.getTypeTicket_res() + "', `nom_evnmt` = '" + r.getNom_evnmt() + "', `date_res` = '" + r.getDate_res() + "', `code_offr` = '" + r.getCode_offr() + "' WHERE `reservation`.`id_res` = " + r.getId_res();
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Reservation updated !");
+        try{
+            if (r instanceof Reservation ){
+                 Reservation R1 =(Reservation) r;
+        String req = "UPDATE reservation SET  nom_res=?,prenom_res=?,email_res=?,typeticket_res=?,nom_evnmt=?,date_res=? WHERE code_offr=?";
+        PreparedStatement pst = cnx.prepareStatement(req);
+            
+            pst.setString(1, R1.getNom_res());
+            pst.setString(2, R1.getPrenom_res());
+         
+            pst.setString(3, R1.getEmail_res());
+            pst.setString(4, R1.getTypeTicket_res());
+            pst.setString(5, R1.getNom_evnmt());
+            pst.setString(6, R1.getCode_offr());
+            pst.setString(7, R1.getDate_res());
+//           pst.setInt(8, R1.getId_res());
+            
+            pst.executeUpdate();
+            System.out.println("A Reservation was updated successfully!");}
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

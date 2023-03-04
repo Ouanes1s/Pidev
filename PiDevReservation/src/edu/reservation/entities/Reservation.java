@@ -26,16 +26,16 @@ public class Reservation implements Comparator<Reservation> {
     public Reservation() {
     }
 
-//    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt,String date_res,  String code_offr) {
-//        this.id_res = id_res;
-//        this.nom_res = nom_res;
-//        this.prenom_res = prenom_res;
-//        this.email_res = email_res;
-//        this.typeticket_res = typeticket_res;
-//        this.nom_evnmt = nom_evnmt;
-//        this.code_offr = code_offr;
-//        this.date_res = date_res;
-//    }
+    public Reservation(int id_res, String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt,String date_res,  String code_offr) {
+        this.id_res = id_res;
+        this.nom_res = nom_res;
+        this.prenom_res = prenom_res;
+        this.email_res = email_res;
+        this.typeticket_res = typeticket_res;
+        this.nom_evnmt = nom_evnmt;
+        this.code_offr = code_offr;
+        this.date_res = date_res;
+    }
 
     public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt, String code_offr, String date_res) {
         this.nom_res = nom_res;
@@ -122,7 +122,7 @@ public class Reservation implements Comparator<Reservation> {
     
     
     
-    public void getDate_res(String date_res) {
+    public void setDate_res(String date_res) {
         this.date_res = date_res;
     }
 
