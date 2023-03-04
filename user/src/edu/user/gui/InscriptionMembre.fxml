@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="742.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.InscriptionMembreController">
+<AnchorPane id="AnchorPane" prefHeight="796.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.InscriptionMembreController">
    <children>
       <Text fill="#0a0000" layoutX="299.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To MyCinema" wrappingWidth="461.52392578125">
          <font>
@@ -34,5 +35,8 @@
             <Image url="@user-login-3057.png" />
          </image>
       </ImageView>
+      <WebView fx:id="captchaWebView" layoutX="633.0" layoutY="123.0" prefHeight="500.0" prefWidth="371.0" />
+      <TextField fx:id="captchaResponseX" layoutX="419.0" layoutY="709.0" />
+      <Text layoutX="426.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ecrire le code captcha ici" wrappingWidth="210.69287109375" />
    </children>
 </AnchorPane>

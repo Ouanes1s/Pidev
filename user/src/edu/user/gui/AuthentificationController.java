@@ -148,7 +148,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("role_user").equals("Membre")){
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgotMDP.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardReservation.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -179,7 +179,7 @@ public class AuthentificationController implements Initializable {
                             }
                             else if (rs.getString("type_A").equals("Gestion de Reservation")){
                                
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeReservations.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardResAgent.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -195,7 +195,7 @@ public class AuthentificationController implements Initializable {
                             }
                             else if (rs.getString("type_A").equals("Reclamation")){
                                
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("GestionUser.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("GestionGererReclamation.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
