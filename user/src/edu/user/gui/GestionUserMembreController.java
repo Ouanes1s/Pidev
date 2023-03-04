@@ -52,6 +52,8 @@ public class GestionUserMembreController implements Initializable {
     private TextField searchField;
     @FXML
     private ImageView back;
+    @FXML
+    private Label countLabel;
 
     /**
      * Initializes the controller class.
@@ -85,7 +87,7 @@ public class GestionUserMembreController implements Initializable {
              ;
             agents.add(membre);
         }
-
+countLabel.setText("Nombre de membres actif est de : " + agents.size());
         listView.setItems(agents);
           // Créer un champ de recherche
       // Ajout de la recherche intelligente
@@ -153,7 +155,7 @@ public class GestionUserMembreController implements Initializable {
 
                     // ajout de l'image à la cellule
                     setGraphic(imageView); */
-          ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
+          ImageView imageView = new ImageView(new Image(getClass().getResource("no-profile-picture-15257.png").toExternalForm()));
 
                         // personnalisation de l'image
                         imageView.setFitHeight(50);

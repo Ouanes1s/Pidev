@@ -68,6 +68,8 @@ public class GestionUserController implements Initializable {
     private TextField searchField;
     @FXML
     private ImageView back;
+    @FXML
+    private Label countLabel;
     /**
      * Initializes the controller class.
      */
@@ -99,7 +101,7 @@ public class GestionUserController implements Initializable {
             ) ;
             agents.add(agent);
         }
-
+ countLabel.setText("Nombre d'agents actifs est de : " + agents.size());
         listView.setItems(agents);
           // Créer un champ de recherche
       // Ajout de la recherche intelligente
@@ -168,7 +170,8 @@ public class GestionUserController implements Initializable {
 
                     // ajout de l'image à la cellule
                     setGraphic(imageView); */
-          ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
+        if (agent.getType_A().equals("Stock")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("truck-2007.png").toExternalForm()));
 
                         // personnalisation de l'image
                         imageView.setFitHeight(50);
@@ -180,8 +183,79 @@ public class GestionUserController implements Initializable {
                         vbox.setSpacing(5);
 
                         // ajout du conteneur à la cellule
-                        setGraphic(vbox);
+                        setGraphic(vbox);}
+        if (agent.getType_A().equals("Gestion de Reservation")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("hand-click-and-reservation-sign-outline-16344.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (agent.getType_A().equals("Reclamation")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("list-6235.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (agent.getType_A().equals("Films et events")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("1080p-hd-quality-outline-sign-16927.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (agent.getType_A().equals("Cinemas et salles")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("video-camera-2805.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (agent.getType_A().equals("Gestion de Parkings")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("parking-1645.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
         }
+        
     }
     
 }
