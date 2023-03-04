@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package edu.reservation.gui;
+
+
 import edu.reservation.entities.Blog;
 
 import edu.reservation.services.ServiceBlog;
@@ -36,16 +38,14 @@ import javafx.collections.transformation.SortedList;
  *
  * @author Amine Khalfaoui
  */
-public class AfficherBlogController implements Initializable {
+public class AfficherBlogClientController implements Initializable {
 
     @FXML
     private ListView<Blog> listView;
     @FXML
     private TextField searchField;
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     public void list_affiche(){
     Connection cnx = DataSource.getInstance().getCnx();
     ObservableList<Blog> blogs = FXCollections.observableArrayList();
@@ -103,13 +103,14 @@ public class AfficherBlogController implements Initializable {
         System.err.println(ex.getMessage());
     }
 }
-  
-    
-    
-    
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         list_affiche();
               listView.setCellFactory(param -> new ListCell<Blog>() {
     @Override
@@ -120,69 +121,10 @@ public class AfficherBlogController implements Initializable {
             setGraphic(null);
         } else {
             setText(blog.getTitre_blg() + " " + blog.getEmail_blg()+" "+blog.getContenu_blg()+" ");
-             
-
-            // ajout de l'image à la cellule
-//                    setGraphic(imageView); */
-//          ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
-
-                        // personnalisation de l'image
-//                        imageView.setFitHeight(50);
-//                        imageView.setFitWidth(50);
-
-                        // création d'un conteneur pour l'image et le nom de l'agent
-//                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
-//                        vbox.setAlignment(Pos.CENTER);
-//                        vbox.setSpacing(5);
-
-                        // ajout du conteneur à la cellule
-//                        setGraphic(vbox);
-        }
-    }
+      
+            }    
     
-}
-              );
-              
-              
-              listView.setOnMouseClicked(event -> {
-    if (event.getClickCount() == 3) {
-        Blog blog = listView.getSelectionModel().getSelectedItem();
-        if (blog != null) {
-            supprimer(blog);
-            listView.getItems().remove(blog);
-        }
     }
-});
-    
-                }
-    
-
-     public void supprimer(Blog blog) {
-    Connection cnx = DataSource.getInstance().getCnx();
-    PreparedStatement stmt = null;
-    
-    try {
-        String req = "DELETE FROM Blog WHERE titre_blg = ?";
-        stmt = cnx.prepareStatement(req);
-        stmt.setString(1, blog.getTitre_blg());
-        stmt.executeUpdate();
-    }
-    catch (SQLException ex){
-        System.err.println(ex.getMessage());
-    }
-    finally {
-        if (stmt != null) {
-            try {
-                stmt.close();
-            }
-            catch (SQLException ex){
-                System.err.println(ex.getMessage());
-            }
-        }
+              });
     }
 }
-
-        
-    }    
-    
-
