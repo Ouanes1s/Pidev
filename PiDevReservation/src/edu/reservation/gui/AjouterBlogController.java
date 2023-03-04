@@ -6,12 +6,8 @@
 package edu.reservation.gui;
 
 import edu.reservation.entities.Blog;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import edu.reservation.entities.Reservation;
 import edu.reservation.services.ServiceBlog;
-import edu.reservation.services.ServiceReservation;
+
 import edu.reservation.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
