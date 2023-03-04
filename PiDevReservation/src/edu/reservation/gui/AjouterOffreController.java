@@ -9,14 +9,22 @@ import edu.reservation.entities.Offre;
 import edu.reservation.entities.Reservation;
 import edu.reservation.services.ServiceOffre;
 import edu.reservation.services.ServiceReservation;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -37,6 +45,8 @@ public class AjouterOffreController implements Initializable {
     private TextField txtcode;
     @FXML
     private Button confirmer;
+    @FXML
+    private ImageView backkey;
 
     /**
      * Initializes the controller class.
@@ -81,4 +91,25 @@ public class AjouterOffreController implements Initializable {
     so.ajouter(r);
     }
     
-} }
+}
+
+    @FXML
+    private void backtoaffichoffr(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("AfficherOffre.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+}

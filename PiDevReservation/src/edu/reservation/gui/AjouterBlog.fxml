@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.reservation.gui.AjouterBlogController">
     <children>
       <Text fill="#0a0000" layoutX="299.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Blogger Space!" wrappingWidth="424.52392578125">
          <font>

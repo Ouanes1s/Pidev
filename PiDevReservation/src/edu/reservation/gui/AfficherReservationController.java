@@ -9,6 +9,7 @@ package edu.reservation.gui;
 import edu.reservation.entities.Reservation;
 import edu.reservation.services.ServiceReservation;
 import edu.reservation.utils.DataSource;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,6 +47,9 @@ import javafx.stage.Stage;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList ;
 import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 
 /**
  * FXML Controller class
@@ -58,6 +62,10 @@ public class AfficherReservationController implements Initializable {
     private ListView<Reservation> listView;
     @FXML
     private TextField searchField;
+    @FXML
+    private ImageView backkey;
+    @FXML
+    private Button modres;
 
     /**
      * Initializes the controller class.
@@ -207,6 +215,46 @@ public class AfficherReservationController implements Initializable {
         }
     }
 }
+
+    @FXML
+    private void backtogesres(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("DashboardResAgent.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+
+    @FXML
+    private void tomodres(MouseEvent event) {
+        try {
+                     Parent root = FXMLLoader.load(getClass().getResource("ModifierReservation.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
 
     }    
     
