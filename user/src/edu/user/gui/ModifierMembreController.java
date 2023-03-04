@@ -6,6 +6,7 @@
 package edu.user.gui;
 
 import edu.user.entities.Agent;
+import edu.user.entities.Membre;
 import edu.user.entities.User;
 import edu.user.services.UserCRUD;
 import edu.user.utils.ConnectionToDB;
@@ -28,7 +29,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,10 +42,10 @@ import javafx.stage.Stage;
  *
  * @author chebi
  */
-public class ModifierAgentController implements Initializable {
+public class ModifierMembreController implements Initializable {
 
-    @FXML
-    private TableView<Agent> table;
+     @FXML
+    private TableView<Membre> table;
     @FXML
     private ComboBox<String> boxrole2;
     @FXML
@@ -72,13 +72,9 @@ public class ModifierAgentController implements Initializable {
     private TableColumn<User, String> MDPColumn;
     @FXML
     private TableColumn<User, String> SalaireColumn;
-    @FXML
-    private TableColumn<User, String> DateDeConColumn;
+   
     
-    @FXML
-    private TableColumn<User, String> TypeColumn;
-    @FXML
-    private TableColumn<User, String> RoleColumn;
+  
     @FXML
     private Button btnModifier;
     @FXML
@@ -94,11 +90,7 @@ public class ModifierAgentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ObservableList<String> listrole = FXCollections.observableArrayList("","Stock","Reclamation","Gestion de Reservation","Films et events","Cinemas et salles","Gestion de Parkings");
-        boxrole2.setValue("");
-        boxrole2.setItems(listrole);
-        //Table
-        table_affiche();
+    table_affiche();
         table.getSelectionModel().selectedItemProperty().addListener((value, oldValue, newValue) -> {
         if (newValue != null) {
       
@@ -106,38 +98,38 @@ public class ModifierAgentController implements Initializable {
         this.gprenom.setText(newValue.getPrenom_user());
         this.gcin.setText(newValue.getCin_user());
         this.gemail.setText(newValue.getEmail_user());
-        this.boxrole2.setItems(listrole);
+       
         this.gmdp.setText(newValue.getMdp_user());
-        this.gsalaire.setText(newValue.getSalaire());
-         this.gcontract.setText(newValue.getDate_contract());
+        this.gsalaire.setText(newValue.getDate_inscri());
+         
         }   
         });
     }    
          
     public void table_affiche(){
         Connection cnx = ConnectionToDB.getInstance().getConnection();
-        ObservableList<Agent> users = FXCollections.observableArrayList();
+        ObservableList<Membre> users = FXCollections.observableArrayList();
         PreparedStatement stmt = null;
 	ResultSet rst = null;
     
         try {
            String req = "SELECT * FROM User WHERE role_user= ?";
            stmt = cnx.prepareStatement(req);
-	    stmt.setString(1, "Agent");
+	    stmt.setString(1, "Membre");
 	    rst = stmt.executeQuery();
             
             {
                 while(rst.next()){
-                Agent u = new Agent();
+               Membre u = new Membre();
                 
                 u.setNom_user(rst.getString("nom_user"));
                 u.setPrenom_user(rst.getString("prenom_user"));
                 u.setCin_user(rst.getString("cin_user"));
                 u.setEmail_user(rst.getString("email_user"));
-                u.setDate_contract(rst.getString("date_contract"));
+               
                 u.setMdp_user(rst.getString("mdp_user"));
-                u.setSalaire(rst.getString("Salaire"));
-                u.setType_A(rst.getString("Type_A"));
+                u.setDate_inscri(rst.getString("Date_inscri"));
+                
                 
                 users.add(u);}
             }   
@@ -147,10 +139,8 @@ public class ModifierAgentController implements Initializable {
             CinColumn.setCellValueFactory(new PropertyValueFactory<User,String>("cin_user"));
             EmailColumn.setCellValueFactory(new PropertyValueFactory<User,String>("email_user"));
             MDPColumn.setCellValueFactory(new PropertyValueFactory<User,String>("mdp_user"));
-            SalaireColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Salaire"));
-            DateDeConColumn.setCellValueFactory(new PropertyValueFactory<User,String>("date_contract"));
-            RoleColumn.setCellValueFactory(new PropertyValueFactory<User,String>("role_user"));
-           TypeColumn.setCellValueFactory(new PropertyValueFactory<User,String>("type_A"));
+            SalaireColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Date_inscri"));
+           
             table.setItems(users);
             
         }
@@ -169,20 +159,20 @@ public class ModifierAgentController implements Initializable {
  @FXML
 private void ModifierAgent(ActionEvent event) {
 int ID=0;
-        String nom,prenom,email,role,salaire,datecontrac;
+        String nom,prenom,email,salaire;
         String cin,mdp;
         
      nom = gnom.getText();
         prenom = gprenom.getText();
         email = gemail.getText();
-        role = (String) boxrole2.getSelectionModel().getSelectedItem();
+        
         cin = gcin.getText();
         mdp = gmdp.getText();
         salaire = gsalaire.getText();
-        datecontrac = gcontract.getText();
+     
         //Contôle de saisie
          //Contôle de saisie
-        if (nom==null || prenom ==null || email==null || role==null || cin==null || mdp==null|| gsalaire==null|| datecontrac==null)      
+        if (nom==null || prenom ==null || email==null  || cin==null || mdp==null|| gsalaire==null)      
         {   Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Failed");
             alert.setHeaderText("Attention !!");
@@ -210,7 +200,7 @@ int ID=0;
             alert.show();
         }else{
             //Methode Ajouter    
-            User user1 = new Agent (nom,prenom,cin,email,mdp,salaire,role,datecontrac);
+            User user1 = new Membre (nom,prenom,cin,email,mdp,salaire);
              UserCRUD uc = new UserCRUD();
            
            
@@ -219,7 +209,7 @@ int ID=0;
             
            
            
-            uc.modifierUserAgent(user1);
+            uc.modifierUserMembre(user1);
         
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -234,7 +224,7 @@ int ID=0;
     @FXML
     private void back_tologin(MouseEvent event) {
         try {
-                     Parent root = FXMLLoader.load(getClass().getResource("GestionUser.fxml"));
+                     Parent root = FXMLLoader.load(getClass().getResource("MembreSettings.fxml"));
              Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {

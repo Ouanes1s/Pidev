@@ -186,17 +186,17 @@ import static javax.swing.UIManager.getString;
         try{
             if (u instanceof Membre ){
                  Membre U1=(Membre) u;
-        String req = "UPDATE user SET nom_user=?,prenom_user=?,cin_user=?,email_user=?,role_user=?,mdp_user=?,Date_inscri=? WHERE id_user=?";
+        String req = "UPDATE user SET nom_user=?,prenom_user=?,email_user=?,role_user=?,mdp_user=?,Date_inscri=? WHERE cin_user=?";
         PreparedStatement pst = cnx.prepareStatement(req);
             
             pst.setString(1, U1.getNom_user());
             pst.setString(2, U1.getPrenom_user());
-            pst.setString(3, U1.getCin_user());
-            pst.setString(4, U1.getEmail_user());
-            pst.setString(5, "Membre");
-            pst.setString(6, U1.getMdp_user());
-            pst.setString(7, U1.getDate_inscri());
-            pst.setInt(8, U1.getId_user());
+           
+            pst.setString(3, U1.getEmail_user());
+            pst.setString(4, "Membre");
+            pst.setString(5, U1.getMdp_user());
+            pst.setString(6, U1.getDate_inscri());
+            pst.setString(7, U1.getCin_user());
             
             pst.executeUpdate();
             System.out.println("A member was updated successfully!");}

@@ -56,49 +56,7 @@ import javafx.collections.transformation.SortedList;
  */
 public class GestionUserController implements Initializable {
 
-    @FXML
-    private TableView<User> table;
-    @FXML
-    private ComboBox<String> boxrole2;
-    @FXML
-    private TextField gnom;
-    @FXML
-    private TextField gprenom;
-    @FXML
-    private TextField gcin;
-    @FXML
-    private TextField gemail;
-    @FXML
-    private TextField gmdp;
-    @FXML
-    private TextField gsalaire;
-    @FXML
-    private TableColumn<User, String> NomColumn;
-    @FXML
-    private TableColumn<User, String> PrenomColumn;
-    @FXML
-    private TableColumn<User, String> CinColumn;
-    @FXML
-    private TableColumn<User, String> EmailColumn;
-    @FXML
-    private TableColumn<User, String> MDPColumn;
-    @FXML
-    private TableColumn<User, String> SalaireColumn;
-    @FXML
-    private TableColumn<User, String> DateDeConColumn;
-    
-    @FXML
-    private TableColumn<User, String> TypeColumn;
-    @FXML
-    private TableColumn<User, String> RoleColumn;
-    @FXML
-    private Button btnAjouter;
-    @FXML
-    private Button btnModifier;
-    @FXML
-    private Button btnSupprimer;
-    @FXML
-    private TextField gcontract;
+   
     
     @FXML
     private ListView<Agent> listView ;
@@ -181,24 +139,7 @@ public class GestionUserController implements Initializable {
         // TODO
      // TODO
         //combobox
-      ObservableList<String> listrole = FXCollections.observableArrayList("","Stock","Reclamation","Gestion de Reservation","Films et events","Cinemas et salles","Gestion de Parkings");
-        boxrole2.setValue("");
-        boxrole2.setItems(listrole);
-        //Table
-        table_affiche();
-        table.getSelectionModel().selectedItemProperty().addListener((value, oldValue, newValue) -> {
-        if (newValue != null) {
       
-        this.gnom.setText(newValue.getNom_user());
-        this.gprenom.setText(newValue.getPrenom_user());
-        this.gcin.setText(newValue.getCin_user());
-        this.gemail.setText(newValue.getEmail_user());
-        this.boxrole2.setItems(listrole);
-        this.gmdp.setText(newValue.getMdp_user());
-        this.gsalaire.setText(newValue.getNom_user());
-         this.gcontract.setText(newValue.getNom_user());
-        }   
-        });
         //List
         list_affiche();
               listView.setCellFactory(param -> new ListCell<Agent>() {
@@ -209,7 +150,7 @@ public class GestionUserController implements Initializable {
             setText(null);
             setGraphic(null);
         } else {
-            setText(agent.getNom_user() + " " + agent.getPrenom_user()+" "+agent.getCin_user()+" "+agent.getSalaire());
+            setText(agent.getNom_user() + " " + agent.getPrenom_user()+" "+agent.getCin_user()+" "+agent.getSalaire()+" "+agent.getEmail_user());
         /* // création d'une image pour chaque cellule../edu.user.gui/KitsunePrev.png
                    ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
 
@@ -302,50 +243,7 @@ public class GestionUserController implements Initializable {
 }
  
            
-    public void table_affiche(){
-        Connection cnx = ConnectionToDB.getInstance().getConnection();
-        ObservableList<User> users = FXCollections.observableArrayList();
-        PreparedStatement stmt = null;
-	ResultSet rst = null;
     
-        try {
-           String req = "SELECT * FROM User WHERE role_user= ?";
-           stmt = cnx.prepareStatement(req);
-	    stmt.setString(1, "Agent");
-	    rst = stmt.executeQuery();
-            
-            {
-                while(rst.next()){
-                Agent u = new Agent();
-                
-                u.setNom_user(rst.getString("nom_user"));
-                u.setPrenom_user(rst.getString("prenom_user"));
-                u.setCin_user(rst.getString("cin_user"));
-                u.setEmail_user(rst.getString("email_user"));
-                u.setDate_contract(rst.getString("date_contract"));
-                u.setMdp_user(rst.getString("mdp_user"));
-                u.setSalaire(rst.getString("Salaire"));
-                u.setType_A(rst.getString("Type_A"));
-                
-                users.add(u);}
-            }   
-            
-            NomColumn.setCellValueFactory(new PropertyValueFactory<User,String>("nom_user"));
-            PrenomColumn.setCellValueFactory(new PropertyValueFactory<User,String>("prenom_user"));
-            CinColumn.setCellValueFactory(new PropertyValueFactory<User,String>("cin_user"));
-            EmailColumn.setCellValueFactory(new PropertyValueFactory<User,String>("email_user"));
-            MDPColumn.setCellValueFactory(new PropertyValueFactory<User,String>("mdp_user"));
-            SalaireColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Salaire"));
-            DateDeConColumn.setCellValueFactory(new PropertyValueFactory<User,String>("date_contract"));
-            RoleColumn.setCellValueFactory(new PropertyValueFactory<User,String>("role_user"));
-           TypeColumn.setCellValueFactory(new PropertyValueFactory<User,String>("type_A"));
-            table.setItems(users);
-            
-        }
-        catch (SQLException ex){
-            System.err.println(ex.getMessage());
-        }
-    }
     
     public Integer rechercheUser(User u){
                     Integer exist = 0;
@@ -387,11 +285,7 @@ public class GestionUserController implements Initializable {
     }
     
 
-    @FXML
-    private void getSelected(MouseEvent event) {
-        User clicked = listView.getSelectionModel().getSelectedItem();
-        gcin.setText(String.valueOf(clicked.getCin_user()));
-    }
+ 
   /*  private void back_tologin(MouseEvent event) {
         try {
                      Parent root = FXMLLoader.load(getClass().getResource("Authentification.fxml"));
@@ -412,175 +306,8 @@ public class GestionUserController implements Initializable {
         
     }*/
 
-    @FXML
-    private void AjouterAgent(ActionEvent event) {
-        String nom,prenom,email,role,mdp;
-        String cin;
-        String salaire , datecontrac ;
-        
-        nom = gnom.getText();
-        prenom = gprenom.getText();
-        email = gemail.getText();
-        role = (String) boxrole2.getSelectionModel().getSelectedItem();
-        cin = gcin.getText();
-        mdp = gmdp.getText();
-        salaire = gsalaire.getText();
-        datecontrac = gcontract.getText();
-        
-        //Contôle de saisie
-        if (nom==null || prenom ==null || email==null || role==null || cin==null || mdp==null|| gsalaire==null|| datecontrac==null)      
-        {   Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Missing Informations");
-            alert.show();
-        }else if (email.matches("(.*)@(.*)")==false)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid email address");
-            alert.show();
-        }else if (cin.length()!=8 ){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid CIN");
-            alert.show();
-
-        }else if (cin.matches("[0-9]*")==false){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid CIN");
-            alert.show();
-        }else{
-            //Methode Ajouter    
-            User user1 = new Agent (nom,prenom,cin,email,mdp,salaire,role,datecontrac);
-             UserCRUD uc = new UserCRUD();
-           if (uc.VerifCin(user1.getCin_user())!=0){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("USER ALREADY EXISTS");
-            alert.show(); 
-            }
-            
-            
-            else {
-           
-            uc.ajouterUserAgent(user1);
-        
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Welcome");
-            alert.setContentText("You have successfully created your account. Please check your e-mail box to get your ID ");
-            alert.show();
-            table_affiche();
-            }}
-    }
+    
+    
 
 
- @FXML
-private void ModifierAgent(ActionEvent event) {
-/*int ID=0;
-        String nom,prenom,email,role,id;
-        String cin,mdp;
-        
-   
-        nom = gnom.getText();
-        prenom = gprenom.getText();
-        email = gemail.getText();
-        role = (String) boxrole2.getSelectionModel().getSelectedItem();
-        cin = gcin.getText();
-        mdp = gmdp.getText();
-        ID =Integer.parseInt(id);
-        //Contôle de saisie
-        if (nom==null || prenom ==null || email==null || role==null || cin==null || mdp==null)      
-        {   Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Missing Informations");
-            alert.show();
-        }else if (email.matches("(.*)@(.*)")==false)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid email address");
-            alert.show();
-        }else if (cin.length()!=8 ){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid CIN");
-            alert.show();
-
-        }else if (cin.matches("[0-9]*")==false){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Attention !!");
-            alert.setContentText("Enter a valid CIN");
-            alert.show();
-        }else{
-        
-            User user1 = new User (ID,nom,prenom,cin,email,role,mdp);
-            if (rechercheUser(user1)==null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failed");
-                alert.setHeaderText("Attention !!");
-                alert.setContentText("USER DOES NOT EXISTS");
-                alert.show(); 
-            }
-            
-            else {
-                UserCRUD uc = new UserCRUD();
-                uc.modifierUserAgent(user1);
-        
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Update Done !!");
-                alert.setContentText("You have successfully updated an account");
-                alert.show();
-                table_affiche();
-            }
-        }*/
-    }
-
-    @FXML
-    private void SupprimerAgent(ActionEvent event) {
-        /*int ID=0;
-        String nom,prenom,email,role;
-        String cin,mdp;
-        
-        
-        
-        nom = gnom.getText();
-        prenom = gprenom.getText();
-        email = gemail.getText();
-        role = (String) boxrole2.getSelectionModel().getSelectedItem();
-        cin = gcin.getText();
-        mdp = gmdp.getText();
-        
-        
-        User user2 = new User (nom,prenom,cin,email,role,mdp);
-            if (rechercheUser(user2)==null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failed");
-                alert.setHeaderText("Attention !!");
-                alert.setContentText("USER DOES NOT EXISTS");
-                alert.show(); 
-            }
-            else {
-                UserCRUD uc = new UserCRUD();
-                uc.supprimerUser(user2);
-        
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Removal Done !!");
-                alert.setContentText("You have successfully deleted an account ");
-                alert.show();
-                table_affiche();
-            }*/
-    }
     }   

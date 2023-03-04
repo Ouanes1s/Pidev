@@ -118,7 +118,7 @@ public class InscriptionMembreController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText("Welcome");
-            alert.setContentText("You have successfully created your account. Please check your e-mail box to get your ID ");
+            alert.setContentText("You have successfully created your account. ");
             alert.show();
             
             /*try {

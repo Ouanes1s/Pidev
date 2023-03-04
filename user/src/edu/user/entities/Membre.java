@@ -28,7 +28,7 @@ private String Date_inscri ;
         this.Date_inscri = Date_inscri ;
     }
 
-    public Membre(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5) {
+   /* public Membre(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -38,7 +38,7 @@ private String Date_inscri ;
 
     public Membre(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5, String string6) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
     public String getDate_inscri() {
         return Date_inscri;
