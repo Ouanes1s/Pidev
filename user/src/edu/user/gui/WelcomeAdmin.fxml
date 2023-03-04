@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.WelcomeAdminController">
+    <children>
+      <Button fx:id="signup" layoutX="108.0" layoutY="141.0" mnemonicParsing="false" onAction="#signup" prefHeight="89.0" prefWidth="345.0" style="-fx-background-color: #0085a1;" text="Gerer les Agents" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="28.0" />
+         </font>
+      </Button>
+      <Button fx:id="login" layoutX="108.0" layoutY="258.0" mnemonicParsing="false" onAction="#login" prefHeight="89.0" prefWidth="345.0" text="Gerer les Membres" textFill="#0085a1">
+         <font>
+            <Font name="Impact" size="28.0" />
+         </font>
+      </Button>
+      <Label layoutX="232.0" layoutY="26.0" prefHeight="65.0" prefWidth="442.0" text="Welcome Admin" textAlignment="CENTER" textFill="#16b0b5">
+         <font>
+            <Font name="Impact" size="52.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="232.0" fitWidth="284.0" layoutX="507.0" layoutY="124.0">
+         <image>
+            <Image url="@pngegg%20(52).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="signout" fitHeight="89.0" fitWidth="74.0" layoutX="717.0" onMouseClicked="#signoutclick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pngegg%20(51).png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

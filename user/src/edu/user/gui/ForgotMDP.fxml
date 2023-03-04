@@ -11,7 +11,7 @@
 <AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.ForgotMDPController">
      <children>
       <TextField fx:id="pwdemail" alignment="CENTER" layoutX="295.0" layoutY="225.0" promptText="----------------@-------" />
-      <Button fx:id="codebutton" layoutX="509.0" layoutY="218.0" mnemonicParsing="false" onAction="#sendcode" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #00C4CD;" text="Envoyer code" textFill="WHITE">
+      <Button fx:id="codebutton" layoutX="509.0" layoutY="218.0" mnemonicParsing="false" onAction="#sendcode" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #00C4CD;" text="Envoyer MDP" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
@@ -29,19 +29,19 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <ImageView fitHeight="155.0" fitWidth="224.0" layoutX="773.0" layoutY="218.0">
+      <ImageView fitHeight="193.0" fitWidth="187.0" layoutX="710.0" layoutY="205.0">
          <image>
-            <Image url="@../image/undraw_Portfolio_website_re_jsdd.png" />
+            <Image url="@user-login-security-11949.png" />
          </image>
       </ImageView>
       <ImageView fx:id="back" fitHeight="46.0" fitWidth="48.0" layoutX="58.0" layoutY="398.0" onMouseClicked="#back_tologin">
          <image>
-            <Image url="@KitsunePrev.png" />
+            <Image url="@left-arrow-6424.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="133.0" fitWidth="151.0" layoutX="810.0" layoutY="25.0">
          <image>
-            <Image url="@../image/Eye%20Center%20Logo%20Template%20Design%20(1).png" />
+            <Image url="@hidden-eye-outline-12113.png" />
          </image>
       </ImageView>
    </children>

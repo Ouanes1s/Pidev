@@ -169,7 +169,7 @@ public String nametaker(String email) {
     
     
  try {
-                     Parent root = FXMLLoader.load(getClass().getResource("Authentification.fxml"));
+                     Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
                         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {

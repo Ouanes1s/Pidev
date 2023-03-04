@@ -47,8 +47,6 @@ public class ModifierMembreController implements Initializable {
      @FXML
     private TableView<Membre> table;
     @FXML
-    private ComboBox<String> boxrole2;
-    @FXML
     private TextField gnom;
     @FXML
     private TextField gprenom;
@@ -77,8 +75,6 @@ public class ModifierMembreController implements Initializable {
   
     @FXML
     private Button btnModifier;
-    @FXML
-    private TextField gcontract;
     
     
     @FXML

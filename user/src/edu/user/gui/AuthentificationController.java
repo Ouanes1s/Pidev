@@ -133,7 +133,7 @@ public class AuthentificationController implements Initializable {
                             specialiteConnecte = rs.getString("type_A");
                             idConnecte=id;
                             if (rs.getString("role_user").equals("Administrateur")){
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("GestionUser.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeAdmin.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
                                   Stage primaryStage = new Stage();
@@ -326,6 +326,25 @@ public class AuthentificationController implements Initializable {
 
     @FXML
     private void back_tologin(MouseEvent event) {
-    }}
+        
+     try {
+                     Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
+         Stage Stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                      root.setOnMousePressed(pressEvent -> {
+                        root.setOnMouseDragged(dragEvent -> {
+                            Stage1.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            Stage1.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                        });
+                    });
+                        Scene  scene = new Scene(root);
+                        Stage1.setScene(scene);
+                        Stage1.show();
+
+                } catch (IOException ex) {
+                     System.out.println(ex.getMessage());
+                }
+    }
+    
+}
     
 

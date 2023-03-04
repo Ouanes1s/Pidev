@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.AjouterAgentController">
+<AnchorPane id="AnchorPane" prefHeight="607.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.AjouterAgentController">
      <children>
       <Text layoutX="25.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
       <Text layoutX="19.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" />
@@ -27,7 +27,7 @@
       <TextField fx:id="gmdp" layoutX="128.0" layoutY="324.0" />
       <TextField fx:id="gsalaire" layoutX="122.0" layoutY="373.0" />
       <TextField fx:id="gcontract" layoutX="128.0" layoutY="423.0" />
-      <Button fx:id="btnAjouter" layoutX="397.0" layoutY="259.0" mnemonicParsing="false" onAction="#AjouterAgent" prefHeight="84.0" prefWidth="207.0" text="Ajouter">
+      <Button fx:id="btnAjouter" layoutX="365.0" layoutY="259.0" mnemonicParsing="false" onAction="#AjouterAgent" prefHeight="84.0" prefWidth="207.0" text="Ajouter">
          <font>
             <Font name="AGA Arabesque" size="25.0" />
          </font></Button>
@@ -36,9 +36,9 @@
             <Font size="34.0" />
          </font>
       </Text>
-      <ImageView fx:id="back" fitHeight="150.0" fitWidth="200.0" layoutX="466.0" layoutY="581.0" onMouseClicked="#back_tologin" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="70.0" fitWidth="73.0" layoutX="434.0" layoutY="502.0" onMouseClicked="#back_tologin" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@KitsunePrev.png" />
+            <Image url="@left-arrow-6424.png" />
          </image></ImageView>
    </children>
 </AnchorPane>

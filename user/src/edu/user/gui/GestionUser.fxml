@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="876.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.GestionUserController">
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.user.gui.GestionUserController">
    <children>
       <ListView fx:id="listView" layoutX="24.0" layoutY="65.0" prefHeight="403.0" prefWidth="871.0" />
       <TextField fx:id="searchField" layoutX="761.0" layoutY="478.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="65.0" fitWidth="67.0" layoutX="24.0" layoutY="608.0" onMouseClicked="#backtoagent" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@KitsunePrev.png" />
+            <Image url="@left-arrow-6424.png" />
          </image></ImageView>
       <Text layoutX="680.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" wrappingWidth="80.76953125" />
       <Text layoutX="354.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Membres" wrappingWidth="290.6708984375">

@@ -5,18 +5,16 @@
  */
 package edu.user.gui;
 
-import edu.user.entities.User;
 import edu.user.entities.Agent;
-import edu.user.services.UserCRUD;
+import edu.user.entities.Membre;
+import edu.user.entities.User;
 import edu.user.utils.ConnectionToDB;
 import java.io.IOException;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -24,67 +22,56 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList ;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 
-//import javafx.scene.image.Image ;//
 /**
  * FXML Controller class
  *
  * @author chebi
  */
-public class GestionUserController implements Initializable {
+public class GestionUserMembreController implements Initializable {
 
-   
-    
     @FXML
-    private ListView<Agent> listView ;
+    private ListView<Membre> listView;
     @FXML
     private TextField searchField;
     @FXML
     private ImageView back;
+
     /**
      * Initializes the controller class.
      */
-    public void list_affiche(){
+    
+        
+   public void list_affiche(){
     Connection cnx = ConnectionToDB.getInstance().getConnection();
-    ObservableList<Agent> agents = FXCollections.observableArrayList();
+    ObservableList<Membre> agents = FXCollections.observableArrayList();
     PreparedStatement stmt = null;
     ResultSet rst = null;
 
     try {
         String req = "SELECT * FROM User WHERE role_user= ?";
         stmt = cnx.prepareStatement(req);
-        stmt.setString(1, "Agent");
+        stmt.setString(1, "Membre");
         rst = stmt.executeQuery();
 
         while(rst.next()){
-            Agent agent = new Agent(
+            Membre membre = new Membre(
                     rst.getString("nom_user"),
                     rst.getString("prenom_user"),
                     rst.getString("cin_user"),
@@ -93,38 +80,37 @@ public class GestionUserController implements Initializable {
                     rst.getString("mdp_user"),
                     
                    
-                    rst.getString("Salaire"),
-                    rst.getString("Type_A"),
-                    rst.getString("date_contract")
-            ) ;
-            agents.add(agent);
+                    rst.getString("Date_inscri"))
+                    
+             ;
+            agents.add(membre);
         }
 
         listView.setItems(agents);
           // Créer un champ de recherche
       // Ajout de la recherche intelligente
-        FilteredList<Agent> filteredAgents = new FilteredList<>(agents, p -> true);
+        FilteredList<Membre> filteredAgents = new FilteredList<>(agents, p -> true);
         searchField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            filteredAgents.setPredicate(agent -> {
+            filteredAgents.setPredicate(membre -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (agent.getNom_user().toLowerCase().contains(lowerCaseFilter)) {
+                if (membre.getNom_user().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (agent.getPrenom_user().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (membre.getPrenom_user().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (agent.getCin_user().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (membre.getCin_user().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (agent.getEmail_user().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (membre.getEmail_user().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
                 return false;
             }); 
-            SortedList<Agent> sortedAgents;
-            sortedAgents = new SortedList<>(filteredAgents, Comparator.comparing(Agent::getNom_user));
+            SortedList<Membre> sortedAgents;
+            sortedAgents = new SortedList<>(filteredAgents, Comparator.comparing(Membre::getNom_user));
         listView.setItems(sortedAgents);
        
         });
@@ -145,18 +131,17 @@ public class GestionUserController implements Initializable {
         // TODO
      // TODO
         //combobox
-      
+    
         //List
         list_affiche();
-              listView.setCellFactory(param -> new ListCell<Agent>() {
-    @Override
-    protected void updateItem(Agent agent, boolean empty) {
-        super.updateItem(agent, empty);
-        if (empty || agent == null) {
+              listView.setCellFactory(param -> new ListCell<Membre>() {
+    protected void updateItem(Membre membre, boolean empty) {
+        super.updateItem(membre, empty);
+        if (empty || membre == null) {
             setText(null);
             setGraphic(null);
         } else {
-            setText(agent.getNom_user() + " " + agent.getPrenom_user()+" "+agent.getCin_user()+" "+agent.getSalaire()+" "+agent.getEmail_user());
+            setText(membre.getNom_user() + " " + membre.getPrenom_user()+" "+membre.getCin_user()+" "+membre.getDate_inscri()+" "+membre.getEmail_user());
         /* // création d'une image pour chaque cellule../edu.user.gui/KitsunePrev.png
                    ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));
 
@@ -175,7 +160,7 @@ public class GestionUserController implements Initializable {
                         imageView.setFitWidth(50);
 
                         // création d'un conteneur pour l'image et le nom de l'agent
-                        VBox vbox = new VBox(imageView, new Label(agent.getType_A() + " " + agent.getPrenom_user()));
+                        VBox vbox = new VBox(imageView, new Label(membre.getNom_user() + " " + membre.getPrenom_user()));
                         vbox.setAlignment(Pos.CENTER);
                         vbox.setSpacing(5);
 
@@ -212,10 +197,10 @@ public class GestionUserController implements Initializable {
         });*/
               listView.setOnMouseClicked(event -> {
     if (event.getClickCount() == 2) {
-        Agent agent = listView.getSelectionModel().getSelectedItem();
-        if (agent != null) {
-            supprimerAgent(agent);
-            listView.getItems().remove(agent);
+        Membre membre = listView.getSelectionModel().getSelectedItem();
+        if (membre != null) {
+            supprimerAgent(membre);
+            listView.getItems().remove(membre);
         }
     }
 });
@@ -223,14 +208,14 @@ public class GestionUserController implements Initializable {
                 }
     
 
-     public void supprimerAgent(Agent agent) {
+     public void supprimerAgent(Membre membre) {
     Connection cnx = ConnectionToDB.getInstance().getConnection();
     PreparedStatement stmt = null;
     
     try {
         String req = "DELETE FROM User WHERE cin_user = ?";
         stmt = cnx.prepareStatement(req);
-        stmt.setString(1, agent.getCin_user());
+        stmt.setString(1, membre.getCin_user());
         stmt.executeUpdate();
     }
     catch (SQLException ex){
@@ -313,9 +298,9 @@ public class GestionUserController implements Initializable {
     }*/
 
     @FXML
-    private void backtoagent(MouseEvent event) {
+    private void returnmembre(MouseEvent event) {
      try {
-                     Parent root = FXMLLoader.load(getClass().getResource("AgentSettings.fxml"));
+                     Parent root = FXMLLoader.load(getClass().getResource("MembreSettings.fxml"));
          Stage Stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {
@@ -338,4 +323,4 @@ public class GestionUserController implements Initializable {
     
 
 
-   
+    

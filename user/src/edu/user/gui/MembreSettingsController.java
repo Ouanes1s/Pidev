@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author chebi
  */
-public class AgentSettingsController implements Initializable {
+public class MembreSettingsController implements Initializable {
 
     @FXML
     private Button Ajouter_Button;
@@ -44,10 +44,10 @@ public class AgentSettingsController implements Initializable {
         // TODO
     }    
 
-    @FXML
+     @FXML
     private void AjouterAg(ActionEvent event) {
          try {
-                     Parent root = FXMLLoader.load(getClass().getResource("AjouterAgent.fxml"));
+                     Parent root = FXMLLoader.load(getClass().getResource("InscriptionMembre.fxml"));
              Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {
@@ -66,7 +66,7 @@ public class AgentSettingsController implements Initializable {
 
     @FXML
     private void ModifierAg(ActionEvent event) { try{
-          Parent root = FXMLLoader.load(getClass().getResource("ModifierAgent.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("ModifierMembre.fxml"));
              Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {
@@ -86,7 +86,7 @@ public class AgentSettingsController implements Initializable {
     @FXML
     private void ListAg(ActionEvent event) {
         try{
-          Parent root = FXMLLoader.load(getClass().getResource("GestionUser.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("GestionUserMembre.fxml"));
              Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {
@@ -105,20 +105,25 @@ public class AgentSettingsController implements Initializable {
 
     @FXML
     private void Back_ret(MouseEvent event) {
-     try{
-          Parent root = FXMLLoader.load(getClass().getResource("WelcomeAdmin.fxml"));
-             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    try {
+                     Parent root = FXMLLoader.load(getClass().getResource("WelcomeAdmin.fxml"));
+        Stage Stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
                                       root.setOnMousePressed(pressEvent -> {
                         root.setOnMouseDragged(dragEvent -> {
-                            stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-                            stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                            Stage1.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                            Stage1.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
                         });
                     });
                         Scene  scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
+                        Stage1.setScene(scene);
+                        Stage1.show();
 
                 } catch (IOException ex) {
                      System.out.println(ex.getMessage());
                 }
-    }}
+    }
+    
+}
+    
+
+
