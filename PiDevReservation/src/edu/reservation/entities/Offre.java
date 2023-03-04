@@ -5,11 +5,13 @@
  */
 package edu.reservation.entities;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Amine Khalfaoui
  */
-public class Offre {
+public class Offre implements Comparator<Offre> {
     private int id_offr ;
     private String nomfilm_offr ;
     private String contenu_offr;
@@ -117,10 +119,15 @@ public class Offre {
         return "Offre{" + "id_offr=" + id_offr + ", id_film=" + nomfilm_offr + ", contenu_offr=" + contenu_offr + ", datedebut_offr=" + datedebut_offr + ", datefin_offr=" + datefin_offr + ", code_offr=" + code_offr + '}';
     }
 
+    @Override
+    public int compare(Offre o1, Offre o2) {
+        return o1.getCode_offr().compareTo(o2.getCode_offr());    }
+    }
+
      
     
  
     
-}
+
 
 

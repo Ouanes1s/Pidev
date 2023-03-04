@@ -42,15 +42,20 @@ public class ServiceBlog implements IServices<Blog> {
         }
 
     @Override
-    public void supprimer(int id_blg) {
+    public void supprimer(Blog r) {
         try {
-            String req = "DELETE FROM `blog` WHERE id_blg = " + id_blg;
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Offre deleted !");
+            String req = "DELETE FROM `blog` WHERE id_blg =? " ;
+             Statement st;
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setInt(1, r.getId_blg());
+            pst.executeUpdate(req);
+            System.out.println("Offer deleted !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }    }
+    
+    
+         
 
     @Override
     public void modifier(Blog r) {

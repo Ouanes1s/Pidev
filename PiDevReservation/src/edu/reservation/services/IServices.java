@@ -13,7 +13,7 @@ import java.util.List;
  
  public interface IServices <T>{
     public void ajouter (T r);
-    public void supprimer (int id );
+    public void supprimer (T r );
     public void modifier (T r);
     public List<T> Afficher();
     public T getOneById(int id );

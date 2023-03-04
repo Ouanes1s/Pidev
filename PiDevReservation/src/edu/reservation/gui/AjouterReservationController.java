@@ -5,14 +5,22 @@
  */
 package edu.reservation.gui;
 
+import edu.reservation.entities.Offre;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import edu.reservation.entities.Reservation;
 import edu.reservation.services.ServiceReservation;
+import edu.reservation.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -45,14 +54,21 @@ public class AjouterReservationController implements Initializable {
     private Button confirmer;
     @FXML
     private TextField txtcodeoffr;
-    @FXML
-    private TextField txttypeticket;
+       @FXML
+    private ComboBox<String> boxtypetick;
+       
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+               //combobox
+      ObservableList<String> listtype = FXCollections.observableArrayList("","Balcony", "First row","Middle Row","BackSeats");
+        boxtypetick.setValue("");
+        boxtypetick.setItems(listtype);
     }  
      @FXML
     private void ajouter (ActionEvent event) {
@@ -63,7 +79,7 @@ public class AjouterReservationController implements Initializable {
         prenom = txtprenom.getText();
         email = txtemail.getText();
         date = txt_dateres.getText();
-        typeticket = txttypeticket.getText();
+        typeticket = (String) boxtypetick.getSelectionModel().getSelectedItem();
         codeoffr = txtcodeoffr.getText();
         nomevnmt = txtnomevnmt.getText();
         
@@ -95,7 +111,37 @@ public class AjouterReservationController implements Initializable {
         
         Reservation r = new Reservation (   nom ,  prenom ,  email ,  typeticket ,   nomevnmt, date, codeoffr  );
         ServiceReservation sr = new ServiceReservation();
+        if (VerifOffr(r.getCode_offr(),r.getNom_res(),r.getPrenom_res() )!=0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Attention !!");
+            alert.setContentText("YOU ALREADY USED THIS OFFER");
+            alert.show(); 
+            }
+            
+            
+            else {
     sr.ajouter(r);
     }
     }
-}
+    }
+
+ Connection cnx = DataSource.getInstance().getCnx();
+    public int VerifOffr(String code, String nom, String prenom ) {
+        Offre r = null;
+         int nb = 0;
+        try {
+            String req = "Select * from reservation";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                if (code.equals(rs.getString("code_offr"))&& nom.equals(rs.getString("nom_res"))&& prenom.equals(rs.getString("prenom_res")) ){
+           nb=1;}
+                
+        }
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nb;    }
+        }

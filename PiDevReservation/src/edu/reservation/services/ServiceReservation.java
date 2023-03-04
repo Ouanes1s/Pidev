@@ -74,12 +74,13 @@ public class ServiceReservation implements IServices<Reservation> {
 
     
 
-    @Override
-    public void supprimer (int id_res) {
+   
+    public void supprimer (Reservation r) {
         try {
-            String req = "DELETE FROM `reservation` WHERE id_res = " + id_res;
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
+            String req = "DELETE FROM `reservation` WHERE id_res =? " ;
+             Statement st;
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setInt(1, r.getId_res());
             System.out.println("Reservation deleted !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -184,6 +185,8 @@ public class ServiceReservation implements IServices<Reservation> {
     public Reservation getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     }
     

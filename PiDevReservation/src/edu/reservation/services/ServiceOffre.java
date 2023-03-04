@@ -43,7 +43,7 @@ public class ServiceOffre implements IServices<Offre> {
         }
         }
 
-    @Override
+  
     public void supprimer(int id_offr) {
         try {
             String req = "DELETE FROM `offre` WHERE id_offr = " + id_offr;
@@ -120,6 +120,11 @@ public class ServiceOffre implements IServices<Offre> {
 
     @Override
     public List<Offre> trierOffreParDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimer(Offre r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     }

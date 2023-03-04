@@ -12,8 +12,13 @@ import javafx.fxml.Initializable;
 import edu.reservation.entities.Reservation;
 import edu.reservation.services.ServiceBlog;
 import edu.reservation.services.ServiceReservation;
+import edu.reservation.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,7 +88,41 @@ public class AjouterBlogController implements Initializable {
         
         Blog r = new Blog (   titre ,  email ,  contenu );
         ServiceBlog sb = new ServiceBlog();
+        if (VerifTitre(r.getTitre_blg())!=0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Be Creative!");
+            alert.setContentText("This Title Already exists");
+            alert.show(); 
+            }
+            
+            
+            else {
     sb.ajouter(r);
     }
     }  
 }
+        Connection cnx = DataSource.getInstance().getCnx();
+
+     public int VerifTitre(String titre) {
+        Blog r = null;
+         int nb = 0;
+        try {
+            String req = "Select * from blog";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                if (titre.equals(rs.getString("titre_blg"))){
+           nb=1;}
+                
+        }
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nb;
+
+        
+    }
+    }
+

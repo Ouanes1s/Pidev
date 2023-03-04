@@ -5,12 +5,14 @@
  */
 package edu.reservation.entities;
  
+import java.util.Comparator;
+
 
 /**
  *
  * @author Amine Khalfaoui
  */
-public class Reservation {
+public class Reservation implements Comparator<Reservation> {
      
     private int id_res ;
     private String nom_res , prenom_res, email_res;
@@ -35,7 +37,7 @@ public class Reservation {
 //        this.date_res = date_res;
 //    }
 
-    public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt, String date_res, String code_offr) {
+    public Reservation(String nom_res, String prenom_res, String email_res, String typeticket_res, String nom_evnmt, String code_offr, String date_res) {
         this.nom_res = nom_res;
         this.prenom_res = prenom_res;
         this.email_res = email_res;
@@ -44,6 +46,8 @@ public class Reservation {
         this.code_offr = code_offr;
         this.date_res = date_res;
     }
+
+    
 
     public String getNom_evnmt() {
         return nom_evnmt;
@@ -165,6 +169,12 @@ public class Reservation {
         }
         return true;
     }
+
+   
+
+    @Override
+    public int compare(Reservation r1, Reservation r2) {
+        return r1.getEmail_res().compareTo(r2.getEmail_res());       }
     
 
     
