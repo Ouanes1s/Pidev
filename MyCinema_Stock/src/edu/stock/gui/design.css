@@ -1,0 +1,64 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.btnClose {
+    -fx-background-color:transparent;
+}
+.btnClose:hover{
+    -fx-background-color: #9B16C4;
+}
+.btnMinimize{
+    -fx-background-color:transparent;
+}
+.btnMinimize:hover{
+    -fx-background-color: #8B7393;
+}
+.btnNav{
+     -fx-background-color:transparent;
+     -fx-cursor:hand;
+     -fx-alignment: center-left;
+     -fx-text-fill: white;
+     -fx-font-size: 14px;
+     -font-family: Arial;
+     -fx-text-style:bold;
+}
+
+.shadow{
+    -fx-background-color: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,180,255,0.5) , 0.3, 3 , 0 , 0 );
+}
+
+.shadow22{
+    -fx-background-color: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.7) , 5, 0.0 , 0 , 0 );
+}
+.theback{
+    -fx-background-color: linear-gradient(#24072e,#1a237e);  
+}
+
+.btnDash .text{
+    -fx-text-color: white;
+}
+
+.search{
+    -fx-border-color: linear-gradient(to bottom, #530D68,#741292);
+    -fx-border-width:2px;
+    -fx-border-radius:20px ;  
+}
+
+.search:focused{
+    -fx-border-width: 1.8px
+}
+
+.table-view{
+   -fx-border-color: linear-gradient(to bottom, #bb1a3a, #722327);
+   -fx-border-width: 2px;  
+}
+
+.table-view .table-column{
+      -fx-alignmenet: CENTER;
+}
