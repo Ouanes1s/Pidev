@@ -34,6 +34,6 @@
             <Image url="@pngegg%20(51).png" />
          </image>
       </ImageView>
-      <Label fx:id="usernameLabel" layoutX="51.0" layoutY="91.0" prefHeight="21.0" prefWidth="248.0" text="Label" />
+      <Label fx:id="usernameLabel" layoutX="51.0" layoutY="91.0" prefHeight="21.0" prefWidth="469.0" text="Label" />
    </children>
 </AnchorPane>
