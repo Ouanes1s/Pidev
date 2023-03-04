@@ -6,7 +6,7 @@
 package edu.reservation.gui;
 
 
-import edu.reservation.services.ServiceOffre;
+
 import edu.reservation.entities.Offre;
 import edu.reservation.utils.DataSource;
 import java.io.IOException;
