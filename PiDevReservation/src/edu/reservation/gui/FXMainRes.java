@@ -26,7 +26,7 @@ public class FXMainRes extends Application {
     public void start(Stage primaryStage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("ModifierOffre.fxml"));
+            root = FXMLLoader.load(getClass().getResource("AfficherOffreClient.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Welcome");

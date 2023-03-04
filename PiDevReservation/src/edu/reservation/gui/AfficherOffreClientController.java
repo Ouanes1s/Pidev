@@ -55,8 +55,8 @@ public class AfficherOffreClientController implements Initializable {
                     rst.getString("nomfilm_offr"),
                     rst.getString("contenu_offr"),
                     rst.getString("datedebut_offr"),
-                    rst.getString("datedebut_offr"),
-                    rst.getString("datedebut_offr")
+                    rst.getString("datefin_offr"),
+                    rst.getString("code_offr")
                    
                    
             ) ;
@@ -114,13 +114,13 @@ public class AfficherOffreClientController implements Initializable {
         list_affiche();
               listView.setCellFactory(param -> new ListCell<Offre>() {
     @Override
-    protected void updateItem(Offre blog, boolean empty) {
-        super.updateItem(blog, empty);
-        if (empty || blog == null) {
+    protected void updateItem(Offre offre, boolean empty) {
+        super.updateItem(offre, empty);
+        if (empty || offre == null) {
             setText(null);
             setGraphic(null);
         } else {
-            setText(blog.getNomfilm_offr() + "|| " + blog.getContenu_offr()+" || "+blog.getDatedebut_offr()+"|| "+blog.getDatefin_offr()+"|| "+blog.getCode_offr()+"|| ");
+            setText(offre.getNomfilm_offr() + "|| " + offre.getContenu_offr()+" ||  From  "+offre.getDatedebut_offr()+"  Until "+offre.getDatefin_offr()+"|| Save This Code:  "+offre.getCode_offr()+"|| ");
              
             }    
     
