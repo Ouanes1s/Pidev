@@ -5,6 +5,7 @@
  */
 package edu.user.gui;
 
+import edu.user.entities.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -37,6 +39,8 @@ public class WelcomeAdminController implements Initializable {
     private Stage scene;
     @FXML
     private ImageView signout;
+    @FXML
+    private Label usernameLabel;
 
     /**
      * Initializes the controller class.
@@ -44,7 +48,14 @@ public class WelcomeAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+      setUserInfo();  
+        
     }    
+public void setUserInfo() {
+    String nom = Session.getNom();
+    String cin = Session.getCin();
+    usernameLabel.setText("Welcome Back, "+"Nom: " + nom + " | CIN: " + cin);
+}
 
     @FXML
     private void signup(ActionEvent event) {

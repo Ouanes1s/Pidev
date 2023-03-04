@@ -5,6 +5,7 @@
  */
 package edu.user.gui;
 
+import edu.user.entities.Session;
 import edu.user.utils.ConnectionToDB;
 import java.io.IOException;
 import java.net.URL;
@@ -119,6 +120,7 @@ public class AuthentificationController implements Initializable {
     @FXML
     private void authentification(ActionEvent event) throws IOException, SQLException {
       int id=0;
+       
        Connection cnx = ConnectionToDB.getInstance().getConnection();
        PreparedStatement ps = null;
        ResultSet rs = null;
@@ -129,10 +131,12 @@ public class AuthentificationController implements Initializable {
            
                         if (verifierEmailBd(authemail.getText())==true && mdptaker(authemail.getText()).equals(authmdp.getText()) ){
                         while (rs.next()) {
+                  
                            //id = rs.getInt("id_user");
                             specialiteConnecte = rs.getString("type_A");
                             idConnecte=id;
                             if (rs.getString("role_user").equals("Administrateur")){
+                                  Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeAdmin.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -148,6 +152,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("role_user").equals("Membre")){
+                                Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardReservation.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -163,6 +168,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Stock")){
+                                Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionMembre.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -178,7 +184,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Gestion de Reservation")){
-                               
+                               Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardResAgent.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -194,7 +200,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Reclamation")){
-                               
+                               Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("GestionGererReclamation.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -210,7 +216,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Films et events")){
-                               
+                               Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeFilms.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -226,7 +232,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Cinemas et salles")){
-                               
+                               Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCinemas.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
@@ -242,7 +248,7 @@ public class AuthentificationController implements Initializable {
                                     stage.close();
                             }
                             else if (rs.getString("type_A").equals("Gestion de Parkings")){
-                               
+                               Session.initialize(rs.getString("nom_user"), rs.getString("cin_user"));
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeParkings.fxml"));
                                     Parent root = loader.load();
                                  Scene scene = new Scene(root);  
