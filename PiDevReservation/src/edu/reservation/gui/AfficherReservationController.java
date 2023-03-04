@@ -157,7 +157,58 @@ public class AfficherReservationController implements Initializable {
         } else {
             setText(reservation.getNom_res() + "|| " + reservation.getPrenom_res()+" || "+reservation.getEmail_res()+" || "+reservation.getTypeticket_res()+" || "+reservation.getNom_evnmt()+" || "+reservation.getCode_offr()+" || "+reservation.getDate_res()+" ");
              
+                if (reservation.getTypeticket_res().equals("Balcony")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("star-7207.png").toExternalForm()));
+           imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+                        VBox vbox = new VBox(imageView, new Label(reservation.getTypeticket_res() + " " + reservation.getPrenom_res()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+                        
+                        setGraphic(vbox);}
+        if (reservation.getTypeticket_res().equals("Middle Row")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("star7204.png").toExternalForm()));
 
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(reservation.getTypeticket_res() + " " + reservation.getPrenom_res()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (reservation.getTypeticket_res().equals("Backseats")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("star-7206.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(reservation.getTypeticket_res() + " " + reservation.getPrenom_res()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+        if (reservation.getTypeticket_res().equals("First row")) {
+          ImageView imageView = new ImageView(new Image(getClass().getResource("5-stars-7236.png").toExternalForm()));
+
+                        // personnalisation de l'image
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+
+                        // création d'un conteneur pour l'image et le nom de l'agent
+                        VBox vbox = new VBox(imageView, new Label(reservation.getTypeticket_res() + " " + reservation.getPrenom_res()));
+                        vbox.setAlignment(Pos.CENTER);
+                        vbox.setSpacing(5);
+
+                        // ajout du conteneur à la cellule
+                        setGraphic(vbox);}
+      
             // ajout de l'image à la cellule
 //                    setGraphic(imageView); */
 //          ImageView imageView = new ImageView(new Image(getClass().getResource("KitsunePrev.png").toExternalForm()));

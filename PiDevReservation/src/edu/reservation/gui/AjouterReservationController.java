@@ -179,9 +179,6 @@ public class AjouterReservationController implements Initializable {
                 }
     }
 
-    @FXML
-    private void backtofilm(MouseEvent event) {
-    }
 
     @FXML
     private void backtodashb(MouseEvent event) {

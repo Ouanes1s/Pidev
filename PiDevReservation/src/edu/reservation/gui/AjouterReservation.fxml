@@ -26,7 +26,7 @@
        <ComboBox fx:id="boxtypetick" layoutX="368.0" layoutY="560.0" prefWidth="150.0" />
       <Text layoutX="263.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Ticket" />
       <Button fx:id="affichoffr" layoutX="601.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#toaffichoffr" text="Consulter Nos offres" />
-      <ImageView fx:id="backkey" fitHeight="46.0" fitWidth="52.0" layoutX="26.0" layoutY="30.0" onMouseClicked="#backtofilm" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backkey" fitHeight="46.0" fitWidth="52.0" layoutX="26.0" layoutY="30.0" onMouseClicked="#backtodashb" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@left-arrow-6420.png" />
          </image>

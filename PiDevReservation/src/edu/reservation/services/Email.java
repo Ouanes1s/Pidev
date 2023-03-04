@@ -53,7 +53,7 @@ public class Email {
             message.setFrom(new InternetAddress(username));
             message.setRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(destinataire));
             message.setSubject("Confirmation Reservation");
-            message.setText("Mr/Mme "+name+" ,     Votre reservation est confirme pour le :"+date+"\nVous trouverez ci-joint votre ticket!");
+            message.setText("Bonjour Mr/Mme "+name+" ,     Votre reservation est confirme pour le :"+date+"\nVous trouverez ci-joint votre ticket!");
             return message;
         } catch (AddressException ex) {
             Logger.getLogger( Email.class.getName()).log(Level.SEVERE, null, ex);

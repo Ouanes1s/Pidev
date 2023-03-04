@@ -18,15 +18,15 @@
          </font>
          </Text>
         <Text layoutX="199.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche" />
-    <ListView fx:id="listView" layoutX="38.0" layoutY="159.0" prefHeight="432.0" prefWidth="584.0" />
+    <ListView fx:id="listView" layoutX="13.0" layoutY="159.0" prefHeight="432.0" prefWidth="700.0" />
       <TextField fx:id="searchField" layoutX="38.0" layoutY="115.0" />
       <ImageView fx:id="backkey" fitHeight="44.0" fitWidth="43.0" layoutX="13.0" layoutY="27.0" onMouseClicked="#backtogesres" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@left-arrow-6420.png" />
          </image>
       </ImageView>
-      <Button fx:id="modres" layoutX="449.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#tomodres" text="Modifier Réservation" />
+      <Button fx:id="modres" layoutX="589.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#tomodres" text="Modifier Réservation" />
       <Text layoutX="35.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliquer 3 foir sur la réservation à supprimer" />
-      <Label fx:id="countLabel" layoutX="512.0" layoutY="80.0" text="Label" />
+      <Label fx:id="countLabel" layoutX="575.0" layoutY="88.0" text="Label" />
    </children>
 </AnchorPane>

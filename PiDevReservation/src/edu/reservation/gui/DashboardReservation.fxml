@@ -8,22 +8,22 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.reservation.gui.DashboardReservationController">
    <children>
-      <ImageView fitHeight="76.0" fitWidth="67.0" layoutX="90.0" layoutY="120.0" onMouseClicked="#toparking" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="parking" fitHeight="76.0" fitWidth="67.0" layoutX="90.0" layoutY="120.0" onMouseClicked="#toparking" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@parking-car-1643.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="57.0" fitWidth="67.0" layoutX="90.0" layoutY="243.0" onMouseClicked="#toreclamation" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="reclamation" fitHeight="57.0" fitWidth="67.0" layoutX="90.0" layoutY="243.0" onMouseClicked="#toreclamation" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@upload-900.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blogkey" fitHeight="150.0" fitWidth="67.0" layoutX="358.0" layoutY="238.0" onMouseClicked="#toblog" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blogkey" fitHeight="150.0" fitWidth="67.0" layoutX="268.0" layoutY="238.0" onMouseClicked="#toblog" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@social-media-announcement-4548.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="67.0" layoutX="350.0" layoutY="120.0" onMouseClicked="#tocinema" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cinema" fitHeight="150.0" fitWidth="67.0" layoutX="335.0" layoutY="120.0" onMouseClicked="#tocinema" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@video-camera-2806.png" />
          </image>
@@ -34,8 +34,14 @@
          </font>
       </Text>
       <Text layoutX="47.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reserver une place parking" />
-      <Text layoutX="301.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les cinémas proche de vous" />
+      <Text layoutX="269.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les cinémas proche de vous" />
       <Text layoutX="58.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Envoyer une réclamation" />
-      <Text layoutX="350.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Blog" />
+      <Text layoutX="258.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Blog" />
+      <ImageView fx:id="reskey" fitHeight="77.0" fitWidth="75.0" layoutX="447.0" layoutY="243.0" onMouseClicked="#toajoutres" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@hand-click-and-reservation-sign-outline-16344.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="437.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faire une réservation" />
    </children>
 </AnchorPane>
