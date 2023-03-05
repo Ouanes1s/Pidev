@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="616.0" prefWidth="1076.0" style="-fx-background-color: #646FD4; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meta.gui.GestionParkingsController">
+   <children>
+      <Pane layoutX="654.0" layoutY="-1.0" prefHeight="94.0" prefWidth="336.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@../../utils/style.css">
+         <children>
+            <Label fx:id="cnctedUserName" layoutX="52.0" layoutY="30.0" text="Espace Agent Parking" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="234.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../utils/parking.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #646FD4; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 15 15;">
+               <children>
+                  <Button contentDisplay="TOP" layoutY="-1.0" mnemonicParsing="false" onAction="#switchToMainFront" prefHeight="79.0" prefWidth="74.0" style="-fx-background-color: #FFB84C;" styleClass="button3" stylesheets="@../../../../../../Desktop/3A/piDevers-DesktopApp-In/src/main/resources/styles/style.css" text="Accueil">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../utils/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <ImageView fx:id="cnctedUser" fitHeight="35.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../utils/LOGO-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="parkingsAnchor" layoutX="95.0" layoutY="83.0" prefHeight="531.0" prefWidth="897.0" style="-fx-background-color: #6d071a;">
+         <children>
+            <Label layoutX="31.0" layoutY="16.0" text="Gestion" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="128.0" layoutY="16.0" text="Parkings" textFill="#fff600">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <VBox layoutX="21.0" layoutY="85.0" prefHeight="166.0" prefWidth="258.0" spacing="9.0">
+               <children>
+                  <TextField fx:id="nomParking" opacity="0.7" promptText="Nom Parking" style="-fx-background-color: #000000;" />
+                  <TextField fx:id="capaciteParking" opacity="0.7" promptText="Capacite Parking" style="-fx-background-color: #000000;" />
+                  <TextField fx:id="takenParking" opacity="0.7" promptText="Places Reservées du parking" style="-fx-background-color: #000000;" />
+                  <TextField fx:id="prixParking" opacity="0.7" promptText="Prix Parking" style="-fx-background-color: #000000;" />
+                  <Button fx:id="imageParkingBtn" mnemonicParsing="false" onAction="#importImageEv" prefHeight="27.0" prefWidth="254.0" style="-fx-background-color: #000000; -fx-border-radius: 10; -fx-border-color: #fff;" text="Ajouter Logo Parking" textFill="WHITE" />
+                  <TextField fx:id="tfImageParking" prefHeight="26.0" prefWidth="178.0" visible="false" />
+               </children>
+            </VBox>
+            <Button fx:id="btnAjouterparking" layoutX="94.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #000000; -fx-border-color: #fff; -fx-border-radius: 10;" text="Ajouter" textFill="WHITE" />
+            <Button fx:id="reserverBtn" layoutX="62.0" layoutY="342.0" mnemonicParsing="false" onAction="#openReservationParkingBullet" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #9E9E9E; -fx-border-radius: 10; -fx-border-color: #fff;" text="Voir Reservations" textFill="WHITE" />
+            <HBox layoutX="301.0" layoutY="20.0" prefHeight="481.0" prefWidth="574.0" style="-fx-background-color: #131022;">
+               <children>
+                  <ScrollPane fx:id="parkingScrolPane" prefHeight="481.0" prefWidth="676.0" style="-fx-background-color: #131022;">
+                     <content>
+                        <GridPane fx:id="parkingGridPane" prefHeight="465.0" prefWidth="563.0" style="-fx-background-color: #9E9E9E;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <TextField fx:id="searchtf" layoutX="94.0" layoutY="406.0" onKeyTyped="#FindEvent" prefHeight="26.0" prefWidth="186.0" />
+            <Label layoutX="14.0" layoutY="409.0" text="Rechercher" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="448.0" layoutY="24.0" text="MyCinema" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
