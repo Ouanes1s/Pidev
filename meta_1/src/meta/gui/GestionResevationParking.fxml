@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="508.0" prefWidth="500.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meta.gui.GestionReservationEvController">
+    <children>
+        <AnchorPane layoutX="-14.0" prefHeight="507.0" prefWidth="636.0" style="-fx-background-color: #9BA3EB; -fx-background-radius: 15;" stylesheets="@../styles/style.css">
+            <children>
+                <AnchorPane layoutX="7.0" prefHeight="547.0" prefWidth="927.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" stylesheets="@../styles/style.css">
+                    <children>
+                        <Label layoutX="180.0" layoutY="43.0" text="Consulter" textFill="WHITE">
+                            <font>
+                                <Font size="26.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="299.0" layoutY="43.0" text="Parkings Reservés" textFill="#fff600">
+                            <font>
+                                <Font size="26.0" />
+                            </font>
+                        </Label>
+                        <VBox layoutX="114.0" layoutY="122.0" prefHeight="46.0" prefWidth="70.0" spacing="15.0" />
+                      <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="132.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../../../téléchargements/parking.png" />
+                          </image>
+                      </ImageView>
+                      <Label layoutX="807.0" layoutY="29.0" text="MyCinema" textFill="WHITE">
+                          <font>
+                              <Font size="19.0" />
+                          </font>
+                      </Label>
+                  <PieChart fx:id="piechartrev" layoutX="646.0" layoutY="166.0" prefHeight="214.0" prefWidth="238.0" style="-fx-background-color: #f9f9f9;" />
+                  <HBox layoutX="24.0" layoutY="105.0" prefHeight="367.0" prefWidth="566.0" style="-fx-background-color: #131022;">
+                     <children>
+                        <ScrollPane fx:id="resEvScrollPane" prefHeight="367.0" prefWidth="564.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <GridPane fx:id="resEvGridPane" prefHeight="354.0" prefWidth="550.0" style="-fx-background-color: #9BA3EB;">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+                  <Button id="Retour" fx:id="Retour" layoutX="493.0" layoutY="481.0" mnemonicParsing="false" onAction="#Retour" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: #6d071a; -fx-border-color: #fff; -fx-border-radius: 10;" text="Retour" textFill="WHITE" />
+                  <Label layoutX="646.0" layoutY="117.0" text="Parkings les plus réservés" textFill="#ff0000eb">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="34.0" fitWidth="70.0" layoutX="24.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../téléchargements/LOGO.PNG" />
+                     </image>
+                  </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
