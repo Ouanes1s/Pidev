@@ -10,8 +10,10 @@ import edu.cinema.services.ServiceCinema;
 import edu.cinema.services.ServiceSalle;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +42,8 @@ public class SalleController implements Initializable {
     private ListView<Salle> CinemaView;
     @FXML
     private Button refresh;
+    @FXML
+    private TextField searchField;
 
     /**
      * Initializes the controller class.
@@ -122,6 +126,31 @@ if (alert.getResult() == ButtonType.YES) {
         ObservableList<Salle> observableData = FXCollections.observableArrayList(data);
         CinemaView.setItems(observableData); 
         
+    }
+
+    @FXML
+    private void search(ActionEvent event) {
+        Salle c = new Salle();
+        ServiceSalle sc=new ServiceSalle();        
+        String searchText = searchField.getText();
+    List<Salle> searchResults = sc.searchByName(searchText, CinemaView.getItems());
+    ObservableList<Salle> observableData = FXCollections.observableArrayList(searchResults);
+    CinemaView.setItems(observableData);
+        System.out.println(searchResults);
+    }
+    public void sortByName() {
+    Salle c = new Salle();
+        ServiceCinema sc=new ServiceCinema();
+    List<Salle> Salles = CinemaView.getItems();
+    List<Salle> sortedCinemas = Salles.stream()
+        .sorted(Comparator.comparing(Salle::getNom_salle))
+        .collect(Collectors.toList());
+    CinemaView.setItems(FXCollections.observableArrayList(sortedCinemas));
+}
+
+    @FXML
+    private void sort(ActionEvent event) {
+        sortByName();
     }
     
 }

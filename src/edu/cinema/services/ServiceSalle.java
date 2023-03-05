@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 
@@ -158,6 +159,7 @@ public class ServiceSalle implements IService<Salle> {
         }
 
         return c;
+        
     }
     public int checkExistence(Salle c) throws SQLException{
         Statement s = cnx.createStatement();
@@ -178,5 +180,11 @@ public class ServiceSalle implements IService<Salle> {
         System.out.println("All Is Good !!");
         return true;
     }
+    public List<Salle> searchByName(String name, List<Salle> cinema) {
+        
+    return cinema.stream()
+                  .filter(c -> c.getNom_salle().equalsIgnoreCase(name))
+                  .collect(Collectors.toList());
+}
 
 }
