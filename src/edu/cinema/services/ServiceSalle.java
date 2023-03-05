@@ -5,6 +5,7 @@
  */
 package edu.cinema.services;
 
+import edu.cinema.entities.Cinema;
 import edu.cinema.entities.Salle;
 import edu.cinema.utils.DataSource;
 import java.sql.Connection;
@@ -33,16 +34,20 @@ public class ServiceSalle implements IService<Salle> {
         }
     }
 
-    public void ajouter2(Salle p) {
-        try {
-            String req = "INSERT INTO `salle` (`nom`, `adresse`,`num_places) VALUES (?,?,?)";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(2, p.getNom_salle());
-            ps.setString(1, p.getAdresse());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+    public void ajouter2(Salle s) throws SQLException {
+        if(checkExistence(s) == 0 && checkEmpty(s)){
+            
+        try{
+            String query = "INSERT INTO `Salle` (`nom_salle`, `adresse`,`num_places`) VALUES ('" + s.getNom_salle()+ "', '" + s.getAdresse()+"','"+s.getNum_places()+ "')";
+           Statement st = cnx.createStatement();
+            st.executeUpdate(query);
+            System.out.println("Salle created !");;
         }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        } else if(checkExistence(s) != 0)
+            System.out.println("Salle exists!!");
     }
 
     @Override
@@ -74,7 +79,7 @@ public class ServiceSalle implements IService<Salle> {
     @Override
     public void modifier(Salle p) {
         try {
-            String req = "UPDATE `salle` SET `nom_salle` = '" + p.getNom_salle() + "', `Adresse` = '" + p.getAdresse()+ "' WHERE `cinema`.`id` = " + p.getId();
+            String req = "UPDATE `salle` SET `nom_salle` = '" + p.getNom_salle() + "', `Adresse` = '" + p.getAdresse()+ "' WHERE `salle`.`id` = " + p.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Salle updated !");
@@ -100,6 +105,24 @@ public class ServiceSalle implements IService<Salle> {
         }
         return list;
     }
+    public List<Salle> agetAll() {
+        List <Salle> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM `salle`";
+            Statement st;
+            st =cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next()){
+                Salle c = new Salle ( rs.getInt("id"),rs.getString("nom_salle"),rs.getString("adresse"),
+                        rs.getString("num_places"));
+                list.add(c);
+            }
+        }
+        catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
 
     @Override
     public List<Salle> getAll() {
@@ -109,7 +132,8 @@ public class ServiceSalle implements IService<Salle> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Salle p = new Salle(rs.getString(1), rs.getString("nom"), rs.getString(3));
+                Salle p = new Salle(rs.getInt("id"),rs.getString("nom_salle"),rs.getString("adresse"),
+                        rs.getString("num_places"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -135,6 +159,24 @@ public class ServiceSalle implements IService<Salle> {
 
         return c;
     }
-   
+    public int checkExistence(Salle c) throws SQLException{
+        Statement s = cnx.createStatement();
+        ResultSet rs = s.executeQuery("SELECT COUNT(*) from salle WHERE nom_salle= '" +
+                c.getNom_salle()+ "'");
+        int size = 0;
+        rs.next();
+        size = rs.getInt(1);
+        return size;
+    }
+    //controle de saisie 
+    public boolean checkEmpty(Salle c) throws SQLException{
+        if (c.getNom_salle() == null || c.getAdresse() ==null
+            || c.getNum_places() == null ){
+            System.out.println("U Have Smthg Wrong!!");
+            return false;
+        }
+        System.out.println("All Is Good !!");
+        return true;
+    }
 
 }

@@ -7,6 +7,8 @@ package edu.cinema.services;
 
 import edu.cinema.entities.Cinema;
 import edu.cinema.utils.DataSource;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +17,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.pdfjet.A4;
+import com.pdfjet.Cell;
+import com.pdfjet.Color;
+import com.pdfjet.CoreFont;
+import com.pdfjet.Font;
+import com.pdfjet.PDF;
+import com.pdfjet.Page;
+import com.pdfjet.Table;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import com.pdfjet.*;
+
+
 
 
 public class ServiceCinema implements IService<Cinema> {
@@ -52,7 +67,7 @@ public class ServiceCinema implements IService<Cinema> {
     @Override
     public void supprimer(int id) {
         try {
-            String req = "DELETE FROM `cinema` WHERE id = " + id;
+            String req = "DELETE FROM `cinema` WHERE id = " + id+"";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Cinema deleted !");
@@ -61,9 +76,9 @@ public class ServiceCinema implements IService<Cinema> {
         }
     }
 
-    public void modifierCinema(Cinema u,int i) {
+    public void modifierCinema(Cinema u) {
         try{
-        String req = "UPDATE cinema SET nom_cinema=?,adresse=?,num=? WHERE id="+i;
+        String req = "UPDATE cinema SET nom_cinema=?,adresse=?,num=? WHERE id=?";
         PreparedStatement pst = cnx.prepareStatement(req);
             
             pst.setString(1, u.getNom_cinema());
@@ -86,7 +101,7 @@ public class ServiceCinema implements IService<Cinema> {
             System.out.println(ex.getMessage());
         }
     }
-    public List<Cinema> afficherCinema() {
+    public List<Cinema> agetAll() {
         List <Cinema> list = new ArrayList<>();
         try {
             String req = "SELECT * FROM `cinema`";
@@ -94,7 +109,7 @@ public class ServiceCinema implements IService<Cinema> {
             st =cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
-                Cinema c = new Cinema ( rs.getString("nom_Cinema"),rs.getString("adresse"),
+                Cinema c = new Cinema ( rs.getInt("id"),rs.getString("nom_Cinema"),rs.getString("adresse"),
                         rs.getString("num"));
                 list.add(c);
             }
@@ -113,8 +128,10 @@ public class ServiceCinema implements IService<Cinema> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Cinema p = new Cinema(rs.getString(1), rs.getString("nom"), rs.getString(3));
-                list.add(p);
+                Cinema c = new Cinema (rs.getInt("id"), rs.getString("nom_Cinema"),rs.getString("adresse"),
+                        rs.getString("num"));
+               // Cinema p = new Cinema(rs.getString(1), rs.getString("nom_Cinema"), rs.getString(3));
+                list.add(c);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -171,10 +188,17 @@ public class ServiceCinema implements IService<Cinema> {
     
     public List<Cinema> sortCinema() throws SQLException {
         ServiceCinema sc = new ServiceCinema();
-            List<Cinema> sortedCinema= sc.afficherCinema().stream()
+            List<Cinema> sortedCinema= sc.agetAll().stream()
                                              .sorted()
                                              .collect(Collectors.toList());
         return sortedCinema;
     }
-
+    public List<Cinema> searchByName(String name, List<Cinema> cinema) {
+        
+    return cinema.stream()
+                  .filter(c -> c.getNom_cinema().equalsIgnoreCase(name))
+                  .collect(Collectors.toList());
+}
+    
+    
 }

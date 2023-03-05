@@ -25,17 +25,18 @@ public class MainClass {
         Cinema p3 = new Cinema("colise", "tunis","20");
         Cinema p4 = new Cinema("rio", "sousse","11");
         Salle s1=new Salle("test","manaarch","51");
-        Salle s2=new Salle("bbs","aaq","12");
+        Salle s2=new Salle("bba","aaq","12");
         Cinema c=new Cinema();
         ServiceCinema sc = new ServiceCinema();
         ServiceSalle ss=new ServiceSalle();
-         String target = "test";
-//        sc.Recherche(target);
+        System.out.println(sc.agetAll());
+        
   //      sc.sortCinema().forEach(System.out::println);
         //ss.ajouter(s2);
-        System.out.println(ss.afficherSalle());
-         sc.modifierCinema(p2, 1);
-        System.out.println(sc.afficherCinema());
+        //System.out.println(ss.afficherSalle());
+         //ss.ajouter2(s2);
+        
+        
        
         //ss.modifierSalle(s1, 2);
         

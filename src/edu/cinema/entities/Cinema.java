@@ -19,7 +19,7 @@ public class Cinema {
         this.num=num;
     }
 
-    public Cinema(int id, String nom_cinema, String adresse_cinema,String num) {
+    public Cinema(int id, String nom_cinema, String adresse,String num) {
         this.id = id;
         this.nom_cinema = nom_cinema;
         this.adresse = adresse;
@@ -51,6 +51,9 @@ public class Cinema {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+    public void setNum(String num){
+    this.num=num;
     }
 
     @Override

@@ -28,7 +28,7 @@ public class Window extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root =FXMLLoader.load(getClass().getResource("Cinemaa.fxml"));
+            Parent root =FXMLLoader.load(getClass().getResource("GestionCinSal.fxml"));
             
             Scene scene = new Scene(root, 300, 250);
             

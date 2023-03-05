@@ -19,7 +19,7 @@ public class Salle {
         this.num_places=num_places;
     }
 
-    public Salle(int id, String nom_salle, String adresse_cinema,String num_places) {
+    public Salle(int id, String nom_salle, String adresse,String num_places) {
         this.id = id;
         this.nom_salle = nom_salle;
         this.adresse = adresse;
@@ -45,14 +45,16 @@ public class Salle {
         this.id = id;
     }
 
-    public void setNom_cinema(String nom_salle) {
+    public void setNom_Salle(String nom_salle) {
         this.nom_salle = nom_salle;
     }
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-
+public void setNum(String num_places) {
+        this.num_places = num_places;
+    }
     @Override
     public String toString() {
         return "Salle{" + "nom_salle=" + nom_salle + ", adresse=" + adresse+", num_places="+ num_places+ '}';
