@@ -94,7 +94,7 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Categorie:" + "NomCategorie=" + NomCategorie + "\n";
+        return "NomCategorie=" + NomCategorie + "\n";
     }
     
     

@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,6 +80,21 @@ public class ServiceCategorie implements IService <Categorie>{
         return c;
     }
     
+    public Categorie rechercher(String nom) {
+        Categorie c = new Categorie();
+        String sql = "SELECT * FROM categorie WHERE nom LIKE ?";
+        try (PreparedStatement ps = cnx.prepareStatement(sql)) {
+            ps.setString(1, c.getNomCategorie());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Categorie(rs.getInt("idCategorie"), rs.getString("nom"));
+        }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return c;
+    }
+    
     @Override
     public void modifier(Categorie c) {
         try {
@@ -90,13 +107,11 @@ public class ServiceCategorie implements IService <Categorie>{
         }
     }
 
-    @Override //boucle si oui sinon 
+    @Override 
     public void supprimer(int idCategorie) {
         Categorie c=new Categorie();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Vous etes sur le point de supprimer une catégorie vous voulez continuer?");
-        String str = sc.nextLine();
-        if("oui".equals(str)){
+        String str = sc.nextLine();       
         try {
             String req = "DELETE FROM `categorie` WHERE id = " + idCategorie;
             Statement st = cnx.createStatement();
@@ -104,30 +119,9 @@ public class ServiceCategorie implements IService <Categorie>{
             System.out.println("Catégorie supprimée avec succès !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-        }
+        }      
     }
     
-    //not working
-    public void supprimerVerif(Categorie c) {
-        if(!(this.exist(c.getNomCategorie()))){
-            System.out.println("Cette catégorie n'existe pas !");
-        }else{        
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Vous etes sur le point de supprimer la catégorie "+c.getNomCategorie()+", vous voulez continuer?\nSi oui tapez oui");
-        String str = sc.nextLine();
-        if("oui".equals(str)){
-            try {
-                String req = "DELETE FROM `categorie` WHERE id = " + c.getIdCategorie();
-                Statement st = cnx.createStatement();
-                st.executeUpdate(req);
-                System.out.println("Catégorie supprimée avec succès !");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        }    
-    }
     
     ///metier verification de l'existance d'une categorie par son nom
     public boolean exist(String nom) {

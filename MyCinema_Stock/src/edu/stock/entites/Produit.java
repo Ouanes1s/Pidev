@@ -19,12 +19,11 @@ public class Produit {
     private String descriptionProd;
     private String imgProd;
     private int idCategorie;
-    private int idOffre;
 
     public Produit() {
     }
 
-    public Produit(int idProd, String codeProd, String nomProd, int quantiteProd, float prixProd, int etatProd, String descriptionProd, String imgProd, int idCategorie, int idOffre) {
+    public Produit(int idProd, String codeProd, String nomProd, int quantiteProd, float prixProd, int etatProd, String descriptionProd, String imgProd, int idCategorie) {
         this.idProd = idProd;
         this.codeProd = codeProd;
         this.nomProd = nomProd;
@@ -34,21 +33,8 @@ public class Produit {
         this.descriptionProd = descriptionProd;
         this.imgProd = imgProd;
         this.idCategorie = idCategorie;
-        this.idOffre = idOffre;
     }
 
-    public Produit(String codeProd, String nomProd, int quantiteProd, float prixProd, int etatProd, String descriptionProd, String imgProd, int idCategorie, int idOffre) {
-        this.codeProd = codeProd;
-        this.nomProd = nomProd;
-        this.quantiteProd = quantiteProd;
-        this.prixProd = prixProd;
-        this.etatProd = etatProd;
-        this.descriptionProd = descriptionProd;
-        this.imgProd = imgProd;
-        this.idCategorie = idCategorie;
-        this.idOffre = idOffre;
-    }
-//si pas d'offre --> nahi eli f toString
     public Produit(String codeProd, String nomProd, int quantiteProd, float prixProd, int etatProd, String descriptionProd, String imgProd, int idCategorie) {
         this.codeProd = codeProd;
         this.nomProd = nomProd;
@@ -59,6 +45,15 @@ public class Produit {
         this.imgProd = imgProd;
         this.idCategorie = idCategorie;
     }
+
+    public Produit(String codeProd, String nomProd, int quantiteProd, float prixProd, String descriptionProd) {
+        this.codeProd = codeProd;
+        this.nomProd = nomProd;
+        this.quantiteProd = quantiteProd;
+        this.prixProd = prixProd;
+        this.descriptionProd = descriptionProd;
+    }
+
 
     public int getIdProd() {
         return idProd;
@@ -132,13 +127,6 @@ public class Produit {
         this.idCategorie = idCategorie;
     }
 
-    public int getIdOffre() {
-        return idOffre;
-    }
-
-    public void setIdOffre(int idOffre) {
-        this.idOffre = idOffre;
-    }
 
     @Override
     public int hashCode() {
@@ -171,7 +159,7 @@ public class Produit {
         Category cat = new Category();
         CategoryService cs = new CategoryService();
         if(dis.getPercent()==0)*/
-        return "Produit:" + "codeProd=" + codeProd + ", nomProd=" + nomProd + ", quantiteProd=" + quantiteProd + ", prixProd=" + prixProd + ", etatProd=" + etatProd + ", descriptionProd=" + descriptionProd + ", imgProd=" + imgProd + ", idCategorie=" + idCategorie + ", idOffre=" + idOffre + "\n";
+        return "Produit:" + "codeProd=" + codeProd + ", nomProd=" + nomProd + ", quantiteProd=" + quantiteProd + ", prixProd=" + prixProd + ", etatProd=" + etatProd + ", descriptionProd=" + descriptionProd + ", imgProd=" + imgProd + ", idCategorie=" + idCategorie + "\n";
     }
     
     

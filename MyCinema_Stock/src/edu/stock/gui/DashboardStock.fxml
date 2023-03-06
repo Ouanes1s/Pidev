@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,36 +19,34 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.stock.gui.DashboardStockController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.stock.gui.DashboardStockController">
    <children>
       <AnchorPane fx:id="Anchorwindow" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fitHeight="500.0" fitWidth="920.0" opacity="0.35" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../../Downloads/958db0fa4b8541ea7c8e150b1c9f1a91.jpg" />
-               </image>
-            </ImageView>
+            <ImageView fitHeight="500.0" fitWidth="920.0" opacity="0.35" pickOnBounds="true" preserveRatio="true" />
             <BorderPane layoutX="212.0" layoutY="159.0" prefHeight="500.0" prefWidth="890.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
                   <AnchorPane prefHeight="49.0" prefWidth="890.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="btnClose" layoutX="845.0" layoutY="2.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="25.0" prefWidth="45.0" styleClass="btnClose" stylesheets="@design.css" text="X" textFill="WHITE" />
-                        <Button fx:id="btnReduce" layoutX="800.0" layoutY="2.0" mnemonicParsing="false" onAction="#ReduceWindow" prefHeight="25.0" prefWidth="45.0" styleClass="btnMinimize" stylesheets="@design.css" text="-" textFill="WHITE" />
+                        <Button fx:id="btnClose" layoutX="876.0" layoutY="3.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="25.0" prefWidth="45.0" styleClass="btnClose" stylesheets="@design.css" text="X" textFill="WHITE" />
+                        <Button fx:id="btnReduce" layoutX="831.0" layoutY="3.0" mnemonicParsing="false" onAction="#ReduceWindow" prefHeight="25.0" prefWidth="45.0" styleClass="btnMinimize" stylesheets="@design.css" text="-" textFill="WHITE" />
                         <TextField layoutX="158.0" layoutY="15.0" prefHeight="29.0" prefWidth="638.0" style="-fx-background-color: transparent;" styleClass="search" stylesheets="@design.css" text="Rechercher.." />
-                        <Label layoutX="30.0" layoutY="19.0" text="Bonjour, Steve" textFill="WHITE">
+                        <Label layoutX="66.0" layoutY="20.0" text="Bonjour, Steve" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
+                        <Circle fill="DODGERBLUE" layoutX="42.0" layoutY="25.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </AnchorPane>
                </top>
                <left>
                   <AnchorPane prefHeight="451.0" prefWidth="139.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="21.0" layoutY="2.0" opacity="0.55" prefHeight="434.0" prefWidth="97.0" styleClass="search" stylesheets="@design.css">
+                        <AnchorPane layoutX="23.0" opacity="0.55" prefHeight="434.0" prefWidth="97.0" styleClass="search" stylesheets="@design.css">
                            <children>
                               <ImageView fitHeight="88.0" fitWidth="90.0" layoutX="6.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +63,7 @@
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnProduits" layoutX="6.0" layoutY="209.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="90.0" styleClass="btnNav" stylesheets="@../../../../../../../3A19/1.PDEV/MyCinema_Stock/src/edu/stock/gui/design.css" text="Produits" textFill="WHITE">
+                              <Button fx:id="btnStock" layoutX="6.0" layoutY="209.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="90.0" styleClass="btnNav" stylesheets="@../../../../../../../3A19/1.PDEV/MyCinema_Stock/src/edu/stock/gui/design.css" text="Stock" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -123,42 +122,77 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="anchorAjouterProd" layoutX="155.0" layoutY="161.0" prefHeight="451.0" prefWidth="751.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="anchoerAfficherLesProduits" layoutX="155.0" layoutY="161.0" prefHeight="451.0" prefWidth="751.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="421.0" prefWidth="295.0" styleClass="search" stylesheets="@design.css">
-                                 <children>
-                                    <AnchorPane layoutX="78.0" layoutY="38.0" prefHeight="95.0" prefWidth="135.0" styleClass="search">
-                                       <children>
-                                          <Button fx:id="Ajt_btn_import" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Importer" textFill="WHITE" />
-                                       </children>
-                                    </AnchorPane>
-                                    <Label layoutX="107.0" layoutY="14.0" text="Ajouter Produit" textFill="WHITE" />
-                                    <Label layoutX="35.0" layoutY="156.0" text="Nom" textFill="WHITE" />
-                                    <TextField fx:id="ajt_tfNom" layoutX="108.0" layoutY="152.0" />
-                                    <Label layoutX="35.0" layoutY="191.0" text="Catégorie" textFill="WHITE" />
-                                    <Label layoutX="35.0" layoutY="228.0" text="Quantité" textFill="WHITE" />
-                                    <TextField fx:id="aj_tfQuantite" layoutX="108.0" layoutY="223.0" prefHeight="27.0" prefWidth="149.0" />
-                                    <ComboBox fx:id="ajt_cbCategorie" layoutX="107.0" layoutY="187.0" prefWidth="150.0" />
-                                    <Label layoutX="35.0" layoutY="261.0" text="Prix" textFill="WHITE" />
-                                    <TextField layoutX="108.0" layoutY="256.0" prefHeight="27.0" prefWidth="149.0" />
-                                    <Label layoutX="35.0" layoutY="293.0" text="Disponibilité" textFill="WHITE" />
-                                    <Label layoutX="35.0" layoutY="320.0" text="Description" textFill="WHITE" />
-                                    <RadioButton fx:id="ajt_rbOui" layoutX="116.0" layoutY="293.0" mnemonicParsing="false" text="Oui" textFill="WHITE" />
-                                    <RadioButton fx:id="ajt_rbNon" layoutX="182.0" layoutY="293.0" mnemonicParsing="false" text="Non" textFill="WHITE" />
-                                    <TextArea fx:id="ajt_taDesc" layoutX="114.0" layoutY="320.0" prefHeight="88.0" prefWidth="151.0" />
-                                    <Button fx:id="btnAjouter" layoutX="34.0" layoutY="364.0" mnemonicParsing="false" text="Ajouter" />
-                                 </children>
-                              </AnchorPane>
-                              <TableView fx:id="Ajt_tabView" layoutX="316.0" layoutY="8.0" prefHeight="437.0" prefWidth="429.0">
+                              <TableView fx:id="Aff_tabView" layoutX="8.0" layoutY="115.0" prefHeight="322.0" prefWidth="735.0">
                                 <columns>
-                                  <TableColumn fx:id="ajt_tv_ColNom" prefWidth="56.0" text="Nom" />
-                                  <TableColumn fx:id="ajt_tv_Cat" prefWidth="74.0" text="Catégorie" />
-                                    <TableColumn fx:id="ajt_tv_ColQuantite" prefWidth="69.0" text="Quantité" />
-                                    <TableColumn fx:id="ajt_tv_ColPrix" prefWidth="63.0" text="Prix" />
-                                    <TableColumn fx:id="ajt_tv_ColDesc" minWidth="0.0" prefWidth="95.0" text="Description" />
-                                    <TableColumn fx:id="ajt_tv_ColEtat" prefWidth="93.0" text="Etat" />
+                                  <TableColumn fx:id="Aff_tv_ColNom" prefWidth="84.0" text="Nom" />
+                                  <TableColumn fx:id="Aff_tv_ColImg" prefWidth="70.0" text="Image" />
+                                    <TableColumn fx:id="Aff_tv_ColCat" prefWidth="96.0" text="Catégorie" />
+                                    <TableColumn fx:id="Aff_tv_ColQuantite" prefWidth="90.0" text="Quantité" />
+                                    <TableColumn fx:id="Aff_tv_ColPrix" minWidth="0.0" prefWidth="74.0" text="Prix" />
+                                    <TableColumn fx:id="Aff_tv_ColDesc" prefWidth="125.0" text="Description" />
+                                    <TableColumn fx:id="Aff_tv_ColEtat" prefWidth="35.0" text="Etat" />
+                                    <TableColumn fx:id="Aff_tv_ColCode" prefWidth="56.0" text="Code" />
+                                    <TableColumn fx:id="Aff_tv_ColAction" prefWidth="104.0" text="Action" />
                                 </columns>
                               </TableView>
+                              <Button fx:id="Aff_btn_AjouterProd" layoutX="525.0" layoutY="47.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="54.0" prefWidth="195.0" style="-fx-background-color: transparent;" styleClass="search" stylesheets="@design.css" text="+ Ajouter Nouveau Produit" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anchorAjouterProduit" layoutX="41.0" layoutY="6.0" prefHeight="421.0" prefWidth="669.0" styleClass="search" stylesheets="@design.css" visible="false">
+                           <children>
+                              <AnchorPane layoutX="60.0" layoutY="94.0" prefHeight="174.0" prefWidth="156.0" styleClass="search">
+                                 <children>
+                                    <ImageView fx:id="ajt_img" fitHeight="154.0" fitWidth="134.0" layoutX="11.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button fx:id="Ajt_btn_import" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#insertImg" prefHeight="43.0" prefWidth="113.0" style="-fx-background-color: transparent;" text="Importer" textFill="WHITE" />
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="97.0" layoutY="32.0" text="Ajouter Produit" textFill="WHITE" />
+                              <Label layoutX="355.0" layoutY="62.0" text="Code" textFill="WHITE" />
+                              <TextField fx:id="ajt_tfCode" layoutX="432.0" layoutY="58.0" prefHeight="25.0" prefWidth="149.0" />
+                              <Label layoutX="356.0" layoutY="97.0" text="Catégorie" textFill="WHITE" />
+                              <Label layoutX="353.0" layoutY="139.0" prefHeight="17.0" prefWidth="57.0" text="Quantité" textFill="WHITE" />
+                              <TextField fx:id="aj_tfQuantite" layoutX="432.0" layoutY="134.0" prefHeight="27.0" prefWidth="149.0" />
+                              <ComboBox fx:id="ajt_cbCategorie" layoutX="431.0" layoutY="93.0" prefWidth="150.0" />
+                              <Label layoutX="354.0" layoutY="180.0" prefHeight="17.0" prefWidth="29.0" text="Prix" textFill="WHITE" />
+                              <TextField fx:id="ajt_tfPrix" layoutX="432.0" layoutY="175.0" prefHeight="27.0" prefWidth="149.0" />
+                              <Label layoutX="354.0" layoutY="218.0" text="Disponibilité" textFill="WHITE" />
+                              <Label layoutX="357.0" layoutY="260.0" text="Description" textFill="WHITE" />
+                              <RadioButton fx:id="ajt_rbOui" layoutX="440.0" layoutY="218.0" mnemonicParsing="false" text="Oui" textFill="WHITE" />
+                              <RadioButton fx:id="ajt_rbNon" layoutX="506.0" layoutY="218.0" mnemonicParsing="false" text="Non" textFill="WHITE" />
+                              <TextArea fx:id="ajt_taDesc" layoutX="440.0" layoutY="256.0" prefHeight="127.0" prefWidth="206.0" />
+                              <Button fx:id="btnAjouter" layoutX="187.0" layoutY="336.0" mnemonicParsing="false" onAction="#enregistrerAjtProd" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: transparent;" styleClass="search" stylesheets="@design.css" text="Enregistrer" textFill="WHITE" />
+                              <Label layoutX="359.0" layoutY="24.0" text="Nom" textFill="WHITE" />
+                              <TextField fx:id="ajt_tfNom" layoutX="432.0" layoutY="20.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anchorCategorie" layoutX="70.0" layoutY="65.0" prefHeight="451.0" prefWidth="773.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="19.0" layoutY="15.0" prefHeight="415.0" prefWidth="730.0" styleClass="search" stylesheets="@design.css">
+                                 <children>
+                                    <ListView fx:id="ListeCategorie" layoutX="261.0" layoutY="19.0" prefHeight="306.0" prefWidth="450.0" />
+                                    <Label layoutX="118.0" layoutY="223.0" text="Nom" textFill="WHITE" />
+                                    <Button fx:id="btnAjouterCategorie" layoutX="140.0" layoutY="280.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="45.0" prefWidth="94.0" styleClass="btnNav" stylesheets="@../../../../../../../3A19/1.PDEV/MyCinema_Stock/src/edu/stock/gui/design.css" text="Ajouter" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnModifCategorie" layoutX="504.0" layoutY="343.0" mnemonicParsing="false" onAction="#ModifierCategorie" prefHeight="45.0" prefWidth="94.0" styleClass="btnNav" stylesheets="@../../../../../../../3A19/1.PDEV/MyCinema_Stock/src/edu/stock/gui/design.css" text="Modifier" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSuppCategorie" layoutX="611.0" layoutY="343.0" mnemonicParsing="false" onAction="#supprimerCategorie" prefHeight="45.0" prefWidth="94.0" styleClass="btnNav" stylesheets="@../../../../../../../3A19/1.PDEV/MyCinema_Stock/src/edu/stock/gui/design.css" text="Supprimer" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <TextField fx:id="tfrechercherCategorie" layoutX="26.0" layoutY="32.0" onAction="#rechercherCategorie" prefHeight="29.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="search" stylesheets="@design.css" text="Rechercher.." />
+                                    <Label layoutX="51.0" layoutY="191.0" text="Ajouter Une Nouvelle Catégorie" textFill="WHITE" />
+                                    <TextField fx:id="tfAjtCategorie" layoutX="30.0" layoutY="251.0" prefHeight="29.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="search" stylesheets="@design.css" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>

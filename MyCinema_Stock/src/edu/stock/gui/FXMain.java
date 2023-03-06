@@ -31,7 +31,7 @@ public class FXMain extends Application {
     public void start(Stage primaryStage) {
      
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("DashboardStock.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Categorie.fxml"));
             
             Scene scene = new Scene(root);
             root.setOnMousePressed((MouseEvent event)->{

@@ -18,7 +18,7 @@ public class ConnexionBD {
     private static ConnexionBD instance;
     private final String USER="root";
     private final String PWD="";
-    private final String URL="jdbc:mysql://localhost:3306/stock";  
+    private final String URL="jdbc:mysql://localhost:3306/cinestock";  
     
     private  ConnexionBD() { //Constructeur
         try {

@@ -24,6 +24,7 @@ import java.util.List;
 public class ServiceProduit implements IService<Produit> {
 
     Connection cnx=ConnexionBD.getInstance().getCnx();
+ 
     
     @Override
     public void ajouter(Produit p) {
@@ -33,7 +34,7 @@ public class ServiceProduit implements IService<Produit> {
         try {
             String req ="INSERT INTO `produit`(`code`, `nom`, `quantite`, `prix`, `etat`, `description`, `image`, `idCategorie`, `idOffre`) "
                 + "VALUES ('" + p.getCodeProd() + "','" + p.getNomProd() + "','" + p.getQuantiteProd() + "','" + p.getPrixProd() + "'"
-                + ",'" + p.getEtatProd() + "','" + p.getDescriptionProd() + "','" + p.getImgProd() + "','" + p.getIdCategorie() + "','" + p.getIdOffre() + "')";
+                + ",'" + p.getEtatProd() + "','" + p.getDescriptionProd() + "','" + p.getImgProd() + "','" + p.getIdCategorie()  + "')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Prduit ajouté avec succès !");
@@ -42,7 +43,7 @@ public class ServiceProduit implements IService<Produit> {
         }  
         }
     }
-
+  
     
     //metier verification de l'existance d'une categorie par son code (string)
     public boolean exist(String code) {
@@ -88,7 +89,7 @@ public class ServiceProduit implements IService<Produit> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
+                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -105,7 +106,7 @@ public class ServiceProduit implements IService<Produit> {
             PreparedStatement st = cnx.prepareStatement(req);
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-              list.add(new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10)));             
+              list.add(new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9)));             
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -135,7 +136,7 @@ public class ServiceProduit implements IService<Produit> {
                 p.setDescriptionProd(rs.getString(7));
                 p.setImgProd(rs.getString(8));
                 p.setIdCategorie(rs.getInt(9));
-                p.setIdOffre(rs.getInt(10));
+               
                 return p;
             }
         } catch (SQLException ex) {
@@ -152,7 +153,7 @@ public class ServiceProduit implements IService<Produit> {
             System.out.println("ce produit n'existe pas !");
         }else{ 
         try {
-            String req="UPDATE `produit` SET `code`='" + p.getCodeProd() + "',`nom`='" + p.getNomProd() + "',`quantite`='" + p.getQuantiteProd() + "',`prix`='" + p.getPrixProd() + "',`etat`='" + p.getEtatProd() + "',`description`='" + p.getDescriptionProd() + "',`image`='" + p.getImgProd() + "',`idCategorie`='" + p.getIdCategorie() +"',`idOffre`='" + p.getIdOffre() + "' "
+            String req="UPDATE `produit` SET `code`='" + p.getCodeProd() + "',`nom`='" + p.getNomProd() + "',`quantite`='" + p.getQuantiteProd() + "',`prix`='" + p.getPrixProd() + "',`etat`='" + p.getEtatProd() + "',`description`='" + p.getDescriptionProd() + "',`image`='" + p.getImgProd() + "',`idCategorie`='" + p.getIdCategorie() + "' "
                     + "WHERE `produit`.`idProduit` = " + p.getIdProd();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);

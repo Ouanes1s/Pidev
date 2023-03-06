@@ -5,95 +5,321 @@
  */
 package edu.stock.services;
 
-import edu.stock.entities.Produit;
-import edu.stock.utils.DataSource;
-import java.util.List;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import edu.stock.entites.Produit;
+import edu.stock.utils.DatabaseConnection;
+
+import java.io.InputStream;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author maidi
  */
-public class ServiceProduit implements ServiceStock<Produit>{
+public class ServiceProduit implements IService<Produit> {
+    Connection cnx;
+    @Override
+    public void ajouter(Produit products) {
 
-    Connection cnx=DataSource.getInstance().getCnx();
+    }
+
+    @Override
+    public List<Produit> afficherTous() {
+        return null;
+    }
+
+    @Override
+    public Produit rechercherUnParId(int id) {
+        return null;
+    }
+
+    @Override
+    public void modifier(Produit products) {
+
+    }
+
+    @Override
+    public void supprimer(int id) {
+
+    }
+    public List<Produit> readrecommended() throws SQLException {
+        List<Produit> ls = new ArrayList<Produit>();
+        Statement st = cnx.createStatement();
+        String req = "select * from produit";
+        ResultSet rs = st.executeQuery(req);
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String barcode = rs.getString("barcode");
+            String productName = rs.getString("productName");
+            Double purchasePrice = rs.getDouble("purchasePrice");
+
+            String descriptionProduct = rs.getString("descriptionProduct");
+            Produit p = new Produit(id,barcode,productName,purchasePrice,descriptionProduct);
+            ls.add(p);
+        }
+
+        return ls;
+    }
+
+    public List<Produit> read() throws SQLException {
+
+        List<Produit> ls = new ArrayList<Produit>();
+        Statement st =  cnx.createStatement();
+        String req = "select * from products order by id";
+        ResultSet rs = st.executeQuery(req);
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String barcode = rs.getString("barcode");
+            String productName = rs.getString("productName");
+            double purchasePrice = rs.getDouble("purchasePrice");
+            int etat = rs.getInt("etat");
+            double quantite = rs.getDouble("quantite");
+            String descriptionProduct = rs.getString("descriptionProduct");
+            InputStream image = null;
+
+            //   LocalDate born = rs.getDate("born").toLocalDate();
+            Produit p = new Produit(id,barcode,productName,purchasePrice,etat,quantite,descriptionProduct,image);
+            ls.add(p);
+        }
+
+
+        return ls;
+
+    }
+
+
+
+
+
+
+
+
+
+
+/*
+    Connection cnx= ConnexionBD.getInstance().getCnx();
+
+
     @Override
     public void ajouter(Produit p) {
+        if((this.exist(p.getCodeProd()))){
+            System.out.println("ce produit existe déjà !");
+        }else{
         try {
-            String req ="INSERT INTO `produit`(`Code_Article`, `Nom_Article`, `Catégorie_Article`, `Quantité_Article`, `Prix_Vente`, `Etat_Article`) "
-                + "VALUES ('" + p.getCode_Article() + "','" + p.getNom_Article() + "','" + p.getCatégorie_Article() + "','" + p.getQuantité_Article() + "'"
-                + ",'" + p.getPrix_Vente() + "','" + p.isEtat_Article() + "')";
+            String req ="INSERT INTO `produit`(`code`, `nom`, `quantite`, `prix`, `etat`, `description`, `image`, `idCategorie`, `idOffre`) "
+                + "VALUES ('" + p.getCodeProd() + "','" + p.getNomProd() + "','" + p.getQuantiteProd() + "','" + p.getPrixProd() + "'"
+                + ",'" + p.getEtatProd() + "','" + p.getDescriptionProd() + "','" + p.getImgProd() + "','" + p.getIdCategorie()  + "')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
-            System.out.println("Product created !");
+            System.out.println("Prduit ajouté avec succès !");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }        
-    }
-
-    @Override
-    public void supprimer(int Id_Produit) {
-        try {
-            String req = "DELETE FROM `produit` WHERE Id_Produit = " + Id_Produit;
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Product deleted !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
         }
     }
 
-    @Override
-    public void modifier(Produit p) {
+
+    //metier verification de l'existance d'une categorie par son code (string)
+    public boolean exist(String code) {
         try {
-            String req="UPDATE `produit` SET `Code_Article`='" + p.getCode_Article() + "',`Nom_Article`='" + p.getNom_Article() + "',`Catégorie_Article`='" + p.getCatégorie_Article() + "',`Quantité_Article`='" + p.getQuantité_Article() + "',`Prix_Vente`='" + p.getPrix_Vente() + "',`Etat_Article`='" + p.isEtat_Article() + "' "
-                    + "WHERE `produit`.`Id_Produit` = " + p.getId_Produit();
+            String req = "Select * from produit";
             Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Product updated !");
-        } catch (SQLException ex) {
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                if (code.equals(rs.getString(2))){
+                    return true;
+                }
+            }
+        }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
+
+    //metier verification de l'existance d'une categorie par son id
+    public boolean exist(int id) {
+        try {
+            String req = "Select * from produit";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                if (id==(rs.getInt(1))){
+                    return true;
+                }
+            }
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
+
     @Override
-    public List<Produit> getAll() {
+    public List<Produit> afficherTous() {
         List<Produit> list = new ArrayList<>();
         try {
             String req = "Select * from produit";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));
+                Produit p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), null, rs.getInt(9));
                 list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return list;
+    }
+
+
+    public ArrayList<Produit> afficherProduitsParCategorie(int idCategorie) {
+        ArrayList<Produit> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM produit WHERE idCategorie ="+idCategorie;
+            PreparedStatement st = cnx.prepareStatement(req);
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+              list.add(new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), null, rs.getInt(9)));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        if (list.isEmpty()) {
+            System.out.println("Cette categorie est vide");
+        }
+        return list;
+    }
+
+
+    @Override
+    public Produit rechercherUnParId(int idProd) {
+        try {
+            String req = "SELECT * FROM produit WHERE idProduit = ?";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1,idProd); //ds #1 cherche idProd passé en para
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                Produit p = new Produit();
+                p.setIdProd(rs.getInt(1));
+                p.setCodeProd(rs.getString(2));
+                p.setNomProd(rs.getString(3));
+                p.setQuantiteProd(rs.getInt(4));
+                p.setPrixProd(rs.getDouble(5));
+                p.setEtatProd(rs.getInt(6));
+                p.setDescriptionProd(rs.getString(7));
+                p.setImgProd(null);
+                p.setIdCategorie(rs.getInt(9));
+
+                return p;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
-        return list;
+        System.out.println("Ce produit n'existe pas !");
+        return null;
     }
 
+
     @Override
-    public Produit getOneById(int Id_Produit) {
+    public void modifier(Produit p) {
+       if(!(this.exist(p.getCodeProd()))){
+            System.out.println("ce produit n'existe pas !");
+        }else{
+        try {
+            String req="UPDATE `produit` SET `code`='" + p.getCodeProd() + "',`nom`='" + p.getNomProd() + "',`quantite`='" + p.getQuantiteProd() + "',`prix`='" + p.getPrixProd() + "',`etat`='" + p.getEtatProd() + "',`description`='" + p.getDescriptionProd() + "',`image`='" + p.getImgProd() + "',`idCategorie`='" + p.getIdCategorie() + "' "
+                    + "WHERE `produit`.`idProduit` = " + p.getIdProd();
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+            System.out.println("Produit mis à jour avec succès !");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    }
+
+
+    @Override
+    public void supprimer(int idProd) {
+       if(!(this.exist(idProd))){
+            System.out.println("ce produit n'existe pas !");
+        }else{
+        try {
+            String req = "DELETE FROM `produit` WHERE idProduit = " + idProd;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+            System.out.println("Produit supprimé !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    }
+
+
+    //metier nb de produits par categorie
+    public String nbrProdCategorie(int idCategorie){
+        return "Le nombre de produits par cette catégorie = " + (this.afficherProduitsParCategorie(idCategorie)).size();
+    }
+
+
+    //metier tri produit par nom
+    public List<Produit> TriParNom() {
+        List<Produit> Produits = this.afficherTous();
+        Collections.sort(Produits, new Comparator<Produit>() {
+            @Override
+            public int compare(Produit o1, Produit o2) {
+            return o1.getNomProd().compareTo(o2.getNomProd());
+            }
+        });
+        return Produits;
+    }
+
+
+    //metier tri produit par nom si egaus alors par plus bas prix
+   /* public List<Produit> TriParNomEtPrix() {
+        List<Produit> Produits = this.afficherTous();
+        Collections.sort(Produits, new Comparator<Produit>() {
+            @Override
+            public int compare(Produit o1, Produit o2) {
+            int sorted=o1.getNomProd().compareTo(o2.getNomProd());
+            if(sorted==0){
+                sorted=Float.compare(o1.getPrixProd(),o2.getPrixProd());
+            }
+            return sorted;
+            }
+        });
+        return Produits;
+    }
+
+
+    //metier tri produit par le prix le plus haut
+
+
+
+    /*
+     @Override
+    public Produit rechercherUnParId(int idProd) {
         Produit p = null;
         try {
             String req = "Select * from produit";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getBoolean(7));                
+                p = new Produit(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
-
         return p;
     }
-    
-    
+     //dima trajaa ekher produit
+    public List<Produit> TriParPrix() {
+        List<Produit> Produits = this.afficherTous();
+        Collections.sort(Produits, (Produit o1, Produit o2) -> Float.compare(o1.getPrixProd(),o2.getPrixProd())
+        );
+        Collections.reverse(Produits);
+        return Produits;
+    }*/
+
 }

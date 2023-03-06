@@ -175,7 +175,7 @@ public class ServiceOffre implements IService<Offre> {
         return Offres;
     }
 
-    
+ /*   
     //metier calcul offre    
     public float calculOffre(int idProduit, int Pourcentage) {
         Offre o=new Offre();
@@ -204,7 +204,7 @@ public class ServiceOffre implements IService<Offre> {
         return p.getPrixProd() - valeur;
     }
     
-  
+ */ 
     //APi
     public boolean SendMail()
     {

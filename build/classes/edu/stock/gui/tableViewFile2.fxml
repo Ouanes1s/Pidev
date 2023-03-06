@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="884.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.stock.controllers.TableViewsFile2">
+   <children>
+      <Pane layoutX="219.0" layoutY="85.0" prefHeight="5.0" prefWidth="665.0" style="-fx-background-color: #333645;" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="0.0" />
+      <HBox alignment="CENTER" layoutX="675.0" layoutY="14.0" prefHeight="31.0" prefWidth="19.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView fill="#da0d0d" glyphName="CLOSE" onMouseClicked="#close" size="20" styleClass="btn" />
+         </children>
+      </HBox>
+      <ButtonBar layoutX="696.0" layoutY="103.0" prefHeight="40.0" prefWidth="178.0">
+         <buttons>
+            <Button fx:id="addFileB" mnemonicParsing="false" onAction="#addFile" prefHeight="32.0" prefWidth="181.0" style="-fx-background-color: #333645 #333645; -fx-background-radius: 20 20 20 20;" text="User Interface">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#e0f8e0" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Button>
+            <FontAwesomeIconView fill="#333645" glyphName="HOME" size="30" />
+         </buttons>
+      </ButtonBar>
+      <TableView fx:id="TableOffre" layoutX="259.0" layoutY="225.0" prefHeight="271.0" prefWidth="463.0" styleClass="column-header">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="100.0" text="id" />
+          <TableColumn fx:id="titleCol" prefWidth="100.0" text="Pourcentage" />
+            <TableColumn fx:id="DisableCol" minWidth="0.0" prefWidth="120.0" text="Produit" />
+            <TableColumn fx:id="editCol" prefWidth="150.0" text="Edit" />
+        </columns>
+         <stylesheets>
+            
+         </stylesheets>
+      </TableView>
+      <HBox layoutX="427.0" layoutY="137.0" onMouseClicked="#Print" prefHeight="52.0" prefWidth="224.0" spacing="20.0">
+         <children>
+            <FontAwesomeIconView fill="#2196f3" glyphName="USER_PLUS" onMouseClicked="#getAddView" size="45" styleClass="btn" />
+            <FontAwesomeIconView fill="#00e676" glyphName="REFRESH" onMouseClicked="#refresh" size="45" styleClass="btn" />
+            <FontAwesomeIconView fill="#64726b" glyphName="PRINT" layoutX="82.0" layoutY="49.0" onMouseClicked="#print" size="45" styleClass="btn" />
+         </children>
+      </HBox>
+      <TextField fx:id="filterfield" layoutX="636.0" layoutY="44.0" onKeyPressed="#search" promptText="search" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="792.0" layoutY="60.0" size="20.0" />
+      <VBox prefHeight="541.0" prefWidth="208.0" style="-fx-background-color: #333645;">
+         <children>
+            <Label prefHeight="70.0" prefWidth="218.0" text="Panel" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="76.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/ben-affleck.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <AnchorPane prefHeight="170.0" prefWidth="191.0">
+               <children>
+                  <JFXButton accessibleText="btn_found" prefHeight="45.0" prefWidth="208.0" text="PRODUCT" textFill="#e85f5f" />
+                  <JFXButton layoutY="120.0" prefHeight="45.0" prefWidth="208.0" text="Events" textFill="#f5efef" />
+                  <JFXButton layoutY="205.0" prefHeight="39.0" prefWidth="208.0" text="HOME" textFill="#f2f0f0" />
+                  <JFXButton layoutY="155.0" prefHeight="45.0" prefWidth="208.0" text="CHART" textFill="#f2f0f0" />
+                  <JFXButton layoutY="76.0" prefHeight="45.0" prefWidth="208.0" text="Reclamation" textFill="#f5efef" />
+                  <JFXButton layoutX="-2.0" layoutY="39.0" prefHeight="45.0" prefWidth="208.0" text="Voiture" textFill="#f5efef" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="208.0" layoutY="496.0" prefHeight="45.0" prefWidth="681.0" style="-fx-background-color: #333645;">
+         <children>
+            <Button fx:id="back_button" layoutX="458.0" layoutY="7.0" mnemonicParsing="false" onAction="#back_action" prefHeight="32.0" prefWidth="52.0" style="-fx-background-radius: 20 20 20 20;" text="Back" />
+            <Button fx:id="buttonHD" layoutX="148.0" layoutY="7.0" mnemonicParsing="false" onAction="#helpdeslk" onMouseClicked="#print" prefHeight="32.0" prefWidth="121.0" style="-fx-background-radius: 20 20 20 20;" text="Add Icons" textFill="#2c2929">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

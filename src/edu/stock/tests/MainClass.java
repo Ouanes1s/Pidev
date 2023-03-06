@@ -5,11 +5,14 @@
  */
 package edu.stock.tests;
 
-import edu.stock.entities.Fournisseur;
-import edu.stock.entities.Produit;
-import edu.stock.services.ServiceFournisseur;
+import edu.stock.entites.Avis;
+import edu.stock.entites.Categorie;
+import edu.stock.entites.Offre;
+import edu.stock.services.ServiceAvis;
+import edu.stock.services.ServiceCategorie;
+import edu.stock.services.ServiceOffre;
 import edu.stock.services.ServiceProduit;
-import edu.stock.utils.DataSource;
+import edu.stock.utils.ConnexionBD;
 
 /**
  *
@@ -17,27 +20,77 @@ import edu.stock.utils.DataSource;
  */
 public class MainClass {
     public static void main(String[] args) {
-        DataSource.getInstance();
-    /*
-        Produit p1 = new Produit("P88", "PopCorn Sucré","Pop_Corn",145,80);
-        Produit p2 = new Produit("P88", "PopCorn Sucré","Pop_Corn",145,80);
-        Produit p3 = new Produit("P88", "PopCorn Sucré","Pop_Corn",145,80);
         
+        ConnexionBD.getInstance();
+
+/******************************* test categorie ********************************/
+
+        Categorie c1 = new Categorie("boisson");
+        Categorie c2 = new Categorie("popCorn");
+        Categorie c3 = new Categorie("chocolat");
+        ServiceCategorie sc = new ServiceCategorie();
+        //sc.ajouter(c1);
+        //sc.ajouter(c2);
+        //sc.ajouter(c3);
+        Categorie c4 = new Categorie("biscuit");
+        //sc.ajouter(c4);
+        Categorie c5 = new Categorie("zeyda");
+        //sc.ajouter(c5);
+        Categorie c6 = new Categorie("kkk");
+        //sc.ajouter(c6);
+        //sc.supprimer(6);
+        Categorie c7 = new Categorie("hhh");
+        //sc.supprimerVerif(c6);
+        //System.out.println(sc.afficherTous()); 
+        //System.out.println(sc.TriParNom());
+        //System.out.println(sc.rechercherUnParId(1));
+        
+        
+/******************************* test Produit ********************************/      
+      
         ServiceProduit sp = new ServiceProduit();
-        sp.ajouter(p1);
-        sp.ajouter(p2);
+        //sp.ajouter(p1);
+        //sp.ajouter(p2);
+        //sp.ajouter(p3);
+        //sp.ajouter(p3);
+        //sp.ajouter(p4);
+        //sp.supprimer(6);
+        //System.out.println(sp.afficherTous());
+        //System.out.println(sp.rechercherUnParId(77));
+        //System.out.println(sp.afficherProduitsParCategorie(3));
+        //System.out.println(sp.nbrProdCategorie(3));
+        //Produit p5 = new Produit("lab5", "biscuit",555,7,1,"biscuit Bnin mosh normal","image",3); 
+        //sp.modifier(p5);
         
-        sp.supprimer(2);
-    */
+/******************************* test offre ********************************/      
+        
+        Offre o1 = new Offre(10,1);
+        Offre o2 = new Offre(20,1);
+        Offre o3 = new Offre(30,1);
+        Offre o4 = new Offre(40,1);
+        ServiceOffre sof = new ServiceOffre();
+        //sof.ajouter(o4);
+        //System.out.println(sof.afficherTous());
+        //System.out.println(sof.rechercherUnParId(1));
+        //sof.modifier(o4);
+        //System.out.println(sof.rechercherUnParId(2));
+        Offre o5 = new Offre(90,1);
+        //sof.modifier(o5);
+        //sof.ajouter(o5);
+        //sof.supprimer(5);
+        //System.out.println(sof.TriParPourcentage());
+        //System.out.println();
+        //sof.calculOffre(2, 10);
+        sof.SendMail();
+ 
+/******************************* test offre ********************************/ 
+
+
+        Avis av =new Avis(2,1);
+        ServiceAvis sAv =new ServiceAvis();
+        //sAv.ajouter(av);
+        
+        
     
-        Fournisseur f1 = new Fournisseur("karim","tunis",14554);
-        ServiceFournisseur sf = new ServiceFournisseur();
-        sf.ajouter(f1);
-        
-        sf.supprimer(1);
-        System.out.println(sf.getOneById(1));
-        
-        
-        
     }
 }

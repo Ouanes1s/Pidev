@@ -48,6 +48,7 @@
     -fx-border-color: linear-gradient(to bottom, #530D68,#741292);
     -fx-border-width:2px;
     -fx-border-radius:20px ;  
+    -fx-cursor: hand;
 }
 
 .search:focused{
@@ -61,4 +62,14 @@
 
 .table-view .table-column{
       -fx-alignmenet: CENTER;
+}
+
+
+.btn{
+    -fx-cursor: hand;
+    -fx-border-color: linear-gradient(to bottom, #530D68,#741292);    
+    -fx-border-width:2px;
+    -fx-border-radius:20px ;  
+    -fx-text-shadow: 0 0 5px currentColler;
+    
 }
