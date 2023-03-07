@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="544.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModefierEvenementController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="550.0" prefWidth="674.0">
+         <children>
+            <Label layoutX="219.0" layoutY="63.0" text="Modefier Evenement">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="171.0" text="Lieu :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="223.0" text="Titre :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="291.0" text="Nombre de Place :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="354.0" text="Date Début :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="413.0" text="Date Fin :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imv" fitHeight="150.0" fitWidth="200.0" layoutX="455.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="529.0" layoutY="279.0" mnemonicParsing="false" onAction="#Upload" text="Upload" />
+            <TextField fx:id="lieu" layoutX="306.0" layoutY="173.0" />
+            <TextField fx:id="titre" layoutX="306.0" layoutY="224.0" />
+            <TextField fx:id="nbrplace" layoutX="306.0" layoutY="292.0" />
+            <DatePicker fx:id="dated" layoutX="307.0" layoutY="355.0" prefHeight="25.0" prefWidth="155.0" />
+            <DatePicker fx:id="datef" layoutX="307.0" layoutY="414.0" prefHeight="25.0" prefWidth="155.0" />
+            <Button layoutX="322.0" layoutY="484.0" mnemonicParsing="false" onAction="#Ajouter" text="Modefier" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

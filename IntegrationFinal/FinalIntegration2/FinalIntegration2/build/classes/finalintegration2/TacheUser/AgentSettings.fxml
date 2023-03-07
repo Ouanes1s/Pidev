@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalintegration2.TacheUser.AgentSettingsController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="934.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pngegg%20(53).png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="276.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Admin" wrappingWidth="375.6708984375">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="324.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenu dans la gestion des agents" textAlignment="CENTER" underline="true" wrappingWidth="278.02197265625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="Ajouter_Button" layoutX="53.0" layoutY="265.0" mnemonicParsing="false" onAction="#AjouterAg" prefHeight="117.0" prefWidth="261.0" style="-fx-background-color: black;" text="Ajouter Agent" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Button fx:id="Modifier_Button" layoutX="333.0" layoutY="265.0" mnemonicParsing="false" onAction="#ModifierAg" prefHeight="117.0" prefWidth="261.0" style="-fx-background-color: black;" text="Modifier Agent" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Button fx:id="List_Button" layoutX="610.0" layoutY="265.0" mnemonicParsing="false" onAction="#ListAg" prefHeight="117.0" prefWidth="261.0" style="-fx-background-color: black;" text="Liste des Agents" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <ImageView fx:id="back" fitHeight="61.0" fitWidth="75.0" layoutX="14.0" layoutY="544.0" onMouseClicked="#Back_ret" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@left-arrow-6424.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>

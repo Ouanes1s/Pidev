@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalintegration2.TacheCinema.CinemaaController">
+   <children>
+      <ImageView fitHeight="535.0" fitWidth="761.0" layoutX="-6.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pngegg%20(53).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="5.0" layoutY="32.0" text="Nom du cinema:" textFill="WHITE" />
+      <Label layoutX="6.0" layoutY="69.0" text="Adresse:" textFill="WHITE" />
+      <Label layoutX="6.0" layoutY="106.0" text="Nombres des salles:" textFill="WHITE" />
+      <TextField fx:id="tfnom_cinema" layoutX="102.0" layoutY="28.0" />
+      <TextField fx:id="tfadresse" layoutX="102.0" layoutY="65.0" />
+      <TextField fx:id="tfnum" layoutX="102.0" layoutY="102.0" />
+      <Button layoutX="93.0" layoutY="149.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="56.0" text="Ajouter" />
+      <Button layoutX="133.0" layoutY="311.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+      <ListView fx:id="CinemaView" layoutX="315.0" layoutY="50.0" prefHeight="338.0" prefWidth="422.0" />
+      <Button fx:id="refresh" layoutX="315.0" layoutY="15.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+      <Button layoutX="178.0" layoutY="150.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <TextField fx:id="searchField" layoutX="400.0" layoutY="15.0" />
+      <Button layoutX="566.0" layoutY="15.0" mnemonicParsing="false" onAction="#search" text="Recherche" />
+      <Button layoutX="653.0" layoutY="16.0" mnemonicParsing="false" onAction="#sort" text="sort" />
+   </children>
+</AnchorPane>

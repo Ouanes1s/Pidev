@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AffichierEvenementController">
+   <children>
+      <AnchorPane layoutX="-3.0" layoutY="-6.0" prefHeight="431.0" prefWidth="649.0">
+         <children>
+            <Label layoutX="249.0" layoutY="61.0" text="Afficher Evenements">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TableView fx:id="table" layoutX="50.0" layoutY="129.0" prefHeight="200.0" prefWidth="563.0">
+              <columns>
+                <TableColumn fx:id="titre" text="Titre" />
+                <TableColumn fx:id="lieu" prefWidth="53.0" text="Lieu" />
+                  <TableColumn fx:id="nbrplace" prefWidth="126.0" text="Nombre de Place" />
+                  <TableColumn fx:id="dated" prefWidth="90.0" text="Date Début " />
+                  <TableColumn fx:id="datef" prefWidth="77.0" text="Date Fin" />
+                  <TableColumn fx:id="nbrPlace" prefWidth="136.0" text="Nombre de Participant" />
+              </columns>
+            </TableView>
+            <Button layoutX="299.0" layoutY="367.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
+            <Button layoutX="161.0" layoutY="367.0" mnemonicParsing="false" onAction="#Modefier" text="Modefier" />
+            <Button layoutX="421.0" layoutY="367.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+            <TextField fx:id="rechercher" layoutX="448.0" layoutY="58.0" onAction="#rechercher" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

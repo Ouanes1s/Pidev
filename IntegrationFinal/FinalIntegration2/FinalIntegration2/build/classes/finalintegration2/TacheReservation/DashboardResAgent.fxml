@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalintegration2.TacheReservation.DashboardResAgentController">
+   <children>
+      <ImageView fx:id="gesblog" fitHeight="66.0" fitWidth="62.0" layoutX="121.0" layoutY="136.0" onMouseClicked="#toblog" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@social-media-announcement-4548.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="gesoffre" fitHeight="62.0" fitWidth="62.0" layoutX="266.0" layoutY="136.0" onMouseClicked="#tooffre" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@discount-9703.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="gesres" fitHeight="84.0" fitWidth="98.0" layoutX="414.0" layoutY="125.0" onMouseClicked="#toreservation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@hand-click-and-reservation-sign-outline-16344.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="180.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agent De Réservation" wrappingWidth="296.13671875">
+         <font>
+            <Font name="Calibri Light Italic" size="34.0" />
+         </font>
+      </Text>
+      <Text layoutX="87.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Blogs" />
+      <Text layoutX="236.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Offres" />
+      <Text layoutX="391.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Réservation" />
+      <ImageView fx:id="back" fitHeight="40.0" fitWidth="44.0" layoutX="18.0" layoutY="302.0" onMouseClicked="#tologin" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@left-arrow-6420.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="usernameLabel" layoutX="58.0" layoutY="71.0" prefHeight="21.0" prefWidth="455.0" text="Label" />
+   </children>
+</AnchorPane>

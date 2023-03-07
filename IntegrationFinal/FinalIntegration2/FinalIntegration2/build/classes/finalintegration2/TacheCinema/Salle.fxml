@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalintegration2.TacheCinema.SalleController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="839.0">
+         <children>
+            <ImageView fitHeight="580.0" fitWidth="888.0" layoutX="-1.0" layoutY="-85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pngegg%20(53).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="28.0" layoutY="74.0" text="Nom du Salle:" textFill="WHITE" />
+            <Label layoutX="29.0" layoutY="111.0" text="Adresse:" textFill="WHITE" />
+            <Label layoutX="17.0" layoutY="148.0" text="Nombres des places:" textFill="WHITE" />
+            <TextField fx:id="tfnom_cinema" layoutX="166.0" layoutY="69.0" />
+            <TextField fx:id="tfadresse" layoutX="166.0" layoutY="106.0" />
+            <TextField fx:id="tfnum" layoutX="166.0" layoutY="143.0" />
+            <Button layoutX="116.0" layoutY="191.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button layoutX="367.0" layoutY="414.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: white;" text="supprimer" />
+            <ListView fx:id="CinemaView" layoutX="367.0" layoutY="69.0" prefHeight="338.0" prefWidth="422.0" />
+            <Button fx:id="refresh" layoutX="375.0" layoutY="27.0" mnemonicParsing="false" onAction="#refresh" style="-fx-background-color: white;" text="Refresh" />
+            <Button layoutX="201.0" layoutY="192.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: black;" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <TextField fx:id="searchField" layoutX="463.0" layoutY="27.0" prefHeight="31.0" prefWidth="161.0" />
+            <Button layoutX="641.0" layoutY="27.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: white;" text="Recherche" />
+            <Button layoutX="733.0" layoutY="27.0" mnemonicParsing="false" onAction="#sort" style="-fx-background-color: white;" text="Sort" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
